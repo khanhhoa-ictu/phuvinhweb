@@ -1,15 +1,25 @@
-import localFont from "next/font/local";
 import "./globals.css";
+import { ConfigProvider } from "antd";
+import { AntdRegistry } from "@ant-design/nextjs-registry";
+import { configStyleComponent } from "@/common/constant";
+import Footer from "@/components/footer";
+import Navbar from "@/components/navbar";
+import { Montserrat, Roboto } from "@next/font/google";
+import Image from "next/image";
+import background1 from "@/assets/image/home/background.jpg";
 
-const geistSans = localFont({
-  src: "./fonts/GeistVF.woff",
-  variable: "--font-geist-sans",
-  weight: "100 900",
+const montserrat = Montserrat({
+  weight: ["400", "500", "600", "700", "800", "900"],
+  subsets: ["latin", "vietnamese"],
+  style: ["normal", "italic"],
+  variable: "--montserrat",
 });
-const geistMono = localFont({
-  src: "./fonts/GeistMonoVF.woff",
-  variable: "--font-geist-mono",
-  weight: "100 900",
+
+const roboto = Roboto({
+  weight: ["400", "500", "700", "900"],
+  subsets: ["latin", "vietnamese"],
+  style: ["normal", "italic"],
+  variable: "--roboto",
 });
 
 export const metadata = {
@@ -20,10 +30,24 @@ export const metadata = {
 export default function RootLayout({ children }) {
   return (
     <html lang="en">
-      <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
-      >
-        {children}
+      <body className={`${roboto.variable} ${montserrat.variable} antialiased`}>
+        <ConfigProvider theme={{ components: configStyleComponent }}>
+          <AntdRegistry>
+            <div className="bg-white flex flex-col justify-between min-h-[100vh] relative font-montserrat">
+              <Image
+                src={background1}
+                width={992}
+                height={476}
+                className="w-auto h-[100vh] absolute opacity-15"
+              />
+              <div className="sticky top-0 z-[11] bg-white">
+                <Navbar />
+              </div>
+              {children}
+              <Footer />
+            </div>
+          </AntdRegistry>
+        </ConfigProvider>
       </body>
     </html>
   );
