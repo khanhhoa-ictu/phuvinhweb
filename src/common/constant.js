@@ -19,7 +19,7 @@ export const listMenu = [
 
 export const configStyleComponent = {
   Button: {
-    primaryColor: "##261797",
+    primaryColor: "#261797",
     contentFontSize: 16,
     controlHeight: 44,
     primaryShadow: "none",

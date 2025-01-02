@@ -15,8 +15,8 @@ function NavbarDesktop() {
           <Link href="/">
             <Image
               src={logo}
-              width={160}
-              height={36}
+              width={479}
+              height={479}
               alt="logo"
               className="w-[160px] h-[160px]"
             />

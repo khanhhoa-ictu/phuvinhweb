@@ -70,10 +70,10 @@ function NavbarMobile() {
           </ul>
         </div>
         <div className="px-[22px]">
-          <div className="flex justify-between">
+          <div className="flex justify-between items-center">
             <div>
               <Link href="/">
-                <Image src={logo} alt="logo" />
+                <Image src={logo} alt="logo" width={479} height={479} className="w-[80px] h-[80px]" />
               </Link>
             </div>
 
