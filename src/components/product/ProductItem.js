@@ -2,9 +2,9 @@ import Image from "next/image";
 import Link from "next/link";
 import React from "react";
 
-function ProductItem({ name, image, productName }) {
+function ProductItem({ name, image, productName, className }) {
   return (
-    <div className="max-w-full">
+    <div className={className}>
       <div className="card-item relative overflow-hidden cursor-pointer max-w-full min-h-[400px] rounded-lg">
         <Image
           src={image}

@@ -39,7 +39,7 @@ function Product() {
         },
       },
       {
-        breakpoint: 2048,
+        breakpoint: 4048,
         settings: {
           slidesToShow: 3,
         },
@@ -58,6 +58,7 @@ function Product() {
               image={background}
               name="test"
               productName="Ống sắt mạ kẽm vuông hình chữ nhật"
+              className="max-w-full"
             />
           ))}
         </Slider>
