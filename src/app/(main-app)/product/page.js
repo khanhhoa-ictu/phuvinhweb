@@ -5,10 +5,10 @@ import backgroundProduct from "@/assets/image/home/background.jpg";
 import Image from "next/image";
 import { Select } from "antd";
 import SelectCategory from "./SelectCategory";
+import CustomPagination from "@/components/pagination";
 
 function Product({ searchParams }) {
   const category = searchParams?.category || null;
-  console.log(category);
   // const products = await getProducts(category);
   const listSlide = [1, 2, 3];
   return (
@@ -27,7 +27,7 @@ function Product({ searchParams }) {
 
       <SelectCategory />
 
-      <div className="max-w-[1200px] gap-6 lg:mx-auto flex flex-col mx-4 md:flex-row flex-wrap gap-6 md:gap-4 items-center lg:justify-between mb-20">
+      <div className="max-w-[1200px] gap-6 lg:mx-auto flex flex-col mx-4 md:flex-row flex-wrap md:gap-4 items-center lg:justify-between mb-10">
         {listSlide?.map((item) => (
           <ProductItem
             key={item}
@@ -37,6 +37,9 @@ function Product({ searchParams }) {
             className="max-w-[370px]"
           />
         ))}
+      </div>
+      <div className="flex justify-center mt-[100px] relative z-10 mb-20">
+        <CustomPagination currentPage={1} totalItems={30} pageSize={10} />
       </div>
     </div>
   );

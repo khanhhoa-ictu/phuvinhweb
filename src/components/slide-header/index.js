@@ -44,7 +44,7 @@ function SlideHeader() {
           {listImage.map((item) => {
             return (
               <Image
-                id={item.id}
+                key={item.id}
                 src={item.image}
                 width={992}
                 height={476}

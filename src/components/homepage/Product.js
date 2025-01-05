@@ -50,7 +50,7 @@ function Product() {
       },
     ],
   };
-  const listSlide = [1, 2, 3];
+  const listSlide = [4, 5, 6];
   return (
     <div className="bg-white px-5 py-8 lg:py-20">
       <h3 className="uppercase text-[36px] text-center font-bold text-[#261797]">

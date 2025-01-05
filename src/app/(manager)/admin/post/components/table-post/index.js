@@ -6,7 +6,7 @@ function TablePost({dataSource}) {
         <div>
           <table className="w-full">
           <tbody>
-            <tr>
+          <tr className="py-2 h-10">
               <th>Tiêu đề bài viết</th>
               <th>Hành động</th>
             </tr>

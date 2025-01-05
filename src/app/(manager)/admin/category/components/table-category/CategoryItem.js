@@ -47,11 +47,13 @@ function CategoryItem({ post }) {
       <td>
         <div className="text-center">
           <Button
+            className="!bg-[#5643e7]"
             onClick={() => setIsOpenModal({ ...isOpenModal, edit: true })}
           >
             update
           </Button>
           <Button
+            className="!bg-white !text-red-600 !border-red-600 ml-3"
             onClick={() => setIsOpenModal({ ...isOpenModal, delete: true })}
           >
             delete

@@ -1,7 +1,5 @@
 .modalCustom {
     min-width: 550px !important;
-    font-family: "Noto Sans JP";
-
     :global {
         .ant-modal-content {
             border-radius: 10px !important;
@@ -20,21 +18,34 @@
                 width: 130px;
                 margin-left: 20px;
                 border-radius: 4px;
+
             }
 
             .ant-btn-primary {
-                background-color: #50c297;
+                background-color: #261797;
                 color: #fff;
                 font-weight: bold;
                 font-size: 12px;
+                :hover{
+                    background-color: #261797 !important;
+                }
             }
 
             .ant-btn-default {
-                border: 1px solid #50c297;
-                color: #50c297;
+                border: 1px solid #261797;
+                color: #261797;
                 font-weight: bold;
                 font-size: 12px;
+                background-color: white !important;
             }
+            .ant-btn-default:hover {
+                color: #261797 !important;
+            }
+            .ant-btn-primary:hover {
+                background-color: #261797 !important;
+                color: white !important;
+            }
+            
         }
 
         .ant-modal-title {

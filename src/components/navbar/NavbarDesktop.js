@@ -28,10 +28,9 @@ function NavbarDesktop() {
   }, []);
 
   useEffect(()=>{
-    console.log('zooo')
     setIsScrolled(false)
   },[pathname])
-  console.log(isScrolled)
+  
   return (
     <div className={`flex justify-between px-[30px] items-center xl:px-[70] py-4 ${
       isScrolled ? "bg-white" : "bg-transparent"

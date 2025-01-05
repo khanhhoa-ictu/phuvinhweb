@@ -2,6 +2,7 @@ import React from "react";
 import background from "@/assets/image/post/background.png";
 import Image from "next/image";
 import PostItem from "./PostItem";
+import CustomPagination from "@/components/pagination";
 function PostPage() {
   const listPost = [
     {
@@ -33,7 +34,7 @@ function PostPage() {
     },
   ];
   return (
-    <div className="flex-1">
+    <div className="flex-1 pb-20">
       <div className="relative">
         <Image
           src={background}
@@ -45,7 +46,7 @@ function PostPage() {
           Tin tức
         </h1>
       </div>
-      <div className="my-20 flex flex-col gap-6 max-w-[1200px] mx-auto" >
+      <div className="flex flex-col gap-6 max-w-[1200px] mx-auto mt-20" >
         {listPost.map((item) => {
           return (
             <PostItem
@@ -57,6 +58,13 @@ function PostPage() {
             />
           );
         })}
+      </div>
+      <div className="flex justify-center mt-[100px] relative z-10">
+        <CustomPagination
+          currentPage={1}
+          totalItems={30}
+          pageSize={10}
+        />
       </div>
     </div>
   );

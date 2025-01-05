@@ -6,7 +6,7 @@ function TableCategory({dataSource}) {
     <div>
       <table className="w-full">
         <tbody>
-          <tr>
+          <tr className="py-2 h-10">
             <th>Tên sản phẩm</th>
             <th>Hành động</th>
           </tr>

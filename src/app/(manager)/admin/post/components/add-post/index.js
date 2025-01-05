@@ -10,14 +10,13 @@ import { handleErrorMessage } from "@/common";
 
 const { Option } = Select;
 function AddPost() {
-  const router = useRouter()
-//   const TextEditor = dynamic(() => import("@/components/text-editor"), {
-//     ssr: false,
-//   });
+  const router = useRouter();
+  //   const TextEditor = dynamic(() => import("@/components/text-editor"), {
+  //     ssr: false,
+  //   });
   const [form] = useForm();
   const [isModalVisible, setIsModalVisible] = useState(false);
   const onChangeEditor = (event, editor) => {
-
     const data = editor.getData();
     form.setFieldsValue({
       content: data,
@@ -28,8 +27,8 @@ function AddPost() {
   };
   const handleSubmit = async (payload) => {
     try {
-    //   await addPost(payload);
-      router.refresh()
+      //   await addPost(payload);
+      router.refresh();
       setIsModalVisible(false);
     } catch (error) {
       handleErrorMessage(error);
@@ -38,7 +37,10 @@ function AddPost() {
 
   return (
     <div>
-      <Button className={styles.add} onClick={() => setIsModalVisible(true)}>
+      <Button
+        onClick={() => setIsModalVisible(true)}
+       className="!bg-[#5643e7]"
+      >
         Thêm bài viết
       </Button>
       <Modal
