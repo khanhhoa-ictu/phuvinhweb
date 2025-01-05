@@ -27,7 +27,7 @@ function Product({ searchParams }) {
 
       <SelectCategory />
 
-      <div className="max-w-[1200px] lg:mx-auto flex flex-col mx-4 md:flex-row flex-wrap gap-6 md:gap-4 items-center lg:justify-between mb-20">
+      <div className="max-w-[1200px] gap-6 lg:mx-auto flex flex-col mx-4 md:flex-row flex-wrap gap-6 md:gap-4 items-center lg:justify-between mb-20">
         {listSlide?.map((item) => (
           <ProductItem
             key={item}

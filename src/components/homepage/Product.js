@@ -3,6 +3,8 @@ import React from "react";
 import ProductItem from "../product/ProductItem";
 import background from "@/assets/image/home/background.jpg";
 import Slider from "react-slick";
+import { Button } from "antd";
+import Link from "next/link";
 
 function Product() {
   const settings = {
@@ -19,8 +21,10 @@ function Product() {
     swipeThreshold: 5,
     dots: true,
     appendDots: (dots) => (
-      <div style={{ paddingTop: '60px' }}> {/* Điều chỉnh khoảng cách */}
-        <ul style={{ display: 'flex', justifyContent: 'center', gap: '10px' }}>
+      <div style={{ paddingTop: "60px" }}>
+        {" "}
+        {/* Điều chỉnh khoảng cách */}
+        <ul style={{ display: "flex", justifyContent: "center", gap: "10px" }}>
           {dots}
         </ul>
       </div>
@@ -48,8 +52,11 @@ function Product() {
   };
   const listSlide = [1, 2, 3];
   return (
-    <div className="bg-white px-5 py-8">
-      <h3 className="uppercase text-[36px] mb-10 text-center">sản phẩm thép Phú Vinh</h3>
+    <div className="bg-white px-5 py-8 lg:py-20">
+      <h3 className="uppercase text-[36px] text-center font-bold text-[#261797]">
+        sản phẩm thép Phú Vinh
+      </h3>
+      <div className="w-[306px] h-[6px] mx-auto mb-10 line relative"></div>
       <div className="max-w-[1200px] mx-auto">
         <Slider {...settings}>
           {listSlide?.map((item) => (
@@ -63,6 +70,9 @@ function Product() {
           ))}
         </Slider>
       </div>
+      <Link href="/product" className="flex justify-center items-center mt-10">
+        <Button className="!mx-auto !px-[46px] !py-8 !text-xl !bg-[#cbb024]">Xem tất cả</Button>
+      </Link>
     </div>
   );
 }

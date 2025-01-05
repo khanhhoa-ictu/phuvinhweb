@@ -11,7 +11,7 @@ function Introduce() {
           PHÚ VINH phấn đấu trở thành doanhnghiệp hàng đầu sản xuất thép Việt
           Nam.
         </p>
-        <Button className="!text-xl lg:!text-2xl !px-8 !py-5 !rounded-[80px] !h-[62px]">
+        <Button className="!text-xl lg:!text-2xl !px-8 !py-5 !rounded-[80px] !h-[62px] !bg-[#cbb024]">
           Tư Vấn Miễn Phí
         </Button>
       </div>

@@ -4,9 +4,9 @@ import React from "react";
 
 function PostItem({ image, date, title, summary, index = "" }) {
   return (
-    <div className="relative post-container">
+    <div className="relative post-container px-4">
       <div
-        className={`post-card w-full border border-[#261797] bg-white rounded-lg flex flex-col sm:flex-row gap-6`}
+        className={`post-card w-full border border-[#0018421a] bg-white rounded-lg flex flex-col sm:flex-row gap-6`}
       >
         <div className="rounded-t-lg sm:rounded-t-lg lg:rounded-t-lg sm:w-[40%]">
           <Image
@@ -14,7 +14,7 @@ function PostItem({ image, date, title, summary, index = "" }) {
             width={353}
             height={270}
             alt="image blog"
-            className="w-full rounded-t-lg sm:rounded-l-lg sm:rounded-t-lg lg:rounded-t-lg h-[270px] object-cover"
+            className="w-full rounded-t-lg sm:rounded-l-lg md:rounded-tr-[0px] h-[270px] min-h-[270px] sm:h-full object-cover"
           />
         </div>
         <div className="flex-1 sm:h-full flex flex-col px-3 lg:px-4 justify-between sm:w-[60%] sm:gap-[10px] flex-shrink-0 py-4">

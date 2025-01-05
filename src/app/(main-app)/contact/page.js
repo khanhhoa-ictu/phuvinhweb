@@ -19,10 +19,13 @@ function Contact() {
         </h1>
       </div>
       <div className="flex justify-center items-center">
-        <div className="w-[50%] hidden md:block">
-          <div className="text-[30px] font-bold uppercase">
-            <h2>BẢN ĐỒ</h2>
-            <h2>NHÀ MÁY THÉP PHÚ VINH</h2>
+        <div className="w-[50%] hidden md:block p-5 lg:p-10">
+          <div className="text-[36px] font-bold uppercase px-4">
+            <div className="max-w-[528px] ml-auto text-[#1c4792] font-bold">
+              <h2>
+                BẢN ĐỒ <span className="block">NHÀ MÁY THÉP PHÚ VINH</span>{" "}
+              </h2>
+            </div>
           </div>
         </div>
         <div className="w-full md:w-[50%] h-[405px]">

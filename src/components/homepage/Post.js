@@ -30,7 +30,8 @@ function Post() {
   ];
   return (
     <div className="mx-5 py-10 lg:mx-10">
-      <h3 className="mb-10 text-[32px] font-bold text-center">tin tức</h3>
+      <h3 className="text-[32px] font-bold text-center uppercase">tin tức</h3>
+      <div className="w-[306px] h-[6px] mx-auto mb-10 line relative"></div>
       <div className="items-center flex flex-col lg:flex-row lg:mx-auto lg:items-stretch gap-10 md:gap-4 xl:max-w-[1200px] xl:gap-5 relative z-10 lg:justify-between">
         {listPost.map((item) => {
           return (

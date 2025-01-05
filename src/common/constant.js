@@ -32,6 +32,7 @@ export const configStyleComponent = {
     fontWeight: 600,
     paddingInline: 16,
     paddingBlock: 0,
+    defaultHoverBorderColor:"none"
   },
   Input: {
     algorithm: true, // Enable algorithmrderColor: '#50c297',

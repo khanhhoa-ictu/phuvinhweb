@@ -2,7 +2,8 @@ import Image from "next/image";
 import React from "react";
 import imageAbout from "@/assets/image/home/image-about.png";
 import Link from "next/link";
-import phone from '@/assets/icon/hotline-icon.png'
+import phone from "@/assets/icon/hotline-icon.png";
+import { Button } from "antd";
 function About() {
   return (
     <div className="px-6 py-10 sm:px-20 md:py-20 bg-[#edf0f2]">
@@ -24,13 +25,13 @@ function About() {
             className="w-full h-full rounded-lg md:h-auto"
           />
         </div>
-        <div className="md:w-[50%]" >
+        <div className="md:w-[50%]">
           <div>
             <div className="hidden md:block md:mb-10">
-              <h3 className="uppercase text-sm font-bold lg:text-base">
+              <h3 className="uppercase text-sm font-bold lg:text-base text-[#333]">
                 về chúng tôi
               </h3>
-              <p className="text-[28px] text-2xl lg:text-[42px] font-bold lg:leading-[140%]">
+              <p className="text-[28px] text-2xl lg:text-[42px] font-bold lg:leading-[140%] text-[#261797]">
                 Một Nền Tảng Vững Chắc Theo Định Hướng Phát Triển Bền Vững Để
                 Cùng Vươn Xa
               </p>
@@ -42,17 +43,19 @@ function About() {
                 ty đã khẳngđịnh được vị thế hàng đầu của mình trong lĩnh vực sản
                 xuất ống Thép tại Việt Nam.
               </p>
-              <Link href="/about">Xem chi tiết</Link>
+              <Link href="/about" className="w-fit" >
+                <Button>Xem chi tiết</Button>
+              </Link>
             </div>
-            <p>
-              Chúng tôi có hơn 20+ năm kinh nghiệm trong ngành sản xuất, niềm
+            <p className="text-[#cbb024] text-2xl font-medium mb-6" >
+              Chúng tôi có hơn <strong>20+</strong>  năm kinh nghiệm trong ngành sản xuất, niềm
               tin vững mạnh!
             </p>
           </div>
 
           <div className="mt-4 flex text-white md:mb-8">
             <div className="w-[30%] bg-[#001842] flex justify-center items-center rounded-l-lg">
-                <Image src={phone} width={46} height={46} />
+              <Image src={phone} width={46} height={46} />
             </div>
             <div className="w-[70%] bg-[#1c4792] flex flex-col px-4 py-6 gap-2 rounded-r-lg lg:gap-3 lg:py-8">
               <p className="text-sm md:text-base font-bold">
