@@ -4,10 +4,9 @@
     overflow-x: hidden;
     overflow-y: auto;
     height: 100%;
-    position: fixed;
     z-index: 1000;
     height: 100vh;
-
+    padding: 0px 20px;
     :global {
 
         .ant-menu-inline,
@@ -42,10 +41,6 @@
             background: #e6fff3;
         }
 
-        .anticon {
-            width: 12px;
-        }
-
         .ant-menu-item-selected {
             .anticon {
                 color: #23815d;
@@ -60,7 +55,7 @@
         width: 100%;
         font-size: 20px;
         font-weight: bold;
-        color: #3c8e6f !important;
+        color: #261797 !important;
         padding: 20px;
     }
 }

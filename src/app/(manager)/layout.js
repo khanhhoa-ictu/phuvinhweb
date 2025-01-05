@@ -1,11 +1,13 @@
-import React from 'react'
+import SideNav from "@/components/navbar-admin/Navbar";
+import React from "react";
 
-function Layout() {
+function Layout({ children }) {
   return (
-    <div>
-      
+    <div className="flex h-[100vh]" >
+      <SideNav />
+      {children}
     </div>
-  )
+  );
 }
 
-export default Layout
+export default Layout;

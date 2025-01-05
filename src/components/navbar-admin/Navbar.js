@@ -1,86 +1,56 @@
-"use client";
-import useToggleSideNav from "@/hook/useToggleSideNav";
 import {
-    HomeOutlined,
-    ReadOutlined,
-    SettingOutlined,
-    TableOutlined,
-    UserOutlined,
+  HomeOutlined,
+  ReadOutlined,
+  SettingOutlined,
+  TableOutlined,
+  UserOutlined,
 } from "@ant-design/icons";
-import { Menu } from "antd";
 import Link from "next/link";
-import { usePathname } from "next/navigation";
-import { useEffect, useState } from "react";
 import styles from "./styles.module.scss";
 
 export default function SideNav() {
-  const { collapsed } = useToggleSideNav();
-  const [selectedKey, setSelectedKey] = useState("1");
-  const pathname = usePathname();
-
   const routes = [
     {
       key: "1",
       text: "Manager",
-      url: "/manager",
+      url: "/admin",
       icon: <HomeOutlined />,
     },
     {
       key: "2",
-      text: "Post",
-      url: "/manager/post",
+      text: "Sản Phẩm",
+      url: "/admin/product",
       icon: <TableOutlined />,
     },
     {
       key: "3",
-      text: "Users",
-      url: "/manager/users",
+      text: "Bài viết",
+      url: "/admin/post",
       icon: <UserOutlined />,
     },
     {
       key: "4",
-      text: "About",
-      url: "/manager/about-setting",
-      icon: <SettingOutlined />,
-    },
-    {
-      key: "5",
-      text: "Category",
-      url: "/manager/category",
+      text: "Danh mục sản phẩm",
+      url: "/admin/category",
       icon: <ReadOutlined />,
     },
   ];
 
-  useEffect(() => {
-    routes.forEach((route) => {
-      if (pathname.startsWith(route.url || "###")) {
-        setSelectedKey(route.key);
-      }
-    });
-  }, [pathname]);
-
   return (
-    <div
-      className={`${styles.sideNav} ${collapsed && styles.sideNavCollapsed}`}
-      style={{ width: collapsed ? 80 : 250, transition: "width 0.3s" }}
-    >
+    <div className={`${styles.sideNav}`}>
       <Link className={styles.logo} href="/">
         HOME
       </Link>
-      <Menu
-        selectedKeys={[selectedKey]}
-        defaultOpenKeys={[]}
-        mode="inline"
-        inlineCollapsed={collapsed}
-      >
+      <div className="flex flex-col gap-5 font-medium text-base" >
         {routes.map((route) => {
           return (
-            <Menu.Item key={route.key} icon={route.icon}>
-              <Link href={route.url}>{route.text}</Link>
-            </Menu.Item>
+            <div key={route.key} className="flex gap-2">
+              <span className="flex-shrink-0 w-5 h-5 text-base" >{route.icon}</span>
+              <Link href={route.url} className="font-medium font-montserrat" >{route.text}</Link>
+            </div>
           );
         })}
-      </Menu>
+      </div>
     </div>
   );
 }
