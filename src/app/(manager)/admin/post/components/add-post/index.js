@@ -11,9 +11,9 @@ import { handleErrorMessage } from "@/common";
 const { Option } = Select;
 function AddPost() {
   const router = useRouter();
-  //   const TextEditor = dynamic(() => import("@/components/text-editor"), {
-  //     ssr: false,
-  //   });
+    const TextEditor = dynamic(() => import("@/components/text-editor"), {
+      ssr: false,
+    });
   const [form] = useForm();
   const [isModalVisible, setIsModalVisible] = useState(false);
   const onChangeEditor = (event, editor) => {
@@ -44,7 +44,7 @@ function AddPost() {
         Thêm bài viết
       </Button>
       <Modal
-        title="Add post"
+        title="Thêm bài viết"
         visible={isModalVisible}
         onOk={() => form.submit()}
         onCancel={handleCancelModal}
@@ -59,9 +59,9 @@ function AddPost() {
           </div>
           <div className={styles.fromItem}>
             <label>Nội dung bài viết</label>
-            {/* <Form.Item name="content">
+            <Form.Item name="content">
               <TextEditor onChange={onChangeEditor} />
-            </Form.Item> */}
+            </Form.Item>
           </div>
           <div className={styles.fromItem}>
             <label>Nội dung tóm tắt</label>
