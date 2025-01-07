@@ -1,10 +1,17 @@
 "use client";
+import { login } from "@/service/auth";
 import { Button, Form, Input } from "antd";
 import React from "react";
 
 function Login() {
-  const handleLogin = (values) => {
-    console.log(values);
+  
+  const handleLogin = async(values) => {
+    try {
+      const data = await login(values)
+      console.log(data)
+    } catch (error) {
+      console.log(error)
+    }
   };
   return (
     <div className="bg-[#f7f7f7] min-h-[100vh] flex items-center justify-center flex-col">
