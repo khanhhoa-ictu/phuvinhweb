@@ -56,7 +56,7 @@ function Product() {
       <h3 className="uppercase text-[36px] text-center font-bold text-[#261797]">
         sản phẩm thép Phú Vinh
       </h3>
-      <div className="w-[306px] h-[6px] mx-auto mb-10 line relative"></div>
+      <div className="w-[306px] h-[6px] mx-auto mb-[60px] line relative"></div>
       <div className="max-w-[1200px] mx-auto">
         <Slider {...settings}>
           {listSlide?.map((item) => (

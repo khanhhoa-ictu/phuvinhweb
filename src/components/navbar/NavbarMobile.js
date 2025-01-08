@@ -47,6 +47,8 @@ function NavbarMobile() {
               alt="close-icon"
               onClick={() => setShowNav(false)}
               className="cursor-pointer"
+              width={24}
+              height={24}
             />
           </div>
           <ul className="font-montserrat mt-[61px] w-full">
