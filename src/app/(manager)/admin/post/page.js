@@ -1,18 +1,12 @@
 import React from "react";
 import AddPost from "./components/add-post";
 import TablePost from "./components/table-post";
+import { getListPost } from "@/service/post";
 
-function Post() {
-    const payload = [
-        {
-            id: 1,
-            title:'bai viet 1'
-        },
-        {
-            id: 2,
-            title:'bai viet 2'
-        }
-    ]
+async function Post({searchParams}) {
+    const data = await getListPost(Number(searchParams.page));
+    const payload = data.payload.data?.listPost
+   
   return (
     <div className="flex-1 mt-10 px-10">
       <div className="max-w-[1200px] mx-auto" >

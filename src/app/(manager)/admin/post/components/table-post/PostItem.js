@@ -6,6 +6,7 @@ import React, { useState } from "react";
 // import EditPost from "../edit-post";
 import { useRouter } from "next/navigation";
 import { handleErrorMessage } from "@/common";
+import { deletePost } from "@/service/post";
 
 
 
@@ -19,7 +20,7 @@ function PostItem({post}) {
   const handleOkDelete = async () => {
     setLoading(true);
     try {
-      // await deletePost(post.id);
+      await deletePost(post.id);
       router.refresh()
     } catch (error) {
       handleErrorMessage(error);

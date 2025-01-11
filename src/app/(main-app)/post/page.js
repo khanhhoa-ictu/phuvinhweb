@@ -3,7 +3,12 @@ import background from "@/assets/image/post/background.png";
 import Image from "next/image";
 import PostItem from "./PostItem";
 import CustomPagination from "@/components/pagination";
-function PostPage() {
+import { getListPost } from "@/service/post";
+
+async function PostPage({searchParams }) {
+  const data = await getListPost(Number(searchParams.page));
+  console.log("data===========",data);
+  // const listPost = data.payload.data?.listPost || []
   const listPost = [
     {
       id: 1,

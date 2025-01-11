@@ -7,16 +7,4 @@ const pool = mysql.createPool({
   database: process.env.MYSQL_DATABASE, // Tên cơ sở dữ liệu
 });
 
-export async function testConnection() {
-  try {
-    const connection = await pool.getConnection();
-    console.log('Kết nối tới MySQL thành công!');
-    connection.release(); // Giải phóng kết nối
-    return true;
-  } catch (error) {
-    console.error('Lỗi kết nối MySQL:', error.message);
-    return false;
-  }
-}
-
 export default pool;

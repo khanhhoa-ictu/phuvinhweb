@@ -8,7 +8,6 @@ function Login() {
   const handleLogin = async(values) => {
     try {
       const data = await login(values)
-      console.log(data)
     } catch (error) {
       console.log(error)
     }

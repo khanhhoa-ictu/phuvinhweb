@@ -7,13 +7,14 @@ import { useRouter } from "next/navigation";
 import { useState } from "react";
 import styles from "./styles.module.scss";
 import { handleErrorMessage } from "@/common";
+import { addPost } from "@/service/post";
 
 const { Option } = Select;
 function AddPost() {
   const router = useRouter();
-    const TextEditor = dynamic(() => import("@/components/text-editor"), {
-      ssr: false,
-    });
+  const TextEditor = dynamic(() => import("@/components/text-editor"), {
+    ssr: false,
+  });
   const [form] = useForm();
   const [isModalVisible, setIsModalVisible] = useState(false);
   const onChangeEditor = (event, editor) => {
@@ -27,7 +28,7 @@ function AddPost() {
   };
   const handleSubmit = async (payload) => {
     try {
-      //   await addPost(payload);
+      await addPost(payload);
       router.refresh();
       setIsModalVisible(false);
     } catch (error) {
@@ -37,10 +38,7 @@ function AddPost() {
 
   return (
     <div>
-      <Button
-        onClick={() => setIsModalVisible(true)}
-       className="!bg-[#5643e7]"
-      >
+      <Button onClick={() => setIsModalVisible(true)} className="!bg-[#5643e7]">
         Thêm bài viết
       </Button>
       <Modal
@@ -73,23 +71,6 @@ function AddPost() {
             <label>thumbnail</label>
             <Form.Item name="thumbnail">
               <Input type="text" />
-            </Form.Item>
-          </div>
-          <div className={styles.fromItem}>
-            <label>slug</label>
-            <Form.Item name="slug">
-              <Input type="text" />
-            </Form.Item>
-          </div>
-
-          <div className={styles.fromItem}>
-            <label>thể loại</label>
-            <Form.Item name="category_id">
-              <Select>
-                <Option value={1}>html-css</Option>
-                <Option value={2}>javascript</Option>
-                <Option value={3}>reactJs</Option>
-              </Select>
             </Form.Item>
           </div>
         </Form>

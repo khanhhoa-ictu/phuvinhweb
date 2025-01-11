@@ -26,7 +26,6 @@ export class EntityError extends HttpError {
 }
 
 const request = async (method, url, option) => {
-  console.log("==================");
   const body = option?.body
     ? option?.body instanceof FormData
       ? option?.body
@@ -50,7 +49,6 @@ const request = async (method, url, option) => {
   }
 
   const baseUrl = "http://localhost:3000";
-  console.log(`${baseUrl}/${url}`);
   const res = await fetch(`${baseUrl}/${url}`, {
     ...option,
     headers: {
@@ -60,10 +58,8 @@ const request = async (method, url, option) => {
     body,
     method,
   });
-  console.log(res);
 
   const payload = await res.json();
-  console.log(payload);
   const data = {
     status: res.status,
     payload,

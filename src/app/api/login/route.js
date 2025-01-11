@@ -4,9 +4,9 @@ import jwt from "jsonwebtoken";
 
 export async function POST(req, res) {
   const request = await req.json();
+  
   const { username, password } = request;
   const [rows] = await pool.query('SELECT * FROM user WHERE username = ?', [username]);
-  console.log('============',rows)
   if (rows.length === 0) {
     return Response.json(
       { message: "không tìm thấy thông tin người dùng" },
