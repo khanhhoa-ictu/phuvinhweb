@@ -41,20 +41,44 @@ export async function POST(req, res) {
 
 export async function DELETE(req, res) {
   const { searchParams } = new URL(req.url);
-  const id = searchParams.delete;
+  const id = searchParams.get("delete");
   const [rows] = await pool.query("DELETE FROM post WHERE id=?", [id]);
-  console.log(rows);
 
   if (rows) {
     return Response.json(
-      { message: "Thêm bài viết thành công" },
+      { message: "Xoa bài viết thành công" },
       {
         status: 200,
       }
     );
   } else {
     return Response.json(
-      { message: "Thêm bài viết thất bại" },
+      { message: "Xoá bài viết thất bại" },
+      {
+        status: 422,
+      }
+    );
+  }
+}
+
+export async function PUT(req, res) {
+  const request = await req.json();
+  const { title, content, summary, thumbnail, id } = request;
+  const [rows] = await pool.query(
+    "UPDATE post SET title = ?, content = ?, summary = ?, thumbnail = ? WHERE id = ?",
+    [title, content, summary, thumbnail, id]
+  );
+
+  if (rows) {
+    return Response.json(
+      { message: "Cập nhât bài viết thành công" },
+      {
+        status: 200,
+      }
+    );
+  } else {
+    return Response.json(
+      { message: "Cập nhât bài viết thất bại" },
       {
         status: 422,
       }

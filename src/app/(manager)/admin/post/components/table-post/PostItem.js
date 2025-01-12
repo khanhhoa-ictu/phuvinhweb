@@ -1,12 +1,11 @@
 "use client";
 import CustomModal from "@/components/modal/CustomModal";
-// import { deletePost, editPost } from "@/service/manager";
 import { Button } from "antd";
 import React, { useState } from "react";
-// import EditPost from "../edit-post";
 import { useRouter } from "next/navigation";
 import { handleErrorMessage } from "@/common";
-import { deletePost } from "@/service/post";
+import { deletePost, editPost } from "@/service/post";
+import EditPost from "../edit-post";
 
 
 
@@ -34,8 +33,8 @@ function PostItem({post}) {
     let newData = { ...data, id: post.id };
 
     try {
-    //   setLoading(true);
-      // await editPost(newData);
+      setLoading(true);
+      await editPost(newData);
       router.refresh()
       setIsOpenModal({ ...isOpenModal, edit: false });
     } catch (error) {
@@ -72,14 +71,14 @@ function PostItem({post}) {
       >
         Bạn có muốn xóa bài viết không
       </CustomModal>
-      {/* {isOpenModal.edit && (
+      {isOpenModal.edit && (
         <EditPost
           isModalVisible={isOpenModal.edit}
           handleOk={handleOkEdit}
           handleCancel={() => setIsOpenModal({ ...isOpenModal, edit: false })}
           id={post.id}
         />
-      )} */}
+      )}
     </tr>
   );
 }

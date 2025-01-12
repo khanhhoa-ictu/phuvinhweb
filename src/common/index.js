@@ -1,3 +1,5 @@
+import { message } from "antd";
+
 export const isClient = typeof window !== "undefined";
 
 export const handleErrorMessage = (error) => {

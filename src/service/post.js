@@ -11,3 +11,9 @@ export const addPost = (data) =>{
 export const deletePost = (id) =>{
     return http.delete(`api/post?delete=${Number(id)}`)
 }
+export const getPostDetail = (id) =>{
+    return http.get(`api/post/${id}`)
+}
+export const editPost = (data) =>{
+    return http.put(`api/post/`,data)
+}
