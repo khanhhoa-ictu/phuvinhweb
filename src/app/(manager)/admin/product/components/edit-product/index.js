@@ -19,7 +19,7 @@ function EditProduct({ isModalVisible, handleOk, handleCancel, id }) {
   const [preview, setPreview] = useState(null);
   const imageRef = useRef(null);
   const [category, setCategory] = useState([]);
-
+  const [description, setDescription] = useState("")
   const onChangeEditor = (event, editor) => {
     const data = editor.getData();
     form.setFieldsValue({
@@ -57,6 +57,7 @@ function EditProduct({ isModalVisible, handleOk, handleCancel, id }) {
       const listCategory = data.payload.data?.listPost;
       setCategory(listCategory);
       form.setFieldsValue(dataProduct?.payload?.data)
+      setDescription(dataProduct?.payload?.data?.description)
     } catch (error) {
       handleErrorMessage(error);
     }
@@ -67,6 +68,7 @@ function EditProduct({ isModalVisible, handleOk, handleCancel, id }) {
       getProduct();
     } else {
       form.resetFields();
+      setDescription("")
     }
   }, [isModalVisible]);
 
@@ -99,7 +101,7 @@ function EditProduct({ isModalVisible, handleOk, handleCancel, id }) {
         <div className={styles.fromItem}>
           <label>Nội dung sản phẩm</label>
           <Form.Item name="description">
-            <TextEditor onChange={onChangeEditor} />
+            <TextEditor onChange={onChangeEditor} data={description} />
           </Form.Item>
         </div>
       </Form>

@@ -7,37 +7,8 @@ import { getListPost } from "@/service/post";
 
 async function PostPage({searchParams }) {
   const data = await getListPost(Number(searchParams.page));
-  console.log("data===========",data);
-  // const listPost = data.payload.data?.listPost || []
-  const listPost = [
-    {
-      id: 1,
-      image:
-        "https://minhngocsteel.vn/upload/news/original/thep-minh-ngoc-ruc-ro-chao-don-ngay-phu-nu-viet-nam-20-10-1729668915.jpg",
-      date: "20/10/2002",
-      title: "test",
-      content:
-        "Ngày 04/11/2024, Lễ Công bố sản phẩm đạt Thương hiệu Quốc gia Việt Nam năm 2024 với chủ đề “Vươn mình tiến vào kỷ nguyên Xanh” được diễn ra long trọng tại Trung tâm Hội nghị Quốc gia Việt Nam và được truyền hình trực tiếp trên Đài truyền hình Việt Nam. Công ty TNHH SX&TM Minh Ngọc tự hào là doanh nghiệp có sản phẩm được vinh danh Thương hiệu Quốc gia Việt Nam năm 2024.",
-    },
-    {
-      id: 2,
-      image:
-        "https://minhngocsteel.vn/upload/news/original/thep-minh-ngoc-ruc-ro-chao-don-ngay-phu-nu-viet-nam-20-10-1729668915.jpg",
-      date: "20/10/2002",
-      title: "test",
-      content:
-        "Ngày 04/11/2024, Lễ Công bố sản phẩm đạt Thương hiệu Quốc gia Việt Nam năm 2024 với chủ đề “Vươn mình tiến vào kỷ nguyên Xanh” được diễn ra long trọng tại Trung tâm Hội nghị Quốc gia Việt Nam và được truyền hình trực tiếp trên Đài truyền hình Việt Nam. Công ty TNHH SX&TM Minh Ngọc tự hào là doanh nghiệp có sản phẩm được vinh danh Thương hiệu Quốc gia Việt Nam năm 2024.",
-    },
-    {
-      id: 3,
-      image:
-        "https://minhngocsteel.vn/upload/news/original/thep-minh-ngoc-ruc-ro-chao-don-ngay-phu-nu-viet-nam-20-10-1729668915.jpg",
-      date: "20/10/2002",
-      title: "test",
-      content:
-        "Ngày 04/11/2024, Lễ Công bố sản phẩm đạt Thương hiệu Quốc gia Việt Nam năm 2024 với chủ đề “Vươn mình tiến vào kỷ nguyên Xanh” được diễn ra long trọng tại Trung tâm Hội nghị Quốc gia Việt Nam và được truyền hình trực tiếp trên Đài truyền hình Việt Nam. Công ty TNHH SX&TM Minh Ngọc tự hào là doanh nghiệp có sản phẩm được vinh danh Thương hiệu Quốc gia Việt Nam năm 2024.",
-    },
-  ];
+  const listPost = data.payload.data?.listPost || []
+ 
   return (
     <div className="flex-1 pb-20">
       <div className="relative">
@@ -56,10 +27,10 @@ async function PostPage({searchParams }) {
           return (
             <PostItem
               key={item.id}
-              image={item.image}
+              image={item.thumbnail}
               date={item.date}
               title={item.title}
-              summary={item.content}
+              summary={item.summary}
             />
           );
         })}

@@ -1,8 +1,8 @@
 "use client";
-// import { uploadImagePost } from "@/service/manager";
 import { CKEditor } from "@ckeditor/ckeditor5-react";
 import ClassicEditor from "@ckeditor/ckeditor5-build-classic";
 import styles from "./styles.module.scss";
+import { uploadFile } from "@/service/image";
 
 function customUploadAdapter(loader) {
   return {
@@ -11,7 +11,7 @@ function customUploadAdapter(loader) {
       const file = await loader.file;
       data.append("file-image", file);
 
-      //   const response = await uploadImagePost(data);
+        const response = await uploadFile(data);
       return {
         default: response.payload.url,
       };
@@ -26,7 +26,6 @@ function uploadPlugin(editor) {
 }
 
 function TextEditor({ onChange, data }) {
-  // console.log(ClassicEditor)
   return (
     <div className={styles.textEditor}>
       <CKEditor
@@ -52,23 +51,11 @@ function TextEditor({ onChange, data }) {
             "|",
             "heading",
             "|",
-            "fontfamily",
-            "fontsize",
-            "fontColor",
-            "fontBackgroundColor",
-            "|",
             "bold",
             "italic",
-            "strikethrough",
-            "subscript",
-            "superscript",
-            "code",
-            "-", // break point
             "|",
-            "alignment",
             "uploadImage",
             "blockQuote",
-            "codeBlock",
             "|",
             "bulletedList",
             "numberedList",

@@ -46,7 +46,6 @@ function EditPost({ isModalVisible, handleOk, handleCancel, id }) {
       content: data,
     });
   };
-
   return (
     <Modal
       title="Chỉnh sửa bài viết"
@@ -65,7 +64,7 @@ function EditPost({ isModalVisible, handleOk, handleCancel, id }) {
         <div className={styles.fromItem}>
           <label>Nội dung bài viết</label>
           <Form.Item name="content">
-            <TextEditor onChange={onChangeEditor} />
+            <TextEditor onChange={onChangeEditor} data={data?.content} />
           </Form.Item>
         </div>
         <div className={styles.fromItem}>
