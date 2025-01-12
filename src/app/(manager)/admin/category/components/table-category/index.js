@@ -12,7 +12,7 @@ function TableCategory({dataSource}) {
           </tr>
 
           {dataSource.map((item) => {
-            return <CategoryItem post={item} key={item.title} />;
+            return <CategoryItem category={item} key={item.id} />;
           })}
         </tbody>
       </table>

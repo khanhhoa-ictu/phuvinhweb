@@ -1,13 +1,14 @@
 "use client";
 import CustomModal from "@/components/modal/CustomModal";
-// import { deletePost, editPost } from "@/service/manager";
 import { Button } from "antd";
 import React, { useState } from "react";
 // import EditPost from "../edit-post";
 import { useRouter } from "next/navigation";
 import { handleErrorMessage } from "@/common";
+import { deleteCategory, editCategory } from "@/service/catygory";
+import EditCategory from "../edit-category";
 
-function CategoryItem({ post }) {
+function CategoryItem({ category }) {
   const router = useRouter();
   const [isOpenModal, setIsOpenModal] = useState({
     edit: false,
@@ -17,7 +18,7 @@ function CategoryItem({ post }) {
   const handleOkDelete = async () => {
     setLoading(true);
     try {
-      // await deletePost(post.id);
+      await deleteCategory(category.id);
       router.refresh();
     } catch (error) {
       handleErrorMessage(error);
@@ -28,11 +29,11 @@ function CategoryItem({ post }) {
   };
 
   const handleOkEdit = async (data) => {
-    let newData = { ...data, id: post.id };
+    let newData = { ...data, id: category.id };
 
     try {
-      //   setLoading(true);
-      // await editPost(newData);
+      setLoading(true);
+      await editCategory(newData);
       router.refresh();
       setIsOpenModal({ ...isOpenModal, edit: false });
     } catch (error) {
@@ -42,7 +43,7 @@ function CategoryItem({ post }) {
 
   return (
     <tr>
-      <td className="text-center">{post.title}</td>
+      <td className="text-center">{category.name}</td>
 
       <td>
         <div className="text-center">
@@ -69,14 +70,14 @@ function CategoryItem({ post }) {
       >
         Bạn có muốn xóa bài viết không
       </CustomModal>
-      {/* {isOpenModal.edit && (
-        <EditPost
+      {isOpenModal.edit && (
+        <EditCategory
           isModalVisible={isOpenModal.edit}
           handleOk={handleOkEdit}
           handleCancel={() => setIsOpenModal({ ...isOpenModal, edit: false })}
-          id={post.id}
+          id={category.id}
         />
-      )} */}
+      )}
     </tr>
   );
 }

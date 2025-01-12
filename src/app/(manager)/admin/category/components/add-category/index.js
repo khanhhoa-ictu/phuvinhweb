@@ -2,6 +2,8 @@
 import { Button, Input, Modal } from "antd";
 import { useState } from "react";
 import styles from "./styles.module.scss";
+import { addCategory } from "@/service/catygory";
+import { handleErrorMessage } from "@/common";
 
 function AddCategory() {
   const [isModalVisible, setIsModalVisible] = useState(false);
@@ -11,8 +13,15 @@ function AddCategory() {
     setNameCategory("");
   };
 
-  const handleSubmit = () => {
-    console.log(nameCategory);
+  const handleSubmit = async () => {
+    if (!nameCategory) return;
+    try {
+      await addCategory({ name: nameCategory });
+      setIsModalVisible(false);
+      setNameCategory("");
+    } catch (error) {
+      handleErrorMessage(error);
+    }
   };
 
   return (
