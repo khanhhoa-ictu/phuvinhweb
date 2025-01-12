@@ -2,25 +2,28 @@
 import CustomModal from "@/components/modal/CustomModal";
 // import { deletePost, editPost } from "@/service/manager";
 import { Button } from "antd";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 // import EditPost from "../edit-post";
 import { useRouter } from "next/navigation";
 import { handleErrorMessage } from "@/common";
+import { deleteProduct, editProduct } from "@/service/product";
+import EditProduct from "../edit-product";
+import { getListCategory } from "@/service/catygory";
 
-
-
-function ProductItem({post}) {
-  const router = useRouter()
+function ProductItem({ product }) {
+  const router = useRouter();
+  const [loading, setLoading] = useState(false);
+  const [category, setCategory] = useState([]);
   const [isOpenModal, setIsOpenModal] = useState({
     edit: false,
     delete: false,
   });
-  const [loading, setLoading] = useState(false);
+
   const handleOkDelete = async () => {
     setLoading(true);
     try {
-      // await deletePost(post.id);
-      router.refresh()
+      await deleteProduct(product.id);
+      router.refresh();
     } catch (error) {
       handleErrorMessage(error);
     } finally {
@@ -30,21 +33,34 @@ function ProductItem({post}) {
   };
 
   const handleOkEdit = async (data) => {
-    let newData = { ...data, id: post.id };
+    let newData = { ...data, id: product.id };
 
     try {
-    //   setLoading(true);
-      // await editPost(newData);
-      router.refresh()
+      setLoading(true);
+      await editProduct(newData);
+      router.refresh();
       setIsOpenModal({ ...isOpenModal, edit: false });
     } catch (error) {
       handleErrorMessage(error);
     }
   };
-
+  const getCategory = async () => {
+    try {
+      const data = await getListCategory(1);
+      const listCategory = data.payload.data?.listPost;
+      setCategory(listCategory);
+    } catch (error) {}
+  };
+  useEffect(() => {
+    getCategory();
+  }, []);
+  
   return (
     <tr>
-      <td className="text-center">{post.title}</td>
+      <td className="text-center">{product.name}</td>
+      <td className="text-center">
+        {category.find((item) => item.id === product.category_id)?.name}
+      </td>
 
       <td>
         <div className="text-center">
@@ -71,14 +87,14 @@ function ProductItem({post}) {
       >
         Bạn có muốn xóa bài viết không
       </CustomModal>
-      {/* {isOpenModal.edit && (
-        <EditPost
+      {isOpenModal.edit && (
+        <EditProduct
           isModalVisible={isOpenModal.edit}
           handleOk={handleOkEdit}
           handleCancel={() => setIsOpenModal({ ...isOpenModal, edit: false })}
-          id={post.id}
+          id={product.id}
         />
-      )} */}
+      )}
     </tr>
   );
 }

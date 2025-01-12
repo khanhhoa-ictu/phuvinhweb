@@ -17,24 +17,28 @@ export default function SideNav() {
       key: "1",
       text: "Manager",
       url: "/admin",
+      baseURL: "/admin",
       icon: <HomeOutlined />,
     },
     {
       key: "2",
       text: "Sản Phẩm",
-      url: "/admin/product",
+      url: "/admin/product?page=1",
+      baseURL: "/admin/product",
       icon: <TableOutlined />,
     },
     {
       key: "3",
       text: "Bài viết",
-      url: "/admin/post",
+      url: "/admin/post?page=1",
+      baseURL: "/admin/post",
       icon: <UserOutlined />,
     },
     {
       key: "4",
       text: "Danh mục sản phẩm",
-      url: "/admin/category",
+      url: "/admin/category?page=1",
+      baseURL: "/admin/category",
       icon: <ReadOutlined />,
     },
   ];
@@ -48,18 +52,18 @@ export default function SideNav() {
         {routes.map((route) => {
           return (
             <Link
-             href={route.url}
+              href={route.url}
               key={route.key}
-              className={`px-5 py-4 flex gap-2 ${pathname === route.url && "bg-[#e1e9ff] text-[#261797]"}`}
+              className={`px-5 py-4 flex gap-2 ${pathname === route.baseURL && "bg-[#e1e9ff] text-[#261797]"}`}
             >
               <p
-                className={`flex-shrink-0 w-5 h-5 text-base ${pathname === route.url && "font-bold !text-xl"}`}
+                className={`flex-shrink-0 w-5 h-5 text-base ${pathname === route.baseURL && "font-bold !text-xl"}`}
               >
                 {route.icon}
               </p>
 
               <p
-                className={`font-medium font-montserrat flex items-center ${pathname === route.url && "!font-semibold"}`}
+                className={`font-medium font-montserrat flex items-center ${pathname === route.baseURL && "!font-semibold"}`}
               >
                 {route.text}
               </p>
