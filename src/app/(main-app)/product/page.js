@@ -6,11 +6,14 @@ import Image from "next/image";
 import { Select } from "antd";
 import SelectCategory from "./SelectCategory";
 import CustomPagination from "@/components/pagination";
+import { getListProduct, getListProductByCategory } from "@/service/product";
 
-function Product({ searchParams }) {
+async function Product({ searchParams }) {
   const category = searchParams?.category || null;
-  // const products = await getProducts(category);
-  const listSlide = [1, 2, 3];
+  const currentPage = Number(searchParams.page) || 1;
+  const pageSize = 10;
+  const data = await getListProductByCategory(currentPage, pageSize, category);
+  const products = data.payload.data?.products;
   return (
     <div className="flex-1">
       <div className="relative">
@@ -28,10 +31,10 @@ function Product({ searchParams }) {
       <SelectCategory />
 
       <div className="max-w-[1200px] gap-6 lg:mx-auto flex flex-col mx-4 md:flex-row flex-wrap md:gap-4 items-center lg:justify-between mb-10">
-        {listSlide?.map((item) => (
+        {products?.map((item) => (
           <ProductItem
             key={item}
-            image={backgroundProduct}
+            image={item.thumbnail}
             name="test"
             productName="Ống sắt mạ kẽm vuông hình chữ nhật"
             className="max-w-[370px]"
@@ -39,7 +42,11 @@ function Product({ searchParams }) {
         ))}
       </div>
       <div className="flex justify-center mt-[100px] relative z-10 mb-20">
-        <CustomPagination currentPage={1} totalItems={30} pageSize={10} />
+        <CustomPagination
+          currentPage={currentPage}
+          totalItems={data.payload.data?.total}
+          pageSize={pageSize}
+        />
       </div>
     </div>
   );

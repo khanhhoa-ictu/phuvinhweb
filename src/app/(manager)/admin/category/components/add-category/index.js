@@ -27,7 +27,7 @@ function AddCategory() {
   return (
     <div>
       <Button onClick={() => setIsModalVisible(true)} className="!bg-[#5643e7]">
-        Thêm sản phẩm
+        Thêm danh mục sản phẩm
       </Button>
 
       <Modal

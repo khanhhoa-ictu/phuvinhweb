@@ -1,7 +1,7 @@
 import http from "@/lib/http"
 
-export const getListPost = (page) =>{
-    return http.get(`api/post?page=${page}`)
+export const getListPost = (page, pageSize) =>{
+    return http.get(`api/post?page=${page}&page-size=${pageSize}`)
 }
 
 export const addPost = (data) =>{

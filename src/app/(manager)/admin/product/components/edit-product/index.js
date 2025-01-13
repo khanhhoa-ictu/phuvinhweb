@@ -1,15 +1,16 @@
 "use client";
-import { Button, Form, Input, Modal, Select } from "antd";
-import React, { useEffect, useRef, useState } from "react";
-import styles from "./styles.module.scss";
-import { useForm } from "antd/es/form/Form";
-import Image from "next/image";
 import closeIcon from "@/assets/icon/close-icon.svg";
-import { PlusOutlined } from "@ant-design/icons";
+import { handleErrorMessage, isValidateFile } from "@/common";
 import { getListCategory } from "@/service/catygory";
-import { handleErrorMessage } from "@/common";
+import { getProductDetail } from "@/service/product";
+import { PlusOutlined } from "@ant-design/icons";
+import { Form, Input, Modal, Select } from "antd";
+import { useForm } from "antd/es/form/Form";
 import dynamic from "next/dynamic";
-import { addProduct, getProductDetail } from "@/service/product";
+import Image from "next/image";
+import { useEffect, useRef, useState } from "react";
+import styles from "./styles.module.scss";
+import { uploadFile } from "@/service/image";
 
 function EditProduct({ isModalVisible, handleOk, handleCancel, id }) {
   const TextEditor = dynamic(() => import("@/components/text-editor"), {
@@ -19,7 +20,10 @@ function EditProduct({ isModalVisible, handleOk, handleCancel, id }) {
   const [preview, setPreview] = useState(null);
   const imageRef = useRef(null);
   const [category, setCategory] = useState([]);
-  const [description, setDescription] = useState("")
+  const [description, setDescription] = useState("");
+  const [currentImage, setCurrentImage] = useState(null);
+  const [isChangeFile, setIsChangeFile] = useState(false);
+
   const onChangeEditor = (event, editor) => {
     const data = editor.getData();
     form.setFieldsValue({
@@ -28,8 +32,23 @@ function EditProduct({ isModalVisible, handleOk, handleCancel, id }) {
   };
 
   const handleSubmit = async (values) => {
+    let thumbnail = "";
+    if (!isChangeFile) {
+      thumbnail = data?.thumbnail;
+    } else {
+      if (!currentImage) {
+        handleErrorMessage("Vui lòng cung cấp hình ảnh");
+        return;
+      }
+      const data = new FormData();
+      data.append("file-image", currentImage);
+      const newThumbnail = await uploadFile(data);
+      thumbnail = newThumbnail?.payload?.url;
+    }
+
     try {
-      await handleOk({ ...values, thumbnail: "test" });
+      await handleOk({ ...values, thumbnail: thumbnail });
+      handleSuccessMessage("Cập nhật sản phẩm thành công");
     } catch (error) {
       handleErrorMessage(error);
     }
@@ -37,6 +56,11 @@ function EditProduct({ isModalVisible, handleOk, handleCancel, id }) {
 
   const handleChangeFile = (event) => {
     const file = event.target.files?.[0]; // Lấy file đầu tiên từ input
+    setCurrentImage(file);
+    if (!isValidateFile(file)) {
+      handleErrorMessage("File phải là hình ảnh và nhỏ hơn 5M");
+      return;
+    }
     if (file) {
       const reader = new FileReader();
       reader.onload = () => {
@@ -47,6 +71,8 @@ function EditProduct({ isModalVisible, handleOk, handleCancel, id }) {
   };
   const deleteFile = () => {
     setPreview("");
+    setCurrentImage(null);
+    setIsChangeFile(true);
     imageRef.current.value = "";
   };
 
@@ -56,8 +82,9 @@ function EditProduct({ isModalVisible, handleOk, handleCancel, id }) {
       const dataProduct = await getProductDetail(id);
       const listCategory = data.payload.data?.listPost;
       setCategory(listCategory);
-      form.setFieldsValue(dataProduct?.payload?.data)
-      setDescription(dataProduct?.payload?.data?.description)
+      form.setFieldsValue(dataProduct?.payload?.data);
+      setDescription(dataProduct?.payload?.data?.description);
+      setPreview(dataProduct?.payload?.data?.thumbnail);
     } catch (error) {
       handleErrorMessage(error);
     }
@@ -68,7 +95,9 @@ function EditProduct({ isModalVisible, handleOk, handleCancel, id }) {
       getProduct();
     } else {
       form.resetFields();
-      setDescription("")
+      setDescription("");
+      setCurrentImage(null);
+      setIsChangeFile(false);
     }
   }, [isModalVisible]);
 

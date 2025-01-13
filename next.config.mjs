@@ -1,7 +1,20 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
     images: {
-        domains: ["minhngocsteel.vn"],
+        remotePatterns: [
+          {
+            protocol: 'https',
+            hostname: 'res.cloudinary.com',
+            port: '',
+            pathname: '/**',
+          },
+          {
+            protocol: 'https',
+            hostname: 'minhngocsteel.vn',
+            port: '',
+            pathname: '/**',
+          },
+        ],
       },
 };
 

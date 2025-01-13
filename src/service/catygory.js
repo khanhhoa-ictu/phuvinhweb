@@ -4,8 +4,8 @@ export const addCategory = (data) => {
   return http.post(`api/category`, data);
 };
 
-export const getListCategory = (page) => {
-  return http.get(`api/category?page=${page}`);
+export const getListCategory = (page, sort="DESC") => {
+  return http.get(`api/category?page=${page}&sort=${sort}`);
 };
 export const deleteCategory = (id) => {
   return http.delete(`api/category/${id}`);

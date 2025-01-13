@@ -5,10 +5,12 @@ import PostItem from "./PostItem";
 import CustomPagination from "@/components/pagination";
 import { getListPost } from "@/service/post";
 
-async function PostPage({searchParams }) {
-  const data = await getListPost(Number(searchParams.page));
-  const listPost = data.payload.data?.listPost || []
- 
+async function PostPage({ searchParams }) {
+  const currentPage = Number(searchParams.page) || 1;
+  const pageSize = 10;
+  const data = await getListPost(currentPage, pageSize);
+  const listPost = data.payload.data?.listPost || [];
+
   return (
     <div className="flex-1 pb-20">
       <div className="relative">
@@ -22,7 +24,7 @@ async function PostPage({searchParams }) {
           Tin tức
         </h1>
       </div>
-      <div className="flex flex-col gap-6 max-w-[1200px] mx-auto mt-20" >
+      <div className="flex flex-col gap-10 max-w-[1200px] mx-auto mt-20">
         {listPost.map((item) => {
           return (
             <PostItem
@@ -37,9 +39,9 @@ async function PostPage({searchParams }) {
       </div>
       <div className="flex justify-center mt-[100px] relative z-10">
         <CustomPagination
-          currentPage={1}
-          totalItems={30}
-          pageSize={10}
+          currentPage={currentPage}
+          totalItems={data.payload.data?.total}
+          pageSize={pageSize}
         />
       </div>
     </div>

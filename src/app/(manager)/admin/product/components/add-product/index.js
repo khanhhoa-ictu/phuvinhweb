@@ -7,9 +7,10 @@ import Image from "next/image";
 import closeIcon from "@/assets/icon/close-icon.svg";
 import { PlusOutlined } from "@ant-design/icons";
 import { getListCategory } from "@/service/catygory";
-import { handleErrorMessage } from "@/common";
+import { handleErrorMessage, handleSuccessMessage, isValidateFile } from "@/common";
 import dynamic from "next/dynamic";
 import { addProduct } from "@/service/product";
+import { uploadFile } from "@/service/image";
 
 function AddProduct() {
   const TextEditor = dynamic(() => import("@/components/text-editor"), {
@@ -20,6 +21,7 @@ function AddProduct() {
   const [preview, setPreview] = useState(null);
   const imageRef = useRef(null);
   const [category, setCategory] = useState([]);
+  const [currentImage, setCurrentImage] = useState(null);
 
   const onChangeEditor = (event, editor) => {
     const data = editor.getData();
@@ -34,9 +36,17 @@ function AddProduct() {
   };
 
   const handleSubmit = async (values) => {
+    const data = new FormData();
+    data.append("file-image", currentImage);
+    if (!currentImage) {
+      handleErrorMessage("Vui lòng cung cấp hình ảnh");
+      return;
+    }
     try {
-      await addProduct({ ...values, thumbnail: "test" });
+      const thumbnail = await uploadFile(data);
+      await addProduct({ ...values, thumbnail: thumbnail.payload?.url });
       setIsModalVisible(false);
+      handleSuccessMessage("Thêm sản phẩm thành công");
     } catch (error) {
       handleErrorMessage(error);
     }
@@ -44,6 +54,11 @@ function AddProduct() {
 
   const handleChangeFile = (event) => {
     const file = event.target.files?.[0]; // Lấy file đầu tiên từ input
+    setCurrentImage(file);
+    if (!isValidateFile(file)) {
+      handleErrorMessage("File phải là hình ảnh và nhỏ hơn 5M");
+      return;
+    }
     if (file) {
       const reader = new FileReader();
       reader.onload = () => {
@@ -54,6 +69,7 @@ function AddProduct() {
   };
   const deleteFile = () => {
     setPreview("");
+    setCurrentImage(null);
     imageRef.current.value = "";
   };
 

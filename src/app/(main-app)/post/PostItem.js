@@ -2,11 +2,11 @@ import { Button } from "antd";
 import Image from "next/image";
 import React from "react";
 
-function PostItem({ image, date, title, summary, index = "" }) {
+function PostItem({ image, date, title, summary}) {
   return (
-    <div className="relative post-container px-4">
+    <div className="relative post-container max-h-[400px] overflow-hidden">
       <div
-        className={`post-card w-full border border-[#0018421a] bg-white rounded-lg flex flex-col sm:flex-row gap-6`}
+        className={`post-card w-full border border-[#0018421a] bg-white rounded-lg flex flex-col sm:flex-row gap-6 h-full max-h-[400px]`}
       >
         <div className="rounded-t-lg sm:rounded-t-lg lg:rounded-t-lg sm:w-[40%]">
           <Image

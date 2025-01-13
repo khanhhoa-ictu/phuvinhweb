@@ -2,18 +2,25 @@ export const listMenu = [
   {
     title: "Giới thiệu",
     href: "/about",
+    baseURL:"/about"
   },
   {
     title: "Sản phẩm",
     href: "/product",
+    baseURL:"/product?page=1&category=1"
+
   },
   {
     title: "Bài viết",
     href: "/post",
+    baseURL:"/post?page=1"
+
   },
   {
     title: "Liên hệ",
     href: "/contact",
+    baseURL:"/contact"
+
   },
 ];
 

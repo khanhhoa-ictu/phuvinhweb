@@ -56,7 +56,7 @@ function NavbarMobile() {
               <li className="w-full flex justify-between" key={item.title}>
                 <Link
                   className="text-[#2C2C2C] text-[20px] font-medium"
-                  href={item.href}
+                  href={item.baseURL}
                   onClick={() => setShowNav(false)}
                 >
                   {item.title}

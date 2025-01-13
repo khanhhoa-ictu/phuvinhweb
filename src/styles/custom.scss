@@ -54,12 +54,12 @@
   display: flex;
   gap: 16px;
 }
-.post-card:hover {
+.post-container:hover {
   transform: translateY(-10px);
   transition: all 0.3s ease-in-out;
   box-shadow: 0 0 10px 0 rgba(0,0,0,.05)
 }
-.post-card {
+.post-container {
   transition: all 0.3s ease-in-out;
 }
 

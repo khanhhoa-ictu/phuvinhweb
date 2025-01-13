@@ -51,7 +51,7 @@ function NavbarDesktop() {
         <div className="flex gap-[20px] text-[#261797] text-xl font-bold xl:gap-[32px] font-roboto uppercase">
           {listMenu.map((item) => (
             <Link
-              href={item.href}
+              href={item.baseURL}
               key={item.title}
               className={`${pathname.includes(item.href) && "underline"}`}
             >

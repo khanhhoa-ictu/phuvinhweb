@@ -4,12 +4,19 @@ import { useForm } from "antd/lib/form/Form";
 import TextArea from "antd/lib/input/TextArea";
 import dynamic from "next/dynamic";
 import { useRouter } from "next/navigation";
-import { useState } from "react";
+import { useRef, useState } from "react";
 import styles from "./styles.module.scss";
-import { handleErrorMessage } from "@/common";
+import {
+  handleErrorMessage,
+  handleSuccessMessage,
+  isValidateFile,
+} from "@/common";
 import { addPost } from "@/service/post";
+import { PlusOutlined } from "@ant-design/icons";
+import closeIcon from "@/assets/icon/close-icon.svg";
+import Image from "next/image";
+import { uploadFile } from "@/service/image";
 
-const { Option } = Select;
 function AddPost() {
   const router = useRouter();
   const TextEditor = dynamic(() => import("@/components/text-editor"), {
@@ -17,6 +24,9 @@ function AddPost() {
   });
   const [form] = useForm();
   const [isModalVisible, setIsModalVisible] = useState(false);
+  const [preview, setPreview] = useState(null);
+  const [currentImage, setCurrentImage] = useState(null);
+  const imageRef = useRef(null);
   const onChangeEditor = (event, editor) => {
     const data = editor.getData();
     form.setFieldsValue({
@@ -24,16 +34,49 @@ function AddPost() {
     });
   };
   const handleCancelModal = () => {
+    setPreview("");
+    setCurrentImage(null);
+    imageRef.current.value = "";
     setIsModalVisible(false);
   };
   const handleSubmit = async (payload) => {
+    const data = new FormData();
+    data.append("file-image", currentImage);
+    if (!currentImage) {
+      handleErrorMessage("Vui lòng cung cấp hình ảnh");
+      return;
+    }
     try {
-      await addPost(payload);
+      const thumbnail = await uploadFile(data);
+      await addPost({ ...payload, thumbnail: thumbnail.payload?.url });
       router.refresh();
       setIsModalVisible(false);
+      handleSuccessMessage("Thêm bài viết thành công");
     } catch (error) {
       handleErrorMessage(error);
     }
+  };
+
+  const handleChangeFile = (event) => {
+    const file = event.target.files?.[0];
+    setCurrentImage(file);
+    if (!isValidateFile(file)) {
+      handleErrorMessage("File phải là hình ảnh và nhỏ hơn 5M");
+      return;
+    }
+    if (file) {
+      const reader = new FileReader();
+      reader.onload = () => {
+        setPreview(reader.result);
+      };
+      reader.readAsDataURL(file);
+    }
+  };
+
+  const deleteFile = () => {
+    setPreview("");
+    setCurrentImage(null);
+    imageRef.current.value = "";
   };
 
   return (
@@ -67,13 +110,38 @@ function AddPost() {
               <TextArea />
             </Form.Item>
           </div>
-          <div className={styles.fromItem}>
-            <label>thumbnail</label>
-            <Form.Item name="thumbnail">
-              <Input type="text" />
-            </Form.Item>
-          </div>
         </Form>
+        {preview ? (
+          <div className="w-[150px] h-[150px] relative">
+            <span
+              className="absolute top-[-12px] right-[-12px] z-10 bg-[#e3e3e3] rounded-full"
+              onClick={deleteFile}
+            >
+              <Image
+                src={closeIcon}
+                className="cursor-pointer"
+                width={24}
+                height={24}
+              />
+            </span>
+            <img src={preview} className="w-full h-full object-cover" />
+          </div>
+        ) : (
+          <div
+            className="w-[150px] h-[150px] border border-[#929292] rounded-lg flex items-center justify-center cursor-pointer border-dashed"
+            onClick={() => imageRef.current.click()}
+          >
+            <PlusOutlined className="text-[40px]" />
+          </div>
+        )}
+
+        <input
+          type="file"
+          onChange={handleChangeFile}
+          accept="image/*"
+          ref={imageRef}
+          className="!hidden"
+        />
       </Modal>
     </div>
   );

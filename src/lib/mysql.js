@@ -5,6 +5,9 @@ const pool = mysql.createPool({
   user: process.env.MYSQL_USER,      // Tên người dùng
   password: process.env.MYSQL_PASSWORD, // Mật khẩu
   database: process.env.MYSQL_DATABASE, // Tên cơ sở dữ liệu
+  waitForConnections: true,
+  connectionLimit: 10, // Giới hạn số kết nối tối đa
+  queueLimit: 0,       // Không giới hạn số lượng hàng đợi
 });
 
 export default pool;

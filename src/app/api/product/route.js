@@ -3,8 +3,7 @@ import pool from "@/lib/mysql";
 export async function GET(req, res) {
   const { searchParams } = new URL(req.url);
   const page = searchParams.get("page") || "1";
-  const pageSize = 10;
-
+  const pageSize =  searchParams.get("page-size") || 10;
   const [rows] = await pool.query(
     "SELECT * FROM product ORDER BY created_at DESC"
   );
