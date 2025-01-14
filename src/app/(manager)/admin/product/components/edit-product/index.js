@@ -121,7 +121,9 @@ function EditProduct({ isModalVisible, handleOk, handleCancel, id }) {
             <Select placeholder="Lựa chọn danh mục sản phẩm">
               {category.map((item) => {
                 return (
-                  <Select.Option value={item.id}>{item.name}</Select.Option>
+                  <Select.Option key={item.id} value={item.id}>
+                    {item.name}
+                  </Select.Option>
                 );
               })}
             </Select>
@@ -145,6 +147,7 @@ function EditProduct({ isModalVisible, handleOk, handleCancel, id }) {
               className="cursor-pointer"
               width={24}
               height={24}
+              alt="close icon"
             />
           </span>
           <img src={preview} className="w-full h-full object-cover" />

@@ -7,7 +7,9 @@ function AboutItem({ image, title, content }) {
       <h2 className="text-2xl lg:text-[28px] uppercase text-center mb-8 font-bold px-5 md:px-4">
         {title}
       </h2>
-      <div className="text-center mb-8 text-sm lg:text-xl px-5 md:px-4">{content}</div>
+      <div className="text-center mb-8 text-sm lg:text-xl px-5 md:px-4">
+        {content}
+      </div>
       <Image
         src={image}
         width={2213}

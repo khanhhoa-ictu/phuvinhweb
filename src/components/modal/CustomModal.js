@@ -1,4 +1,4 @@
-'use client'
+"use client";
 import { Modal } from "antd";
 import React from "react";
 import styles from "./styles.module.scss";

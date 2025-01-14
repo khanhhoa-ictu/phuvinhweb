@@ -13,30 +13,28 @@ export async function GET(req, { params }) {
       { message: "Không tìm thấy bài viết" },
       {
         status: 422,
-      }
+      },
     );
   }
 }
 
+export async function DELETE(req, { params }) {
+  const id = params.id;
+  const [rows] = await pool.query("DELETE FROM category WHERE id=?", [id]);
 
-
-export async function DELETE(req, {params}) {
-    const id = params.id;
-    const [rows] = await pool.query("DELETE FROM category WHERE id=?", [id]);
-  
-    if (rows) {
-      return Response.json(
-        { message: "Xoa bài viết thành công" },
-        {
-          status: 200,
-        }
-      );
-    } else {
-      return Response.json(
-        { message: "Xoá bài viết thất bại" },
-        {
-          status: 422,
-        }
-      );
-    }
+  if (rows) {
+    return Response.json(
+      { message: "Xoa bài viết thành công" },
+      {
+        status: 200,
+      },
+    );
+  } else {
+    return Response.json(
+      { message: "Xoá bài viết thất bại" },
+      {
+        status: 422,
+      },
+    );
   }
+}

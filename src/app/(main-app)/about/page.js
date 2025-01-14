@@ -111,6 +111,7 @@ function About() {
               width={2213}
               height={1475}
               className="w-full h-auto md:rounded-lg"
+              alt="about image"
             />
           </div>
           {listAbout.map((item) => (

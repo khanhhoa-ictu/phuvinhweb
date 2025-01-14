@@ -7,7 +7,11 @@ import Image from "next/image";
 import closeIcon from "@/assets/icon/close-icon.svg";
 import { PlusOutlined } from "@ant-design/icons";
 import { getListCategory } from "@/service/catygory";
-import { handleErrorMessage, handleSuccessMessage, isValidateFile } from "@/common";
+import {
+  handleErrorMessage,
+  handleSuccessMessage,
+  isValidateFile,
+} from "@/common";
 import dynamic from "next/dynamic";
 import { addProduct } from "@/service/product";
 import { uploadFile } from "@/service/image";
@@ -113,7 +117,9 @@ function AddProduct() {
               <Select placeholder="Lựa chọn danh mục sản phẩm">
                 {category.map((item) => {
                   return (
-                    <Select.Option value={item.id}>{item.name}</Select.Option>
+                    <Select.Option key={item.id} value={item.id}>
+                      {item.name}
+                    </Select.Option>
                   );
                 })}
               </Select>

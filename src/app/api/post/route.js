@@ -6,7 +6,7 @@ export async function GET(req, res) {
   const pageSize = searchParams.get("page-size") || 10;
 
   const [rows] = await pool.query(
-    "SELECT * FROM post ORDER BY created_at DESC"
+    "SELECT * FROM post ORDER BY created_at DESC",
   );
   const data = {
     listPost: rows.slice(pageSize * page - pageSize, pageSize * page),
@@ -20,21 +20,21 @@ export async function POST(req, res) {
   const { title, content, summary, thumbnail } = request;
   const [rows] = await pool.query(
     "INSERT INTO post (title, content, summary, thumbnail) VALUES (?,?,?,?)",
-    [title, content, summary, thumbnail]
+    [title, content, summary, thumbnail],
   );
   if (rows) {
     return Response.json(
       { message: "Thêm bài viết thành công" },
       {
         status: 200,
-      }
+      },
     );
   } else {
     return Response.json(
       { message: "Thêm bài viết thất bại" },
       {
         status: 422,
-      }
+      },
     );
   }
 }
@@ -49,14 +49,14 @@ export async function DELETE(req, res) {
       { message: "Xoa bài viết thành công" },
       {
         status: 200,
-      }
+      },
     );
   } else {
     return Response.json(
       { message: "Xoá bài viết thất bại" },
       {
         status: 422,
-      }
+      },
     );
   }
 }
@@ -66,7 +66,7 @@ export async function PUT(req, res) {
   const { title, content, summary, thumbnail, id } = request;
   const [rows] = await pool.query(
     "UPDATE post SET title = ?, content = ?, summary = ?, thumbnail = ? WHERE id = ?",
-    [title, content, summary, thumbnail, id]
+    [title, content, summary, thumbnail, id],
   );
 
   if (rows) {
@@ -74,14 +74,14 @@ export async function PUT(req, res) {
       { message: "Cập nhât bài viết thành công" },
       {
         status: 200,
-      }
+      },
     );
   } else {
     return Response.json(
       { message: "Cập nhât bài viết thất bại" },
       {
         status: 422,
-      }
+      },
     );
   }
 }

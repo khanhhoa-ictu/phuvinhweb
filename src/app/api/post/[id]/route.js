@@ -13,7 +13,7 @@ export async function GET(req, { params }) {
       { message: "Không tìm thấy bài viết" },
       {
         status: 422,
-      }
+      },
     );
   }
 }

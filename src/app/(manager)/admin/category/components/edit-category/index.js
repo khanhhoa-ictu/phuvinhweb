@@ -11,21 +11,21 @@ function EditCategory({ isModalVisible, handleOk, handleCancel, id }) {
   const handleSubmit = () => {
     handleOk({ name: nameCategory });
   };
-  const getCategory = async() =>{
+  const getCategory = async () => {
     try {
-        const data  = await getCategoryDetail(id);
-        setNameCategory(data?.payload?.data?.name)
-        console.log(data)
+      const data = await getCategoryDetail(id);
+      setNameCategory(data?.payload?.data?.name);
+      console.log(data);
     } catch (error) {
-        handleErrorMessage(error)
+      handleErrorMessage(error);
     }
-  }
+  };
 
   useEffect(() => {
-    if(isModalVisible){
-        getCategory()
-    }else{
-        setNameCategory("")
+    if (isModalVisible) {
+      getCategory();
+    } else {
+      setNameCategory("");
     }
   }, [isModalVisible]);
 

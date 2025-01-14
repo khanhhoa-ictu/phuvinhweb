@@ -27,17 +27,22 @@ function NavbarDesktop() {
     };
   }, []);
 
-  useEffect(()=>{
-    setIsScrolled(false)
-  },[pathname])
-  
+  useEffect(() => {
+    setIsScrolled(false);
+  }, [pathname]);
+
   return (
-    <div className={`flex justify-between px-[30px] items-center xl:px-[70] py-4 ${
-      isScrolled ? "bg-white" : "bg-transparent"
-    }`}>
+    <div
+      className={`flex justify-between px-[30px] items-center xl:px-[70] py-4 ${
+        isScrolled ? "bg-white" : "bg-transparent"
+      }`}
+    >
       <div className="flex gap-[45px] items-center">
         <div className="flex-shrink-0">
-          <Link href="/" className="flex flex-col items-center justify-center gap-[5px]" >
+          <Link
+            href="/"
+            className="flex flex-col items-center justify-center gap-[5px]"
+          >
             <Image
               src={logo}
               width={423}
@@ -45,7 +50,9 @@ function NavbarDesktop() {
               alt="logo"
               className="w-[100px] h-[60px]"
             />
-            <h1 className="uppercase text-base font-roboto font-bold text-[#261797]" >Phu Vinh Stell</h1>
+            <h1 className="uppercase text-base font-roboto font-bold text-[#261797]">
+              Phu Vinh Stell
+            </h1>
           </Link>
         </div>
         <div className="flex gap-[20px] text-[#261797] text-xl font-bold xl:gap-[32px] font-roboto uppercase">

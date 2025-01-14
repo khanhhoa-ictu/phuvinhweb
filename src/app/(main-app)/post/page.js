@@ -19,6 +19,7 @@ async function PostPage({ searchParams }) {
           width={1487}
           height={283}
           className="w-full h-auto max-h-[260px]"
+          alt="background"
         />
         <h1 className="uppercase sm:text-[32px] text-xl font-bold absolute top-[50%] left-[50%] translate-y-[-50%] translate-x-[-50%]">
           Tin tức

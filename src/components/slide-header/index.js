@@ -49,6 +49,7 @@ function SlideHeader() {
                 width={992}
                 height={476}
                 className="w-auto h-[100vh] opacity-15 "
+                alt="slider"
               />
             );
           })}

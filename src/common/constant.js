@@ -2,25 +2,22 @@ export const listMenu = [
   {
     title: "Giới thiệu",
     href: "/about",
-    baseURL:"/about"
+    baseURL: "/about",
   },
   {
     title: "Sản phẩm",
     href: "/product",
-    baseURL:"/product?page=1&category=1"
-
+    baseURL: "/product?page=1&category=1",
   },
   {
     title: "Bài viết",
     href: "/post",
-    baseURL:"/post?page=1"
-
+    baseURL: "/post?page=1",
   },
   {
     title: "Liên hệ",
     href: "/contact",
-    baseURL:"/contact"
-
+    baseURL: "/contact",
   },
 ];
 
@@ -39,7 +36,7 @@ export const configStyleComponent = {
     fontWeight: 600,
     paddingInline: 16,
     paddingBlock: 0,
-    defaultHoverBorderColor:"none"
+    defaultHoverBorderColor: "none",
   },
   Input: {
     algorithm: true, // Enable algorithmrderColor: '#50c297',

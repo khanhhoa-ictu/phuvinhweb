@@ -19,7 +19,7 @@ const uploadImg = async (buffer) => {
             } else {
               return resolve(result); // Kết thúc Promise với kết quả
             }
-          }
+          },
         )
         .end(buffer);
     });
@@ -36,7 +36,7 @@ export async function POST(req) {
     if (!file || !(file instanceof File)) {
       return NextResponse.json(
         { message: "No valid file provided" },
-        { status: 400 }
+        { status: 400 },
       );
     }
 
@@ -57,7 +57,7 @@ export async function POST(req) {
       { message: "tải file không thành công" },
       {
         status: 422,
-      }
+      },
     );
   }
 }

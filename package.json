@@ -7,7 +7,8 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
-    "format": "prettier --write ."
+    "format": "prettier --write .",
+    "lint:fix": "eslint '**/*.{js,jsx}' --fix"
   },
   "dependencies": {
     "@ant-design/nextjs-registry": "^1.0.2",

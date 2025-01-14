@@ -8,7 +8,7 @@ export async function GET(req, res) {
 
   const [rows] = await pool.query(
     "SELECT * FROM product WHERE category_id = ? ORDER BY created_at DESC",
-    [category]
+    [category],
   );
   const data = {
     products: rows.slice(pageSize * page - pageSize, pageSize * page),

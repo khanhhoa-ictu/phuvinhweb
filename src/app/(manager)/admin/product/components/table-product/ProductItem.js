@@ -54,7 +54,7 @@ function ProductItem({ product }) {
   useEffect(() => {
     getCategory();
   }, []);
-  
+
   return (
     <tr>
       <td className="text-center">{product.name}</td>

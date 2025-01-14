@@ -9,7 +9,8 @@ function Post() {
         "https://minhngocsteel.vn/upload/news/original/thep-minh-ngoc-ruc-ro-chao-don-ngay-phu-nu-viet-nam-20-10-1729668915.jpg",
       date: "20/10/2002",
       title: "test",
-      content: "Ngày 04/11/2024, Lễ Công bố sản phẩm đạt Thương hiệu Quốc gia Việt Nam năm 2024 với chủ đề “Vươn mình tiến vào kỷ nguyên Xanh” được diễn ra long trọng tại Trung tâm Hội nghị Quốc gia Việt Nam và được truyền hình trực tiếp trên Đài truyền hình Việt Nam. Công ty TNHH SX&TM Minh Ngọc tự hào là doanh nghiệp có sản phẩm được vinh danh Thương hiệu Quốc gia Việt Nam năm 2024.",
+      content:
+        "Ngày 04/11/2024, Lễ Công bố sản phẩm đạt Thương hiệu Quốc gia Việt Nam năm 2024 với chủ đề “Vươn mình tiến vào kỷ nguyên Xanh” được diễn ra long trọng tại Trung tâm Hội nghị Quốc gia Việt Nam và được truyền hình trực tiếp trên Đài truyền hình Việt Nam. Công ty TNHH SX&TM Minh Ngọc tự hào là doanh nghiệp có sản phẩm được vinh danh Thương hiệu Quốc gia Việt Nam năm 2024.",
     },
     {
       id: 2,
@@ -17,7 +18,8 @@ function Post() {
         "https://minhngocsteel.vn/upload/news/original/thep-minh-ngoc-ruc-ro-chao-don-ngay-phu-nu-viet-nam-20-10-1729668915.jpg",
       date: "20/10/2002",
       title: "test",
-      content: "Ngày 04/11/2024, Lễ Công bố sản phẩm đạt Thương hiệu Quốc gia Việt Nam năm 2024 với chủ đề “Vươn mình tiến vào kỷ nguyên Xanh” được diễn ra long trọng tại Trung tâm Hội nghị Quốc gia Việt Nam và được truyền hình trực tiếp trên Đài truyền hình Việt Nam. Công ty TNHH SX&TM Minh Ngọc tự hào là doanh nghiệp có sản phẩm được vinh danh Thương hiệu Quốc gia Việt Nam năm 2024.",
+      content:
+        "Ngày 04/11/2024, Lễ Công bố sản phẩm đạt Thương hiệu Quốc gia Việt Nam năm 2024 với chủ đề “Vươn mình tiến vào kỷ nguyên Xanh” được diễn ra long trọng tại Trung tâm Hội nghị Quốc gia Việt Nam và được truyền hình trực tiếp trên Đài truyền hình Việt Nam. Công ty TNHH SX&TM Minh Ngọc tự hào là doanh nghiệp có sản phẩm được vinh danh Thương hiệu Quốc gia Việt Nam năm 2024.",
     },
     {
       id: 3,
@@ -25,7 +27,8 @@ function Post() {
         "https://minhngocsteel.vn/upload/news/original/thep-minh-ngoc-ruc-ro-chao-don-ngay-phu-nu-viet-nam-20-10-1729668915.jpg",
       date: "20/10/2002",
       title: "test",
-      content: "Ngày 04/11/2024, Lễ Công bố sản phẩm đạt Thương hiệu Quốc gia Việt Nam năm 2024 với chủ đề “Vươn mình tiến vào kỷ nguyên Xanh” được diễn ra long trọng tại Trung tâm Hội nghị Quốc gia Việt Nam và được truyền hình trực tiếp trên Đài truyền hình Việt Nam. Công ty TNHH SX&TM Minh Ngọc tự hào là doanh nghiệp có sản phẩm được vinh danh Thương hiệu Quốc gia Việt Nam năm 2024.",
+      content:
+        "Ngày 04/11/2024, Lễ Công bố sản phẩm đạt Thương hiệu Quốc gia Việt Nam năm 2024 với chủ đề “Vươn mình tiến vào kỷ nguyên Xanh” được diễn ra long trọng tại Trung tâm Hội nghị Quốc gia Việt Nam và được truyền hình trực tiếp trên Đài truyền hình Việt Nam. Công ty TNHH SX&TM Minh Ngọc tự hào là doanh nghiệp có sản phẩm được vinh danh Thương hiệu Quốc gia Việt Nam năm 2024.",
     },
   ];
   return (

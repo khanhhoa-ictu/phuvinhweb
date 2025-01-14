@@ -7,7 +7,7 @@ export async function GET(req, res) {
   const sort = searchParams.get("sort") || DESC;
 
   const [rows] = await pool.query(
-    `SELECT * FROM category ORDER BY created_at ${sort}`
+    `SELECT * FROM category ORDER BY created_at ${sort}`,
   );
   const data = {
     listPost: rows.slice(pageSize * page - pageSize, pageSize * page),
@@ -28,14 +28,14 @@ export async function POST(req, res) {
       { message: "Thêm danh mục thành công" },
       {
         status: 200,
-      }
+      },
     );
   } else {
     return Response.json(
       { message: "Thêm danh mục thất bại" },
       {
         status: 422,
-      }
+      },
     );
   }
 }
@@ -53,14 +53,14 @@ export async function PUT(req, res) {
       { message: "Cập nhât danh mục thành công" },
       {
         status: 200,
-      }
+      },
     );
   } else {
     return Response.json(
       { message: "Cập nhât danh mục thất bại" },
       {
         status: 422,
-      }
+      },
     );
   }
 }

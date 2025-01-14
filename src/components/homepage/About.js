@@ -23,6 +23,7 @@ function About() {
             width={787}
             height={727}
             className="w-full h-full rounded-lg md:h-auto"
+            alt="about image"
           />
         </div>
         <div className="md:w-[50%]">
@@ -43,19 +44,19 @@ function About() {
                 ty đã khẳngđịnh được vị thế hàng đầu của mình trong lĩnh vực sản
                 xuất ống Thép tại Việt Nam.
               </p>
-              <Link href="/about" className="w-fit" >
+              <Link href="/about" className="w-fit">
                 <Button>Xem chi tiết</Button>
               </Link>
             </div>
-            <p className="text-[#cbb024] text-2xl font-medium mb-6" >
-              Chúng tôi có hơn <strong>20+</strong>  năm kinh nghiệm trong ngành sản xuất, niềm
-              tin vững mạnh!
+            <p className="text-[#cbb024] text-2xl font-medium mb-6">
+              Chúng tôi có hơn <strong>20+</strong> năm kinh nghiệm trong ngành
+              sản xuất, niềm tin vững mạnh!
             </p>
           </div>
 
           <div className="mt-4 flex text-white md:mb-8">
             <div className="w-[30%] bg-[#001842] flex justify-center items-center rounded-l-lg">
-              <Image src={phone} width={46} height={46} />
+              <Image src={phone} width={46} height={46} alt="phone-icon" />
             </div>
             <div className="w-[70%] bg-[#1c4792] flex flex-col px-4 py-6 gap-2 rounded-r-lg lg:gap-3 lg:py-8">
               <p className="text-sm md:text-base font-bold">

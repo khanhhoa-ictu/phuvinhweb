@@ -44,14 +44,16 @@ function Footer() {
         </div>
 
         <div>
-          <h3 className="text-xl font-bold mb-5 lg:mb-[18px]">Kết nối với chúng tôi</h3>
+          <h3 className="text-xl font-bold mb-5 lg:mb-[18px]">
+            Kết nối với chúng tôi
+          </h3>
           <div>
             <div className="flex gap-4 mb-3">
               <Link href="/">
-                <Image src={facebook} width={34} height={34} />
+                <Image src={facebook} width={34} height={34} alt="facebook" />
               </Link>
               <Link href="/">
-                <Image src={zalo} width={34} height={34} />
+                <Image src={zalo} width={34} height={34} alt="zalo" />
               </Link>
             </div>
             <div className="w-full h-[200px]">

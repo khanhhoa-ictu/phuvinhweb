@@ -37,11 +37,13 @@ function Application() {
     },
   ];
   return (
-    <div className="bg-[#edf0f2]" >
+    <div className="bg-[#edf0f2]">
       <div className="px-6 py-10 sm:px-20 sm:py-[30px] lg:py-[60px] 2xl:px-0  flex flex-col lg:flex-row gap-4 max-w-[1200px] mx-auto">
         <div className="mb-5 w-full lg:w-[50%] lg:pr-6 flex items-center">
           <div className=" flex flex-col gap-[10px]">
-            <p className="text-sm font-bold uppercase lg:text-base">ứng dụng của thép minh ngọc</p>
+            <p className="text-sm font-bold uppercase lg:text-base">
+              ứng dụng của thép minh ngọc
+            </p>
             <h3 className="text-[30px] font-bold uppercase lg:text-[38px]">
               Ứng Dụng Của Thép Trong Cở Sở Hạ Tầng Và Trong Xây Dựng
             </h3>

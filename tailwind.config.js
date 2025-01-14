@@ -12,8 +12,8 @@ module.exports = {
         foreground: "var(--foreground)",
       },
       fontFamily: {
-        roboto: ['var(--roboto)', 'serif'],
-        montserrat: ['var(--montserrat)', 'sans-serif'],
+        roboto: ["var(--roboto)", "serif"],
+        montserrat: ["var(--montserrat)", "sans-serif"],
       },
     },
   },

@@ -12,7 +12,7 @@ function SelectCategory() {
 
   const fetchCategory = async () => {
     try {
-      const data = await getListCategory(1,"ASC");
+      const data = await getListCategory(1, "ASC");
       const payload = data.payload.data?.listPost;
       setCategories(payload);
       setValue(payload[0].id);
@@ -27,7 +27,7 @@ function SelectCategory() {
 
   const handleSelectCategory = (e) => {
     setValue(e);
-    router.push(`?page=1&category=${e}`)
+    router.push(`?page=1&category=${e}`);
   };
   return (
     <div className="my-10 flex justify-end mx-4 max-w-[1200px] lg:mx-auto">

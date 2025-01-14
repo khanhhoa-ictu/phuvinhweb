@@ -4,12 +4,11 @@ import { Button, Form, Input } from "antd";
 import React from "react";
 
 function Login() {
-  
-  const handleLogin = async(values) => {
+  const handleLogin = async (values) => {
     try {
-      const data = await login(values)
+      const data = await login(values);
     } catch (error) {
-      console.log(error)
+      console.log(error);
     }
   };
   return (
@@ -24,7 +23,7 @@ function Login() {
                   value && /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value)
                     ? Promise.resolve()
                     : Promise.reject(
-                        new Error("Please enter a valid email address!")
+                        new Error("Please enter a valid email address!"),
                       ),
               },
             ]}

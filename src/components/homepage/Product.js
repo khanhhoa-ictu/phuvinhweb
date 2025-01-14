@@ -71,7 +71,9 @@ function Product() {
         </Slider>
       </div>
       <Link href="/product" className="flex justify-center items-center mt-10">
-        <Button className="!mx-auto !px-[46px] !py-8 !text-xl !bg-[#cbb024]">Xem tất cả</Button>
+        <Button className="!mx-auto !px-[46px] !py-8 !text-xl !bg-[#cbb024]">
+          Xem tất cả
+        </Button>
       </Link>
     </div>
   );

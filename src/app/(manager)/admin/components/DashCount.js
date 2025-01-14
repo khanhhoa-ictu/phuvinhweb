@@ -1,7 +1,7 @@
 import React from "react";
-import styles from './styles.module.scss'
+import styles from "./styles.module.scss";
 
-function DashCount({item}) {
+function DashCount({ item }) {
   return (
     <div
       className={styles.dashItem}

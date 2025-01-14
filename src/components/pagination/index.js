@@ -1,7 +1,7 @@
-'use client';
-import React from 'react';
-import { Pagination } from 'antd';
-import { useRouter } from 'next/navigation';
+"use client";
+import React from "react";
+import { Pagination } from "antd";
+import { useRouter } from "next/navigation";
 
 function CustomPagination({ currentPage, totalItems, pageSize }) {
   const router = useRouter();

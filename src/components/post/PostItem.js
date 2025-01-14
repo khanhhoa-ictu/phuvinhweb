@@ -4,7 +4,7 @@ import React from "react";
 
 function PostItem({ image, date, title, summary }) {
   return (
-    <div className="relative post-container" >
+    <div className="relative post-container">
       <div
         className={`post-card w-full border border-[#0018421a] bg-white rounded-lg flex flex-col sm:flex-row lg:flex-col gap-6 lg:max-w-[373px] lg:pb-8`}
       >

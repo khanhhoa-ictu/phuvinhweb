@@ -5,7 +5,11 @@ import TextArea from "antd/lib/input/TextArea";
 import dynamic from "next/dynamic";
 import { useEffect, useRef, useState } from "react";
 import styles from "./styles.module.scss";
-import { handleErrorMessage, handleSuccessMessage, isValidateFile } from "@/common";
+import {
+  handleErrorMessage,
+  handleSuccessMessage,
+  isValidateFile,
+} from "@/common";
 import { getPostDetail } from "@/service/post";
 import Image from "next/image";
 import { PlusOutlined } from "@ant-design/icons";
@@ -60,12 +64,12 @@ function EditPost({ isModalVisible, handleOk, handleCancel, id }) {
       }
     };
     loadPostDetail();
-  }, []);
+  }, [id]);
 
   useEffect(() => {
     if (data <= 0) return;
     form.setFieldsValue(data);
-  }, [data]);
+  }, [form, data]);
 
   const handleChangeFile = (event) => {
     const file = event.target.files?.[0];
@@ -135,6 +139,7 @@ function EditPost({ isModalVisible, handleOk, handleCancel, id }) {
               className="cursor-pointer"
               width={24}
               height={24}
+              alt="close icon"
             />
           </span>
           <img src={preview} className="w-full h-full object-cover" />

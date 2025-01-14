@@ -7,10 +7,8 @@ import { handleErrorMessage } from "@/common";
 import { deletePost, editPost } from "@/service/post";
 import EditPost from "../edit-post";
 
-
-
-function PostItem({post}) {
-  const router = useRouter()
+function PostItem({ post }) {
+  const router = useRouter();
   const [isOpenModal, setIsOpenModal] = useState({
     edit: false,
     delete: false,
@@ -20,7 +18,7 @@ function PostItem({post}) {
     setLoading(true);
     try {
       await deletePost(post.id);
-      router.refresh()
+      router.refresh();
     } catch (error) {
       handleErrorMessage(error);
     } finally {
@@ -35,7 +33,7 @@ function PostItem({post}) {
     try {
       setLoading(true);
       await editPost(newData);
-      router.refresh()
+      router.refresh();
       setIsOpenModal({ ...isOpenModal, edit: false });
     } catch (error) {
       handleErrorMessage(error);
@@ -49,7 +47,7 @@ function PostItem({post}) {
       <td>
         <div className="text-center">
           <Button
-             className="!bg-[#5643e7]"
+            className="!bg-[#5643e7]"
             onClick={() => setIsOpenModal({ ...isOpenModal, edit: true })}
           >
             update

@@ -122,6 +122,7 @@ function AddPost() {
                 className="cursor-pointer"
                 width={24}
                 height={24}
+                alt="close icon"
               />
             </span>
             <img src={preview} className="w-full h-full object-cover" />

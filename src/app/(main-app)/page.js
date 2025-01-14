@@ -15,7 +15,6 @@ export default function Home() {
       <Product />
       <Application />
       <Post />
-     
     </div>
   );
 }

@@ -1,7 +1,7 @@
 import React from "react";
 import CategoryItem from "./CategoryItem";
 
-function TableCategory({dataSource}) {
+function TableCategory({ dataSource }) {
   return (
     <div>
       <table className="w-full">
