@@ -42,7 +42,7 @@ function Application() {
         <div className="mb-5 w-full lg:w-[50%] lg:pr-6 flex items-center">
           <div className=" flex flex-col gap-[10px]">
             <p className="text-sm font-bold uppercase lg:text-base">
-              ứng dụng của thép minh ngọc
+              ứng dụng của thép phú vinh
             </p>
             <h3 className="text-[30px] font-bold uppercase lg:text-[38px]">
               Ứng Dụng Của Thép Trong Cở Sở Hạ Tầng Và Trong Xây Dựng

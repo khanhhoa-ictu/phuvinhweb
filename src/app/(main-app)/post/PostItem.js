@@ -4,7 +4,7 @@ import React from "react";
 
 function PostItem({ image, date, title, summary }) {
   return (
-    <div className="relative post-container max-h-[400px] overflow-hidden">
+    <div className="relative post-container max-h-[400px] overflow-hidden rounded-lg">
       <div
         className={`post-card w-full border border-[#0018421a] bg-white rounded-lg flex flex-col sm:flex-row gap-6 h-full max-h-[400px]`}
       >

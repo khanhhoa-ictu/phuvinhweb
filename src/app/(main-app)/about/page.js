@@ -12,8 +12,8 @@ function About() {
       title: "Lĩnh Vực Hoạt Động - Sản Phẩm",
       content: (
         <p>
-          Lĩnh vực hoạt động chính của Công ty TNHH Sản Xuất và Thương Mại Minh
-          Ngọc là sản xuất và phân phối các loại sản phẩm Ống thép, hộp thép mạ
+          Lĩnh vực hoạt động chính của Công ty TNHH Sản Xuất và Thương Mại Phú
+          Vinh là sản xuất và phân phối các loại sản phẩm Ống thép, hộp thép mạ
           kẽm cơ khí (vuông, tròn, chữ nhật), Cuộn tôn mạ kẽm.
         </p>
       ),

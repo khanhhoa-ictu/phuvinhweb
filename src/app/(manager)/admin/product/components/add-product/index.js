@@ -97,13 +97,16 @@ function AddProduct() {
       getCategory();
     }
   }, [isModalVisible]);
+
+  const [name,setName] = useState("")
   return (
     <div>
       <Button onClick={() => setIsModalVisible(true)} className="!bg-[#5643e7]">
         Thêm sản phẩm
       </Button>
-
-      <Modal
+      <TextEditor onChange={onChangeEditor} />
+      <Input value={name} onChange={(e)=>setName(e.target.value)} />
+      {/* <Modal
         title="Thêm sản phẩm mới"
         visible={isModalVisible}
         onOk={() => form.submit()}
@@ -173,7 +176,7 @@ function AddProduct() {
           ref={imageRef}
           className="hidden"
         />
-      </Modal>
+      </Modal> */}
     </div>
   );
 }

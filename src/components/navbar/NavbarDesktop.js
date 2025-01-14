@@ -1,16 +1,36 @@
 "use client";
 import logo from "@/assets/logo/logo.png";
 import { listMenu } from "@/common/constant";
-import { Button } from "antd";
+import { Button, Dropdown, Menu } from "antd";
 import Image from "next/image";
 import Link from "next/link";
-import { usePathname } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
+import styles from "./styles.module.scss";
+import noAvatar from "@/assets/image/no-avatar.png";
+import { handleErrorMessage } from "@/common";
+import { logoutServer } from "@/service/auth";
 
 function NavbarDesktop() {
+  const router = useRouter();
   const [isScrolled, setIsScrolled] = useState(false);
   const pathname = usePathname();
+  const [isLogin, setIsLogin] = useState(false);
+
+  const logout = async () => {
+    try {
+      await logoutServer(true);
+      localStorage.removeItem("token");
+      router.push("/login");
+    } catch (error) {
+      handleErrorMessage(error);
+    }
+  };
+
   useEffect(() => {
+    if (localStorage.getItem("token")) {
+      setIsLogin(true);
+    }
     const handleScroll = () => {
       if (window.scrollY > 0) {
         setIsScrolled(true);
@@ -30,6 +50,17 @@ function NavbarDesktop() {
   useEffect(() => {
     setIsScrolled(false);
   }, [pathname]);
+
+  const menu = (
+    <Menu style={{ minWidth: 220 }}>
+      <Menu.Item key="1" onClick={() => router.push("/admin")}>
+        quản lý
+      </Menu.Item>
+      <Menu.Item key="2" onClick={logout}>
+        đăng xuất
+      </Menu.Item>
+    </Menu>
+  );
 
   return (
     <div
@@ -68,9 +99,25 @@ function NavbarDesktop() {
         </div>
       </div>
       <div className="flex gap-[16px] items-center xl:[gap-27px]">
-        <Button className="!rounded-[50px] text-base font-semibold !font-sourceSanPro">
-          <span className="px-3">Log in</span>
-        </Button>
+        {isLogin ? (
+          <div className={styles.headerControl}>
+            <div className={styles.menuWrapperControl}>
+              <div className={styles.menuControlItem}>
+                <Dropdown overlay={menu} trigger={["click"]}>
+                  <div className={styles.avatar}>
+                    <Image src={noAvatar} alt="avatar" height={40} width={40} />
+                  </div>
+                </Dropdown>
+              </div>
+            </div>
+          </div>
+        ) : (
+          <Link className="w-fit" href="/login">
+            <Button className="!rounded-[50px] text-base font-semibold !font-sourceSanPro">
+              <span className="px-3">Log in</span>
+            </Button>
+          </Link>
+        )}
       </div>
     </div>
   );
