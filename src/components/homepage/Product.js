@@ -1,12 +1,15 @@
 "use client";
-import React from "react";
+import React, { useEffect, useState } from "react";
 import ProductItem from "../product/ProductItem";
 import background from "@/assets/image/home/background.jpg";
 import Slider from "react-slick";
 import { Button } from "antd";
 import Link from "next/link";
+import { getListProduct } from "@/service/product";
+import { handleErrorMessage } from "@/common";
 
 function Product() {
+  const [listProduct, setListProduct] = useState([]);
   const settings = {
     mobileFirst: true,
     arrows: false,
@@ -50,7 +53,20 @@ function Product() {
       },
     ],
   };
-  const listSlide = [4, 5, 6];
+
+  const fetchListProduct = async () => {
+    try {
+      const data = await getListProduct(1, 10, true);
+      setListProduct(data.payload?.data?.products);
+    } catch (error) {
+      handleErrorMessage(error);
+    }
+  };
+
+  useEffect(() => {
+    fetchListProduct();
+  }, []);
+
   return (
     <div className="bg-white px-5 py-8 lg:py-20">
       <h3 className="uppercase text-[36px] text-center font-bold text-[#261797]">
@@ -59,22 +75,27 @@ function Product() {
       <div className="w-[306px] h-[6px] mx-auto mb-[60px] line relative"></div>
       <div className="max-w-[1200px] mx-auto">
         <Slider {...settings}>
-          {listSlide?.map((item) => (
+          {listProduct?.map((item) => (
             <ProductItem
               key={item}
-              image={background}
-              name="test"
-              productName="Ống sắt mạ kẽm vuông hình chữ nhật"
+              image={item.thumbnail}
+              name="product-image"
+              productName={item.name}
               className="max-w-full"
             />
           ))}
         </Slider>
       </div>
-      <Link href="/product" className="flex justify-center items-center mt-10">
-        <Button className="!mx-auto !px-[46px] !py-8 !text-xl !bg-[#cbb024]">
-          Xem tất cả
-        </Button>
-      </Link>
+      <div className="flex justify-center mt-[50px]">
+        <Link
+          href="/product?page=1&category=1"
+          className="flex justify-center items-center w-fit"
+        >
+          <Button className="!mx-auto !px-[46px] !py-8 !text-xl !bg-[#cbb024]">
+            Xem tất cả
+          </Button>
+        </Link>
+      </div>
     </div>
   );
 }

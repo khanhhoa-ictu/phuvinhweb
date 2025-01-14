@@ -44,6 +44,7 @@ function ProductItem({ product }) {
       handleErrorMessage(error);
     }
   };
+  
   const getCategory = async () => {
     try {
       const data = await getListCategory(1);

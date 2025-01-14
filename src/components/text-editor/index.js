@@ -59,7 +59,6 @@ function TextEditor({ onChange, data }) {
             "|",
             "bulletedList",
             "numberedList",
-            "todoList",
           ],
         }}
         data={data || ""}

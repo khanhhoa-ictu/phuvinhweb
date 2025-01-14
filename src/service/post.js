@@ -1,7 +1,7 @@
 import http from "@/lib/http";
 
-export const getListPost = (page, pageSize) => {
-  return http.get(`api/post?page=${page}&page-size=${pageSize}`);
+export const getListPost = (page, pageSize, isHome=false) => {
+  return http.get(`api/post?page=${page}&page-size=${pageSize}&is_homepage=${isHome}`);
 };
 
 export const addPost = (data) => {

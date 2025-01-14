@@ -4,8 +4,8 @@ export const addProduct = (data) => {
   return http.post(`api/product`, data);
 };
 
-export const getListProduct = (page, pageSize) => {
-  return http.get(`api/product?page=${page}&page-size=${pageSize}`, {
+export const getListProduct = (page, pageSize, isHome = false) => {
+  return http.get(`api/product?page=${page}&page-size=${pageSize}&is_homepage=${isHome}`, {
     cache: "no-store",
   });
 };

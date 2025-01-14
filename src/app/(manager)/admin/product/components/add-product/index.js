@@ -1,5 +1,5 @@
 "use client";
-import { Button, Form, Input, Modal, Select } from "antd";
+import { Button, Checkbox, Form, Input, Modal, Select } from "antd";
 import React, { useEffect, useRef, useState } from "react";
 import styles from "./styles.module.scss";
 import { useForm } from "antd/es/form/Form";
@@ -48,7 +48,12 @@ function AddProduct() {
     }
     try {
       const thumbnail = await uploadFile(data);
-      await addProduct({ ...values, thumbnail: thumbnail.payload?.url });
+      await addProduct({
+        ...values,
+        is_homepage:
+          values.is_homepage === "undefined" ? false : values.is_homepage,
+        thumbnail: thumbnail.payload?.url,
+      });
       setIsModalVisible(false);
       handleSuccessMessage("Thêm sản phẩm thành công");
     } catch (error) {
@@ -129,6 +134,11 @@ function AddProduct() {
             <label>Nội dung sản phẩm</label>
             <Form.Item name="description">
               <TextEditor onChange={onChangeEditor} />
+            </Form.Item>
+          </div>
+          <div className={styles.fromItem}>
+            <Form.Item name="is_homepage" valuePropName="checked" label={null}>
+              <Checkbox>Hiển thị sản phẩm ra trang chủ</Checkbox>
             </Form.Item>
           </div>
         </Form>
