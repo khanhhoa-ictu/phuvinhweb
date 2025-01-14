@@ -47,6 +47,8 @@ function NavbarMobile() {
               alt="close-icon"
               onClick={() => setShowNav(false)}
               className="cursor-pointer"
+              width={24}
+              height={24}
             />
           </div>
           <ul className="font-montserrat mt-[61px] w-full">
@@ -54,7 +56,7 @@ function NavbarMobile() {
               <li className="w-full flex justify-between" key={item.title}>
                 <Link
                   className="text-[#2C2C2C] text-[20px] font-medium"
-                  href={item.href}
+                  href={item.baseURL}
                   onClick={() => setShowNav(false)}
                 >
                   {item.title}
@@ -70,10 +72,16 @@ function NavbarMobile() {
           </ul>
         </div>
         <div className="px-[22px]">
-          <div className="flex justify-between">
+          <div className="flex justify-between items-center">
             <div>
               <Link href="/">
-                <Image src={logo} alt="logo" />
+                <Image
+                  src={logo}
+                  alt="logo"
+                  width={479}
+                  height={479}
+                  className="w-[80px] h-[80px]"
+                />
               </Link>
             </div>
 

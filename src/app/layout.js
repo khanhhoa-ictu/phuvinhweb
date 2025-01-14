@@ -1,12 +1,11 @@
 import "./globals.css";
+import "slick-carousel/slick/slick.css";
+import "slick-carousel/slick/slick-theme.css";
 import { ConfigProvider } from "antd";
 import { AntdRegistry } from "@ant-design/nextjs-registry";
-import { configStyleComponent } from "@/common/constant";
-import Footer from "@/components/footer";
-import Navbar from "@/components/navbar";
 import { Montserrat, Roboto } from "@next/font/google";
-import Image from "next/image";
-import background1 from "@/assets/image/home/background.jpg";
+import { configStyleComponent } from "@/common/constant";
+import "@/styles/custom.scss";
 
 const montserrat = Montserrat({
   weight: ["400", "500", "600", "700", "800", "900"],
@@ -32,21 +31,7 @@ export default function RootLayout({ children }) {
     <html lang="en">
       <body className={`${roboto.variable} ${montserrat.variable} antialiased`}>
         <ConfigProvider theme={{ components: configStyleComponent }}>
-          <AntdRegistry>
-            <div className="bg-white flex flex-col justify-between min-h-[100vh] relative font-montserrat">
-              <Image
-                src={background1}
-                width={992}
-                height={476}
-                className="w-auto h-[100vh] absolute opacity-15"
-              />
-              <div className="sticky top-0 z-[11] bg-white">
-                <Navbar />
-              </div>
-              {children}
-              <Footer />
-            </div>
-          </AntdRegistry>
+          <AntdRegistry>{children}</AntdRegistry>
         </ConfigProvider>
       </body>
     </html>
