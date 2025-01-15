@@ -9,7 +9,6 @@ async function Post({ searchParams }) {
   const pageSize = 10;
   const data = await getListPost(currentPage, pageSize);
   const payload = data.payload.data?.listPost;
-  console.log(payload);
   return (
     <div className="flex-1 mt-10 px-10">
       <div className="max-w-[1200px] mx-auto">

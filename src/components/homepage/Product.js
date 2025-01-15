@@ -1,5 +1,5 @@
 "use client";
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import ProductItem from "../product/ProductItem";
 import background from "@/assets/image/home/background.jpg";
 import Slider from "react-slick";
@@ -10,6 +10,8 @@ import { handleErrorMessage } from "@/common";
 
 function Product() {
   const [listProduct, setListProduct] = useState([]);
+  const [sliderKey, setSliderKey] = useState(0);
+
   const settings = {
     mobileFirst: true,
     arrows: false,
@@ -23,10 +25,9 @@ function Product() {
     touchThreshold: 10,
     swipeThreshold: 5,
     dots: true,
+    initialSlide: 0,
     appendDots: (dots) => (
       <div style={{ paddingTop: "60px" }}>
-        {" "}
-        {/* Điều chỉnh khoảng cách */}
         <ul style={{ display: "flex", justifyContent: "center", gap: "10px" }}>
           {dots}
         </ul>
@@ -67,6 +68,10 @@ function Product() {
     fetchListProduct();
   }, []);
 
+  useEffect(() => {
+    setSliderKey((prevKey) => prevKey + 1);
+  }, [listProduct]);
+
   return (
     <div className="bg-white px-5 py-8 lg:py-20">
       <h3 className="uppercase text-[36px] text-center font-bold text-[#261797]">
@@ -74,7 +79,7 @@ function Product() {
       </h3>
       <div className="w-[306px] h-[6px] mx-auto mb-[60px] line relative"></div>
       <div className="max-w-[1200px] mx-auto">
-        <Slider {...settings}>
+        <Slider {...settings} key={sliderKey}>
           {listProduct?.map((item) => (
             <ProductItem
               key={item}

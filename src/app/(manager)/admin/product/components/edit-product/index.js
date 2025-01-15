@@ -27,6 +27,8 @@ function EditProduct({ isModalVisible, handleOk, handleCancel, id }) {
   const [currentImage, setCurrentImage] = useState(null);
   const [isChangeFile, setIsChangeFile] = useState(false);
   const [productDetail, setProductDetail] = useState(null);
+  const [step, setStep] = useState(1);
+
   const onChangeEditor = (event, editor) => {
     const data = editor.getData();
     form.setFieldsValue({
@@ -81,7 +83,9 @@ function EditProduct({ isModalVisible, handleOk, handleCancel, id }) {
     setPreview("");
     setCurrentImage(null);
     setIsChangeFile(true);
-    imageRef.current.value = "";
+    if(imageRef.current){
+      imageRef.current.value = "";
+    }
   };
 
   const getProduct = async () => {
@@ -109,85 +113,100 @@ function EditProduct({ isModalVisible, handleOk, handleCancel, id }) {
     }
   }, [isModalVisible]);
 
+  const handleEdit = () => {
+    if (step === 1) {
+      setStep(2);
+    } else {
+      form.submit();
+    }
+  };
+
   return (
     <Modal
       title="Thêm sản phẩm mới"
       visible={isModalVisible}
-      onOk={() => form.submit()}
+      onOk={handleEdit}
       onCancel={handleCancel}
       wrapClassName={styles.wrapperModal}
     >
       <Form form={form} onFinish={handleSubmit}>
-        <div className={styles.fromItem}>
-          <Form.Item name="name">
-            <Input placeholder="Tên sản phẩm" />
-          </Form.Item>
-        </div>
+        <div className={`${step === 1 ? "block" : "hidden"}  `}>
+          <div className={styles.fromItem}>
+            <Form.Item name="name">
+              <Input placeholder="Tên sản phẩm" />
+            </Form.Item>
+          </div>
 
-        <div className={styles.fromItem}>
-          <Form.Item name="category_id">
-            <Select placeholder="Lựa chọn danh mục sản phẩm">
-              {category.map((item) => {
-                return (
-                  <Select.Option key={item.id} value={item.id}>
-                    {item.name}
-                  </Select.Option>
-                );
-              })}
-            </Select>
-          </Form.Item>
-        </div>
-        <div className={styles.fromItem}>
-          <label>Nội dung sản phẩm</label>
-          <Form.Item name="description">
-            <TextEditor
-              onChange={onChangeEditor}
-              data={productDetail?.description || ""}
-            />
-          </Form.Item>
-        </div>
-        <div className={styles.fromItem}>
-          <Form.Item name="is_homepage" valuePropName="checked" label={null}>
-            <Checkbox>Hiển thị sản phẩm ra trang chủ</Checkbox>
-          </Form.Item>
+          <div className={styles.fromItem}>
+            <Form.Item name="category_id">
+              <Select placeholder="Lựa chọn danh mục sản phẩm">
+                {category.map((item) => {
+                  return (
+                    <Select.Option key={item.id} value={item.id}>
+                      {item.name}
+                    </Select.Option>
+                  );
+                })}
+              </Select>
+            </Form.Item>
+          </div>
+          <div className={styles.fromItem}>
+            <label>Nội dung sản phẩm</label>
+            <Form.Item name="description">
+              <TextEditor
+                onChange={onChangeEditor}
+                data={productDetail?.description || ""}
+              />
+            </Form.Item>
+          </div>
+          <div className={styles.fromItem}>
+            <Form.Item name="is_homepage" valuePropName="checked" label={null}>
+              <Checkbox>Hiển thị sản phẩm ra trang chủ</Checkbox>
+            </Form.Item>
+          </div>
         </div>
       </Form>
-      {preview ? (
-        <div className="w-[150px] h-[150px] relative">
-          <span
-            className="absolute top-[-12px] right-[-12px] z-10 bg-[#e3e3e3] rounded-full"
-            onClick={deleteFile}
-          >
-            <Image
-              src={closeIcon}
-              className="cursor-pointer"
-              width={24}
-              height={24}
-              alt="close icon"
-            />
-          </span>
-          <img
-            src={preview}
-            className="w-full h-full object-cover"
-            alt="preview"
+      {step === 2 && (
+        <div className="mt-5">
+          <p className="mb-4">Thêm hình ảnh sản phẩm</p>
+          {preview ? (
+            <div className="w-[300px] h-[300px] relative mx-auto">
+              <span
+                className="absolute top-[-12px] right-[-12px] z-10 bg-[#e3e3e3] rounded-full"
+                onClick={deleteFile}
+              >
+                <Image
+                  src={closeIcon}
+                  className="cursor-pointer"
+                  width={24}
+                  height={24}
+                  alt="close icon"
+                />
+              </span>
+              <img
+                src={preview}
+                className="w-full h-full object-cover"
+                alt="preview"
+              />
+            </div>
+          ) : (
+            <div
+              className="w-[300px] h-[300px] mx-auto border border-[#929292] rounded-lg flex items-center justify-center cursor-pointer border-dashed"
+              onClick={() => imageRef.current.click()}
+            >
+              <PlusOutlined className="text-[40px]" />
+            </div>
+          )}
+
+          <input
+            type="file"
+            onChange={handleChangeFile}
+            accept="image/*"
+            ref={imageRef}
+            className="hidden"
           />
         </div>
-      ) : (
-        <div
-          className="w-[150px] h-[150px] border border-[#929292] rounded-lg flex items-center justify-center cursor-pointer border-dashed"
-          onClick={() => imageRef.current.click()}
-        >
-          <PlusOutlined className="text-[40px]" />
-        </div>
       )}
-
-      <input
-        type="file"
-        onChange={handleChangeFile}
-        accept="image/*"
-        ref={imageRef}
-        className="hidden"
-      />
     </Modal>
   );
 }

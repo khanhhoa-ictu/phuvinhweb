@@ -26,6 +26,8 @@ function EditPost({ isModalVisible, handleOk, handleCancel, id }) {
   const [currentImage, setCurrentImage] = useState(null);
   const imageRef = useRef(null);
   const [isChangeFile, setIsChangeFile] = useState(false);
+  const [step, setStep] = useState(1);
+
   const handleCancelModal = () => {
     setIsChangeFile(false);
     handleCancel();
@@ -106,71 +108,86 @@ function EditPost({ isModalVisible, handleOk, handleCancel, id }) {
     });
   };
 
+  const handleEdit = () => {
+    if (step === 1) {
+      setStep(2);
+    } else {
+      form.submit();
+    }
+  };
+
   return (
     <Modal
       title="Chỉnh sửa bài viết"
       visible={isModalVisible}
-      onOk={() => form.submit()}
+      onOk={handleEdit}
       onCancel={handleCancelModal}
       wrapClassName={styles.wrapperModal}
     >
       <Form form={form} onFinish={handleSubmit}>
-        <div className={styles.fromItem}>
-          <label>tiêu đề</label>
-          <Form.Item name="title">
-            <Input />
-          </Form.Item>
-        </div>
-        <div className={styles.fromItem}>
-          <label>Nội dung bài viết</label>
-          <Form.Item name="content">
-            <TextEditor onChange={onChangeEditor} data={data?.content} />
-          </Form.Item>
-        </div>
-        <div className={styles.fromItem}>
-          <label>Nội dung tóm tắt</label>
-          <Form.Item name="summary">
-            <TextArea />
-          </Form.Item>
-        </div>
-        <div className={styles.fromItem}>
-          <Form.Item name="is_homepage" valuePropName="checked" label={null}>
-            <Checkbox>Hiển thị sản phẩm ra trang chủ</Checkbox>
-          </Form.Item>
+        <div className={`${step === 1 ? "block" : "hidden"}  `}>
+          <div className={styles.fromItem}>
+            <label>tiêu đề</label>
+            <Form.Item name="title">
+              <Input />
+            </Form.Item>
+          </div>
+          <div className={styles.fromItem}>
+            <label>Nội dung bài viết</label>
+            <Form.Item name="content">
+              <TextEditor onChange={onChangeEditor} data={data?.content} />
+            </Form.Item>
+          </div>
+          <div className={styles.fromItem}>
+            <label>Nội dung tóm tắt</label>
+            <Form.Item name="summary">
+              <TextArea />
+            </Form.Item>
+          </div>
+          <div className={styles.fromItem}>
+            <Form.Item name="is_homepage" valuePropName="checked" label={null}>
+              <Checkbox>Hiển thị sản phẩm ra trang chủ</Checkbox>
+            </Form.Item>
+          </div>
         </div>
       </Form>
-      {preview ? (
-        <div className="w-[150px] h-[150px] relative">
-          <span
-            className="absolute top-[-12px] right-[-12px] z-10 bg-[#e3e3e3] rounded-full"
-            onClick={deleteFile}
-          >
-            <Image
-              src={closeIcon}
-              className="cursor-pointer"
-              width={24}
-              height={24}
-              alt="close icon"
-            />
-          </span>
-          <img src={preview} className="w-full h-full object-cover" />
-        </div>
-      ) : (
-        <div
-          className="w-[150px] h-[150px] border border-[#929292] rounded-lg flex items-center justify-center cursor-pointer border-dashed"
-          onClick={() => imageRef.current.click()}
-        >
-          <PlusOutlined className="text-[40px]" />
+      {step === 2 && (
+        <div className="mt-5">
+          <p className="mb-4">Thêm hình ảnh bài viết</p>
+          {preview ? (
+            <div className="w-[300px] h-[300px] mx-auto relative">
+              <span
+                className="absolute top-[-12px] right-[-12px] z-10 bg-[#e3e3e3] rounded-full"
+                onClick={deleteFile}
+              >
+                <Image
+                  src={closeIcon}
+                  className="cursor-pointer"
+                  width={24}
+                  height={24}
+                  alt="close icon"
+                />
+              </span>
+              <img src={preview} className="w-full h-full object-cover" />
+            </div>
+          ) : (
+            <div
+              className="w-[300px] h-[300px] mx-auto border border-[#929292] rounded-lg flex items-center justify-center cursor-pointer border-dashed"
+              onClick={() => imageRef.current.click()}
+            >
+              <PlusOutlined className="text-[40px]" />
+            </div>
+          )}
+
+          <input
+            type="file"
+            onChange={handleChangeFile}
+            accept="image/*"
+            ref={imageRef}
+            className="!hidden"
+          />
         </div>
       )}
-
-      <input
-        type="file"
-        onChange={handleChangeFile}
-        accept="image/*"
-        ref={imageRef}
-        className="!hidden"
-      />
     </Modal>
   );
 }

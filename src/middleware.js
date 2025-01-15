@@ -6,8 +6,13 @@ export function middleware(request) {
   const { pathname } = request.nextUrl;
   const token = request.cookies.get("token") || { value: "" };
   const payload = jwt.decode(token?.value);
-
-  if (payload?.role === "user" && pathname === "/admin") {
+  if (
+    payload?.role === "user" &&
+    (pathname === "/admin" ||
+      pathname === "/admin/product" ||
+      pathname === "/admin/post" ||
+      pathname === "/admin/category")
+  ) {
     return NextResponse.redirect(new URL("/", request.url));
   }
   if (pathname === "/admin" && !token?.value) {

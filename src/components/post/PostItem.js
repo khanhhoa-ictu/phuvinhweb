@@ -24,7 +24,7 @@ function PostItem({ image, date, title, summary, id }) {
             <h3 className="text-base font-semibold lg:text-xl mb-5 sm:mb-[5px] lg:mb-5">
               {title}
             </h3>
-            <p className="text-[13px] leading-[126%] lg:text-base mb-4 sm:mb-[10px] lg:mb-4">
+            <p className="text-[13px] leading-[126%] lg:text-base mb-4 sm:mb-[10px] lg:mb-4 line-clamp-5">
               {summary || ""}
             </p>
           </div>
