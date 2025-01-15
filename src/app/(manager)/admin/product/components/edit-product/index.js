@@ -83,7 +83,7 @@ function EditProduct({ isModalVisible, handleOk, handleCancel, id }) {
     setPreview("");
     setCurrentImage(null);
     setIsChangeFile(true);
-    if(imageRef.current){
+    if (imageRef.current) {
       imageRef.current.value = "";
     }
   };

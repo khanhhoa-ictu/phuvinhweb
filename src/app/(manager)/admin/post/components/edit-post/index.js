@@ -168,7 +168,11 @@ function EditPost({ isModalVisible, handleOk, handleCancel, id }) {
                   alt="close icon"
                 />
               </span>
-              <img src={preview} className="w-full h-full object-cover" />
+              <img
+                src={preview}
+                className="w-full h-full object-cover"
+                alt=" preview hình ảnh"
+              />
             </div>
           ) : (
             <div

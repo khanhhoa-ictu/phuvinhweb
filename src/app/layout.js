@@ -23,10 +23,10 @@ const roboto = Roboto({
 
 export const metadata = {
   title: {
-    template: '%s | Ống thép Phú Vinh',
-    default: 'Ong thep phu vinh',
+    template: "%s | Ống thép Phú Vinh",
+    default: "Ong thep phu vinh",
   },
-  description: 'Được tạo bởi ống thép Phú Vinh',
+  description: "Được tạo bởi ống thép Phú Vinh",
 };
 
 export default function RootLayout({ children }) {

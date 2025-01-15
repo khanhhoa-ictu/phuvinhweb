@@ -65,22 +65,26 @@
 
 .card-item::before {
   content: "";
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    bottom: 0;
-    background: linear-gradient(180deg, rgba(255, 255, 255, 0) 40.61%, #FFFFFF 100%);
-    transition: all .3s;
-    z-index: 10;
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  bottom: 0;
+  background: linear-gradient(
+    180deg,
+    rgba(255, 255, 255, 0) 40.61%,
+    #ffffff 100%
+  );
+  transition: all 0.3s;
+  z-index: 10;
 }
-.card-item:hover:before{
+.card-item:hover:before {
   background: transparent;
 }
-.card-item:hover .product-name{
+.card-item:hover .product-name {
   color: white;
 }
-.line{
-  &:before{
+.line {
+  &:before {
     content: "";
     position: absolute;
     height: 100%;
@@ -103,5 +107,15 @@
 }
 .custom-button {
   aspect-ratio: 1 / 1;
-  background-image: conic-gradient(from 180deg at 50% 50%,#3fdcf7 0deg,#1890ff 51.43deg,#6813cb 102.86deg,#ff003d 154.29deg,#ff8a00 205.71deg,#ffd600 257.14deg,#67be23 308.57deg,#3fdcf7 1turn);
+  background-image: conic-gradient(
+    from 180deg at 50% 50%,
+    #3fdcf7 0deg,
+    #1890ff 51.43deg,
+    #6813cb 102.86deg,
+    #ff003d 154.29deg,
+    #ff8a00 205.71deg,
+    #ffd600 257.14deg,
+    #67be23 308.57deg,
+    #3fdcf7 1turn
+  );
 }

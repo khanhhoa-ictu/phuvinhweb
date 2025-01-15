@@ -4,8 +4,7 @@ import Image from "next/image";
 import AboutItem from "./AboutItem";
 
 export const metadata = {
-  title:
-    "Giới thiệu - Công ty Thép Phú Vinh",
+  title: "Giới thiệu - Công ty Thép Phú Vinh",
   description:
     "Công ty Thép Phú Vinh chuyên cung cấp các sản phẩm thép chất lượng cao, uy tín với nhiều năm kinh nghiệm. Tìm hiểu thêm về chúng tôi ngay!",
 };

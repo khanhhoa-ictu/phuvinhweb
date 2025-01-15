@@ -25,7 +25,9 @@ async function PostDetail({ params }) {
           <div className={styles.dateTime}>
             <p>
               {dayjs(postDetail?.created_at).format("DD/MM/YYYY")} -{" "}
-              <span className="font-semibold text-[#261797]">Phú vinh steel</span>
+              <span className="font-semibold text-[#261797]">
+                Phú vinh steel
+              </span>
             </p>
           </div>
           <div className={styles.detailContent}>
