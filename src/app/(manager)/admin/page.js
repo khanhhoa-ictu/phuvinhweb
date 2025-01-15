@@ -5,7 +5,7 @@ import DashCount from "./components/DashCount";
 
 async function Manager() {
   const currentPage = 1;
-  const pageSize = 9999;
+  const pageSize = 500;
   const dataPost = await getListPost(currentPage, pageSize);
   const dataProduct = await getListProduct(currentPage, pageSize);
 

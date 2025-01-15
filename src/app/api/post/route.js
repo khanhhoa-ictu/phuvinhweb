@@ -7,7 +7,7 @@ export async function GET(req, res) {
   const is_homepage = searchParams.get("is_homepage") || false;
 
   const [rows] = await pool.query(
-    `SELECT * FROM post ${is_homepage ? "WHERE is_homepage = true " : " "} ORDER BY created_at DESC`
+    `SELECT * FROM post ${(is_homepage === "true") ? "WHERE is_homepage = true " : " "} ORDER BY created_at DESC`
   );
   const data = {
     listPost: rows.slice(pageSize * page - pageSize, pageSize * page),

@@ -1,5 +1,6 @@
 import { Button } from "antd";
 import Image from "next/image";
+import Link from "next/link";
 import React from "react";
 
 function PostItem({ image, date, title, summary, id }) {

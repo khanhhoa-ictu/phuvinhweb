@@ -6,6 +6,7 @@ import { useRouter } from "next/navigation";
 import { handleErrorMessage } from "@/common";
 import { deletePost, editPost } from "@/service/post";
 import EditPost from "../edit-post";
+import { CheckCircleOutlined } from "@ant-design/icons";
 
 function PostItem({ post }) {
   const router = useRouter();
@@ -43,7 +44,9 @@ function PostItem({ post }) {
   return (
     <tr>
       <td className="text-center">{post.title}</td>
-
+      <td className="text-center">
+        {post.is_homepage ? <CheckCircleOutlined className="text-xl [&_svg]:fill-[#0f630c]" /> : ""}
+      </td>
       <td>
         <div className="text-center">
           <Button

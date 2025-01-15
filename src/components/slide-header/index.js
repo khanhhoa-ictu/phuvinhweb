@@ -1,4 +1,4 @@
-import slider1 from "@/assets/image/home/slider1.jpg";
+import slider1 from "@/assets/image/home/slider3.jpg";
 import Image from "next/image";
 
 function SlideHeader() {

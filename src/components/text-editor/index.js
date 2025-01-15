@@ -52,6 +52,7 @@ const TextEditor = React.memo(({data,onChange}) => {
             "redo",
             "|",
             "heading",
+            "alignment",
             "|",
             "bold",
             "italic",

@@ -38,6 +38,8 @@ function CategoryItem({ category }) {
       setIsOpenModal({ ...isOpenModal, edit: false });
     } catch (error) {
       handleErrorMessage(error);
+    }finally{
+      setLoading(false)
     }
   };
 

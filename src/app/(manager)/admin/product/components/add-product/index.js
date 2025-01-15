@@ -62,7 +62,7 @@ function AddProduct() {
   };
 
   const handleChangeFile = (event) => {
-    const file = event.target.files?.[0]; // Lấy file đầu tiên từ input
+    const file = event.target.files?.[0]; 
     setCurrentImage(file);
     if (!isValidateFile(file)) {
       handleErrorMessage("File phải là hình ảnh và nhỏ hơn 5M");
@@ -71,9 +71,9 @@ function AddProduct() {
     if (file) {
       const reader = new FileReader();
       reader.onload = () => {
-        setPreview(reader.result); // Cập nhật state với chuỗi base64
+        setPreview(reader.result); 
       };
-      reader.readAsDataURL(file); // Đọc file dưới dạng chuỗi base64
+      reader.readAsDataURL(file); 
     }
   };
   const deleteFile = () => {
@@ -98,15 +98,12 @@ function AddProduct() {
     }
   }, [isModalVisible]);
 
-  const [name,setName] = useState("")
   return (
     <div>
       <Button onClick={() => setIsModalVisible(true)} className="!bg-[#5643e7]">
         Thêm sản phẩm
       </Button>
-      <TextEditor onChange={onChangeEditor} />
-      <Input value={name} onChange={(e)=>setName(e.target.value)} />
-      {/* <Modal
+      <Modal
         title="Thêm sản phẩm mới"
         visible={isModalVisible}
         onOk={() => form.submit()}
@@ -176,7 +173,7 @@ function AddProduct() {
           ref={imageRef}
           className="hidden"
         />
-      </Modal> */}
+      </Modal>
     </div>
   );
 }

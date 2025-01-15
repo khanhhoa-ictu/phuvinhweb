@@ -82,7 +82,7 @@ function NavbarDesktop() {
               className="w-[100px] h-[60px]"
             />
             <h1 className="uppercase text-base font-roboto font-bold text-[#261797]">
-              Phu Vinh Stell
+              Phu Vinh Steel
             </h1>
           </Link>
         </div>
