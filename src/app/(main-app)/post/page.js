@@ -31,7 +31,7 @@ async function PostPage({ searchParams }) {
           Tin tức
         </h1>
       </div>
-      <div className="flex flex-col gap-10 max-w-[1200px] mx-auto mt-20">
+      <div className="flex flex-col gap-10 max-w-[1200px] mx-auto mt-20 px-4 lg:px-10">
         {listPost.map((item) => {
           return (
             <PostItem

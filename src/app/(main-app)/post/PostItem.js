@@ -5,9 +5,9 @@ import React from "react";
 
 function PostItem({ image, date, title, summary, id }) {
   return (
-    <div className="relative post-container max-h-[400px] overflow-hidden rounded-lg">
+    <div className="relative post-container md:max-h-[400px] overflow-hidden rounded-lg">
       <div
-        className={`post-card w-full border border-[#0018421a] bg-white rounded-lg flex flex-col sm:flex-row gap-6 h-full max-h-[400px]`}
+        className={`post-card w-full border border-[#0018421a] bg-white rounded-lg flex flex-col sm:flex-row gap-6 md:max-h-[400px] h-full`}
       >
         <div className="rounded-t-lg sm:rounded-t-lg lg:rounded-t-lg sm:w-[40%]">
           <Image
