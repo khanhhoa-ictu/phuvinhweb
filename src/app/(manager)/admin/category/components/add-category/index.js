@@ -4,8 +4,10 @@ import { useState } from "react";
 import styles from "./styles.module.scss";
 import { addCategory } from "@/service/catygory";
 import { handleErrorMessage } from "@/common";
+import { useRouter } from "next/navigation";
 
 function AddCategory() {
+  const router = useRouter()
   const [isModalVisible, setIsModalVisible] = useState(false);
   const [nameCategory, setNameCategory] = useState("");
   const handleCancelModal = () => {
@@ -17,6 +19,7 @@ function AddCategory() {
     if (!nameCategory) return;
     try {
       await addCategory({ name: nameCategory });
+      router.refresh()
       setIsModalVisible(false);
       setNameCategory("");
     } catch (error) {

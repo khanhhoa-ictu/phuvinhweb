@@ -41,7 +41,7 @@ function ProductItem({ product }) {
       setIsOpenModal({ ...isOpenModal, edit: false });
     } catch (error) {
       handleErrorMessage(error);
-    }finally{
+    } finally {
       setLoading(false);
     }
   };
