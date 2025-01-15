@@ -12,7 +12,7 @@ function Login() {
   const handleLogin = async (values) => {
     setLoading(true);
     try {
-      await register(values);
+      // await register(values);
       router.push("/");
     } catch (error) {
       handleErrorMessage(error);
