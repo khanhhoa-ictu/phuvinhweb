@@ -1,5 +1,6 @@
 import { getPostDetail } from "@/service/post";
 import styles from "./styles.module.scss";
+import dayjs from "dayjs";
 
 export async function generateMetadata({ params }) {
   // read route params
@@ -23,8 +24,7 @@ async function PostDetail({ params }) {
         <div className={styles.detail}>
           <div className={styles.dateTime}>
             <p>
-              {/* {moment(postDetail?.reg_date).format("DD/MM/YYYY")} */}- By
-              Smile
+              {dayjs(postDetail?.created_at).format("DD/MM/YYYY")} - Phú vinh steel
             </p>
           </div>
           <div className={styles.detailContent}>

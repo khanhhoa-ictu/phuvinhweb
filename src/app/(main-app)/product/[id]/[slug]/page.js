@@ -24,13 +24,15 @@ async function ProductDetail({ params }) {
         <div className={styles.detail}>
           <div className={styles.dateTime}>
             <p>
-              {/* {moment(postDetail?.reg_date).format("DD/MM/YYYY")} */}- By
-              Smile
+              {dayjs(postDetail?.created_at).format("DD/MM/YYYY")} - Phú vinh
+              steel
             </p>
           </div>
           <div className={styles.detailContent}>
             <div
-              dangerouslySetInnerHTML={{ __html: `${postDetail?.data?.description}` }}
+              dangerouslySetInnerHTML={{
+                __html: `${postDetail?.data?.description}`,
+              }}
               className={styles.detailContents}
             ></div>
           </div>
