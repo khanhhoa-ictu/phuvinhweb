@@ -1,4 +1,5 @@
 import { isClient } from "@/common";
+import configProject from "@/config";
 
 export class HttpError extends Error {
   status;
@@ -48,7 +49,7 @@ const request = async (method, url, option) => {
     }
   }
 
-  const baseUrl = process.env.BASE_URL;
+  const baseUrl = configProject.NEXT_PUBLIC_ENDPOINT;
   const res = await fetch(`${baseUrl}/${url}`, {
     ...option,
     headers: {
