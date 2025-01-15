@@ -1,6 +1,10 @@
 "use client";
 import closeIcon from "@/assets/icon/close-icon.svg";
-import { handleErrorMessage, handleSuccessMessage, isValidateFile } from "@/common";
+import {
+  handleErrorMessage,
+  handleSuccessMessage,
+  isValidateFile,
+} from "@/common";
 import { getListCategory } from "@/service/catygory";
 import { getProductDetail } from "@/service/product";
 import { PlusOutlined } from "@ant-design/icons";
@@ -162,7 +166,11 @@ function EditProduct({ isModalVisible, handleOk, handleCancel, id }) {
               alt="close icon"
             />
           </span>
-          <img src={preview} className="w-full h-full object-cover" />
+          <img
+            src={preview}
+            className="w-full h-full object-cover"
+            alt="preview"
+          />
         </div>
       ) : (
         <div

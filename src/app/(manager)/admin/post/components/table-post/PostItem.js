@@ -45,7 +45,11 @@ function PostItem({ post }) {
     <tr>
       <td className="text-center">{post.title}</td>
       <td className="text-center">
-        {post.is_homepage ? <CheckCircleOutlined className="text-xl [&_svg]:fill-[#0f630c]" /> : ""}
+        {post.is_homepage ? (
+          <CheckCircleOutlined className="text-xl [&_svg]:fill-[#0f630c]" />
+        ) : (
+          ""
+        )}
       </td>
       <td>
         <div className="text-center">

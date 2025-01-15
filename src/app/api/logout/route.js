@@ -15,7 +15,7 @@ export async function POST(request) {
             `refreshToken=; Path=/; HttpOnly Max-Age=0`,
           ],
         },
-      }
+      },
     );
   }
   const cookieStore = cookies();
@@ -26,7 +26,7 @@ export async function POST(request) {
       { message: "khong nhan duoc token" },
       {
         status: 401,
-      }
+      },
     );
   }
 

@@ -11,22 +11,21 @@ export async function POST(req, res) {
 
   const [rows] = await pool.query(
     "INSERT INTO user (email, password, role) VALUES (?,?,?)",
-    [email, password, role]
+    [email, password, role],
   );
   if (rows) {
     return Response.json(
       { message: "Dang ky thanh cong" },
       {
         status: 200,
-      }
+      },
     );
   } else {
     return Response.json(
       { message: "Dang ky that bai" },
       {
         status: 422,
-      }
+      },
     );
   }
-  
 }

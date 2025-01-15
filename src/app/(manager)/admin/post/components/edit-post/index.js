@@ -49,7 +49,7 @@ function EditPost({ isModalVisible, handleOk, handleCancel, id }) {
       await handleOk({
         ...payload,
         is_homepage:
-        payload.is_homepage === "undefined" ? false : payload.is_homepage,
+          payload.is_homepage === "undefined" ? false : payload.is_homepage,
         thumbnail: thumbnail,
       });
       handleSuccessMessage("Cập nhật bài viết thành công");
@@ -105,7 +105,7 @@ function EditPost({ isModalVisible, handleOk, handleCancel, id }) {
       content: data,
     });
   };
-  
+
   return (
     <Modal
       title="Chỉnh sửa bài viết"

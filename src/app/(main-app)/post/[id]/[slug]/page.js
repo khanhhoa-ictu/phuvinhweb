@@ -24,12 +24,15 @@ async function PostDetail({ params }) {
         <div className={styles.detail}>
           <div className={styles.dateTime}>
             <p>
-              {dayjs(postDetail?.created_at).format("DD/MM/YYYY")} - Phú vinh steel
+              {dayjs(postDetail?.created_at).format("DD/MM/YYYY")} - Phú vinh
+              steel
             </p>
           </div>
           <div className={styles.detailContent}>
             <div
-              dangerouslySetInnerHTML={{ __html: `${postDetail?.data?.content}` }}
+              dangerouslySetInnerHTML={{
+                __html: `${postDetail?.data?.content}`,
+              }}
               className={styles.detailContents}
             ></div>
           </div>

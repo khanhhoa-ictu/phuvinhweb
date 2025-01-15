@@ -5,9 +5,9 @@ import jwt from "jsonwebtoken";
 export function middleware(request) {
   const { pathname } = request.nextUrl;
   const token = request.cookies.get("token") || { value: "" };
-  const payload = jwt.decode(token?.value)
+  const payload = jwt.decode(token?.value);
 
-  if(payload?.role === "user" && pathname === "/admin") {
+  if (payload?.role === "user" && pathname === "/admin") {
     return NextResponse.redirect(new URL("/", request.url));
   }
   if (pathname === "/admin" && !token?.value) {
@@ -29,5 +29,12 @@ export function middleware(request) {
 
 // See "Matching Paths" below to learn more
 export const config = {
-  matcher: ["/login", "/register", "/admin", "/admin/product", "/admin/post", "/admin/category"],
+  matcher: [
+    "/login",
+    "/register",
+    "/admin",
+    "/admin/product",
+    "/admin/post",
+    "/admin/category",
+  ],
 };

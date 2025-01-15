@@ -6,9 +6,9 @@ import { useRouter } from "next/navigation";
 function CustomPagination({ currentPage, totalItems, pageSize, category }) {
   const router = useRouter();
   const handleChangePage = (page) => {
-    if(category){
+    if (category) {
       router.push(`?page=${page}&category=${category}`);
-      return
+      return;
     }
     router.push(`?page=${page}`);
   };

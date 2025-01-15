@@ -30,7 +30,10 @@ function PostItem({ image, date, title, summary, id }) {
               {summary || ""}
             </p>
           </div>
-          <Link href={`/post/${id}/${title.replace(/ /g, '-')}`} className="w-fit">
+          <Link
+            href={`/post/${id}/${title.replace(/ /g, "-")}`}
+            className="w-fit"
+          >
             <Button className="w-fit">Xem Chi Tiết</Button>
           </Link>
         </div>

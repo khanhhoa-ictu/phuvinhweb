@@ -9,7 +9,7 @@ export const getListProduct = (page, pageSize, isHome = false) => {
     `api/product?page=${page}&page-size=${pageSize}&is_homepage=${isHome}`,
     {
       cache: "no-store",
-    }
+    },
   );
 };
 
@@ -30,6 +30,6 @@ export const editProduct = (data) => {
 export const getListProductByCategory = (page, pageSize, category) => {
   return http.get(
     `api/product/category?page=${page}&page-size=${pageSize}&category=${category}`,
-    { cache: "no-store" }
+    { cache: "no-store" },
   );
 };

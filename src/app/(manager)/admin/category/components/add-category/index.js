@@ -7,7 +7,7 @@ import { handleErrorMessage } from "@/common";
 import { useRouter } from "next/navigation";
 
 function AddCategory() {
-  const router = useRouter()
+  const router = useRouter();
   const [isModalVisible, setIsModalVisible] = useState(false);
   const [nameCategory, setNameCategory] = useState("");
   const handleCancelModal = () => {
@@ -19,7 +19,7 @@ function AddCategory() {
     if (!nameCategory) return;
     try {
       await addCategory({ name: nameCategory });
-      router.refresh()
+      router.refresh();
       setIsModalVisible(false);
       setNameCategory("");
     } catch (error) {

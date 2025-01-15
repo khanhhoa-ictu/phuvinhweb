@@ -51,7 +51,7 @@ function AddPost() {
       await addPost({
         ...payload,
         is_homepage:
-        payload.is_homepage === "undefined" ? false : payload.is_homepage,
+          payload.is_homepage === "undefined" ? false : payload.is_homepage,
         thumbnail: thumbnail.payload?.url,
       });
       router.refresh();
@@ -135,7 +135,11 @@ function AddPost() {
                 alt="close icon"
               />
             </span>
-            <img src={preview} className="w-full h-full object-cover" />
+            <img
+              src={preview}
+              className="w-full h-full object-cover"
+              alt="preview"
+            />
           </div>
         ) : (
           <div

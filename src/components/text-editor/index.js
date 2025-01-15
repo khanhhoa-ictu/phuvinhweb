@@ -3,7 +3,7 @@ import { CKEditor } from "@ckeditor/ckeditor5-react";
 import ClassicEditor from "@ckeditor/ckeditor5-build-classic";
 import styles from "./styles.module.scss";
 import { uploadFile } from "@/service/image";
-import React, { useRef } from "react"
+import React, { useRef } from "react";
 
 function customUploadAdapter(loader) {
   return {
@@ -26,7 +26,7 @@ function uploadPlugin(editor) {
   };
 }
 
-const TextEditor = React.memo(({data,onChange}) => {
+const TextEditor = ({ data, onChange }) => {
   const editorRef = useRef(null);
   return (
     <div className={styles.textEditor}>
@@ -72,6 +72,6 @@ const TextEditor = React.memo(({data,onChange}) => {
       />
     </div>
   );
-});
+};
 
 export default TextEditor;

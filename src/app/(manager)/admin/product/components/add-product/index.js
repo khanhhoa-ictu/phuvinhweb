@@ -21,7 +21,7 @@ function AddProduct() {
   const TextEditor = dynamic(() => import("@/components/text-editor"), {
     ssr: false,
   });
-  const router = useRouter()
+  const router = useRouter();
   const [isModalVisible, setIsModalVisible] = useState(false);
   const [form] = useForm();
   const [preview, setPreview] = useState(null);
@@ -38,7 +38,7 @@ function AddProduct() {
 
   const handleCancelModal = () => {
     setIsModalVisible(false);
-    setStep(1)
+    setStep(1);
     form.resetFields();
   };
 
@@ -162,7 +162,7 @@ function AddProduct() {
         </Form>
         {step === 2 && (
           <div className="mt-5">
-            <p className="mb-4" >Thêm hình ảnh sản phẩm</p>
+            <p className="mb-4">Thêm hình ảnh sản phẩm</p>
             {preview ? (
               <div className="w-[300px] h-[300px] relative mx-auto">
                 <span
@@ -174,9 +174,14 @@ function AddProduct() {
                     className="cursor-pointer"
                     width={24}
                     height={24}
+                    alt="close-icon"
                   />
                 </span>
-                <img src={preview} className="w-full h-full object-cover" />
+                <img
+                  src={preview}
+                  className="w-full h-full object-cover"
+                  alt="preview"
+                />
               </div>
             ) : (
               <div

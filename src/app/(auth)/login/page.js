@@ -7,7 +7,7 @@ import { useState } from "react";
 
 function Login() {
   const [loading, setLoading] = useState(false);
-  const router = useRouter()
+  const router = useRouter();
 
   const handleLogin = async (values) => {
     setLoading(true);
@@ -16,7 +16,7 @@ function Login() {
       localStorage.setItem("token", data?.payload?.token);
       router.push("/");
     } catch (error) {
-      handleErrorMessage(error)
+      handleErrorMessage(error);
     } finally {
       setLoading(false);
     }
@@ -33,7 +33,7 @@ function Login() {
                   value && /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value)
                     ? Promise.resolve()
                     : Promise.reject(
-                        new Error("Please enter a valid email address!")
+                        new Error("Please enter a valid email address!"),
                       ),
               },
             ]}

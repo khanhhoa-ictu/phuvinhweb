@@ -7,9 +7,8 @@ function Introduce() {
           Phú Vinh Steel
         </h1>
         <p className="text-[#473dc6] text-sm md:text-xl lg:text-[25px] text-center font-semibold leading-[32px]">
-          Bằng sự nỗ lực không ngừng cải tiến chất lượng sản phẩm, dịch vụ,
-          PHÚ VINH phấn đấu trở thành doanh nghiệp hàng đầu sản xuất thép Việt
-          Nam.
+          Bằng sự nỗ lực không ngừng cải tiến chất lượng sản phẩm, dịch vụ, PHÚ
+          VINH phấn đấu trở thành doanh nghiệp hàng đầu sản xuất thép Việt Nam.
         </p>
         <Button className="!text-xl lg:!text-2xl !px-8 !py-5 !rounded-[80px] !h-[62px] !bg-[#cbb024]">
           Tư Vấn Miễn Phí

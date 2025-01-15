@@ -16,7 +16,7 @@ export async function POST(req, res) {
       { message: "không tìm thấy thông tin người dùng" },
       {
         status: 404,
-      }
+      },
     );
   }
 
@@ -25,7 +25,7 @@ export async function POST(req, res) {
       { message: "Tài khoản hoặc mật khẩu không chính xác" },
       {
         status: 422,
-      }
+      },
     );
   }
 
@@ -36,13 +36,13 @@ export async function POST(req, res) {
       iat: Math.floor(Date.now() / 1000) - 60 * 30,
     },
     "secret",
-    { expiresIn: "30d" }
+    { expiresIn: "30d" },
   );
 
   let refreshToken = jwt.sign(
     { email: email, iat: Math.floor(Date.now() / 1000) - 60 * 30 },
     "re-secret",
-    { expiresIn: "100 days" }
+    { expiresIn: "100 days" },
   );
   const user = { id: rows[0]?.id, email: rows[0]?.email, role: rows[0].role };
   return Response.json(
@@ -56,6 +56,6 @@ export async function POST(req, res) {
           `refreshToken=${refreshToken}; Path=/; HttpOnly`,
         ],
       },
-    }
+    },
   );
 }

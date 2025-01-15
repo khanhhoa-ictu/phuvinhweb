@@ -7,7 +7,7 @@ export async function GET(req, res) {
   const is_homepage = searchParams.get("is_homepage") || false;
 
   const [rows] = await pool.query(
-    `SELECT * FROM product ${(is_homepage === "true") ? "WHERE is_homepage = true " : " "}ORDER BY created_at DESC`
+    `SELECT * FROM product ${is_homepage === "true" ? "WHERE is_homepage = true " : " "}ORDER BY created_at DESC`,
   );
 
   const data = {
@@ -22,21 +22,21 @@ export async function POST(req, res) {
   const { name, description, category_id, thumbnail, is_homepage } = request;
   const [rows] = await pool.query(
     "INSERT INTO product (name, description, category_id, thumbnail, is_homepage) VALUES (?,?,?,?,?)",
-    [name, description, category_id, thumbnail, is_homepage]
+    [name, description, category_id, thumbnail, is_homepage],
   );
   if (rows) {
     return Response.json(
       { message: "Thêm sản phẩm thành công" },
       {
         status: 200,
-      }
+      },
     );
   } else {
     return Response.json(
       { message: "Thêm sản phẩm thất bại" },
       {
         status: 422,
-      }
+      },
     );
   }
 }
@@ -47,7 +47,7 @@ export async function PUT(req, res) {
     request;
   const [rows] = await pool.query(
     "UPDATE product SET name = ?, description = ?, category_id = ?, thumbnail = ?, is_homepage = ? WHERE id = ?",
-    [name, description, category_id, thumbnail, is_homepage, id]
+    [name, description, category_id, thumbnail, is_homepage, id],
   );
 
   if (rows) {
@@ -55,14 +55,14 @@ export async function PUT(req, res) {
       { message: "Cập nhât sản phẩm thành công" },
       {
         status: 200,
-      }
+      },
     );
   } else {
     return Response.json(
       { message: "Cập nhât sản phẩm thất bại" },
       {
         status: 422,
-      }
+      },
     );
   }
 }
