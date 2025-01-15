@@ -1,6 +1,7 @@
 import { getPostDetail } from "@/service/post";
 import styles from "./styles.module.scss";
 import { getProductDetail } from "@/service/product";
+import dayjs from "dayjs";
 
 export async function generateMetadata({ params }) {
   // read route params
@@ -10,8 +11,8 @@ export async function generateMetadata({ params }) {
   const { payload } = await getProductDetail(id);
 
   return {
-    title: payload?.data?.attributes?.name,
-    description: payload?.data?.attributes?.name,
+    title: payload?.data?.name,
+    description: payload?.data?.description,
   };
 }
 

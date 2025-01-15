@@ -1,12 +1,15 @@
-import React from "react";
 import background from "@/assets/image/post/background.png";
-import ProductItem from "@/components/product/ProductItem";
-import backgroundProduct from "@/assets/image/home/background.jpg";
-import Image from "next/image";
-import { Select } from "antd";
-import SelectCategory from "./SelectCategory";
 import CustomPagination from "@/components/pagination";
-import { getListProduct, getListProductByCategory } from "@/service/product";
+import ProductItem from "@/components/product/ProductItem";
+import { getListProductByCategory } from "@/service/product";
+import Image from "next/image";
+import SelectCategory from "./SelectCategory";
+
+export const metadata = {
+  title: "Sản Phẩm Ống Thép Phú Vinh - Thép Chất Lượng Cao, Giá Cạnh Tranh",
+  description:
+    "Khám phá danh mục sản phẩm thép đa dạng tại Ống Thép Phú Vinh. Chúng tôi cung cấp thép chất lượng cao, bền bỉ, giá cả hợp lý, đáp ứng mọi nhu cầu xây dựng và công nghiệp.",
+};
 
 async function Product({ searchParams }) {
   const category = searchParams?.category || null;

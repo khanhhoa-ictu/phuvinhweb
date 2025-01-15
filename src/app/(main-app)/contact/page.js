@@ -3,6 +3,12 @@ import background from "@/assets/image/post/background.png";
 import Image from "next/image";
 import backgroundContact from "@/assets/image/contact/background.png";
 
+export const metadata = {
+  title: "Liên Hệ Ống Thép Phú Vinh - Tư Vấn và Hỗ Trợ Nhanh Chóng",
+  description:
+    "Liên hệ ngay với Ong Thép Phú Vinh để nhận tư vấn và hỗ trợ về các sản phẩm thép chất lượng. Chúng tôi sẵn sàng giải đáp mọi thắc mắc qua hotline, email hoặc trực tiếp tại văn phòng.",
+};
+
 function Contact() {
   return (
     <div className="flex-1">

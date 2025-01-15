@@ -10,8 +10,8 @@ export async function generateMetadata({ params }) {
   const { payload } = await getPostDetail(id);
 
   return {
-    title: payload?.data?.attributes?.title,
-    description: payload?.data?.attributes?.summary,
+    title: payload?.data?.title,
+    description: payload?.data?.summary,
   };
 }
 

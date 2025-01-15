@@ -5,6 +5,12 @@ import PostItem from "./PostItem";
 import CustomPagination from "@/components/pagination";
 import { getListPost } from "@/service/post";
 
+export const metadata = {
+  title: "Tin Tức Mới Nhất Về Ngành Thép",
+  description:
+    "Cập nhật tin tức mới nhất về ngành thép, giá thép, xu hướng thị trường và các sản phẩm thép chất lượng cao tại Ống Thép Phú Vinh. Đón đọc để nắm bắt thông tin chính xác và hữu ích!",
+};
+
 async function PostPage({ searchParams }) {
   const currentPage = Number(searchParams.page) || 1;
   const pageSize = 10;
