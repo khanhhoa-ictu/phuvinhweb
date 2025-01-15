@@ -1,37 +1,35 @@
-import {
-  CommentOutlined,
-  HomeOutlined,
-  LikeOutlined,
-  UserOutlined,
-} from "@ant-design/icons";
+import { getListPost } from "@/service/post";
+import { getListProduct } from "@/service/product";
+import { EditOutlined, DollarOutlined, UserOutlined } from "@ant-design/icons";
 import DashCount from "./components/DashCount";
-// import DashCount from "./components/DashCount";
 
-function Manager() {
+async function Manager() {
+  const currentPage = 1;
+  const pageSize = 500;
+  const dataPost = await getListPost(currentPage, pageSize);
+  const dataProduct = await getListProduct(currentPage, pageSize);
+
+  const listPost = dataPost.payload.data?.listPost || [];
+  const products = dataProduct.payload.data?.products;
+
   const listDash = [
     {
-      count: 100,
-      title: "users",
+      count: 1,
+      title: "Người dùng",
       icon: <UserOutlined />,
       backgroundColor: "#FF9F43",
     },
     {
-      count: 200,
-      title: "post",
-      icon: <HomeOutlined />,
+      count: listPost?.length,
+      title: "Bài viết",
+      icon: <EditOutlined />,
       backgroundColor: "#28C76F",
     },
     {
-      count: 200,
-      title: "like",
-      icon: <LikeOutlined />,
+      count: products?.length,
+      title: "Sản phẩm",
+      icon: <DollarOutlined />,
       backgroundColor: "#00CFE8",
-    },
-    {
-      count: 200,
-      title: "comment",
-      icon: <CommentOutlined />,
-      backgroundColor: "#3a4e8b",
     },
   ];
 

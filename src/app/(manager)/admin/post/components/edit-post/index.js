@@ -1,5 +1,5 @@
 "use client";
-import { Form, Input, Modal, Select } from "antd";
+import { Checkbox, Form, Input, Modal, Select } from "antd";
 import { useForm } from "antd/lib/form/Form";
 import TextArea from "antd/lib/input/TextArea";
 import dynamic from "next/dynamic";
@@ -46,7 +46,12 @@ function EditPost({ isModalVisible, handleOk, handleCancel, id }) {
       thumbnail = newThumbnail?.payload?.url;
     }
     try {
-      await handleOk({ ...payload, thumbnail: thumbnail });
+      await handleOk({
+        ...payload,
+        is_homepage:
+        payload.is_homepage === "undefined" ? false : payload.is_homepage,
+        thumbnail: thumbnail,
+      });
       handleSuccessMessage("Cập nhật bài viết thành công");
     } catch (error) {
       handleErrorMessage(error);
@@ -100,6 +105,7 @@ function EditPost({ isModalVisible, handleOk, handleCancel, id }) {
       content: data,
     });
   };
+  
   return (
     <Modal
       title="Chỉnh sửa bài viết"
@@ -125,6 +131,11 @@ function EditPost({ isModalVisible, handleOk, handleCancel, id }) {
           <label>Nội dung tóm tắt</label>
           <Form.Item name="summary">
             <TextArea />
+          </Form.Item>
+        </div>
+        <div className={styles.fromItem}>
+          <Form.Item name="is_homepage" valuePropName="checked" label={null}>
+            <Checkbox>Hiển thị sản phẩm ra trang chủ</Checkbox>
           </Form.Item>
         </div>
       </Form>

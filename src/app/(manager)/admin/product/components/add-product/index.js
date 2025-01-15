@@ -1,5 +1,5 @@
 "use client";
-import { Button, Form, Input, Modal, Select } from "antd";
+import { Button, Checkbox, Form, Input, Modal, Select } from "antd";
 import React, { useEffect, useRef, useState } from "react";
 import styles from "./styles.module.scss";
 import { useForm } from "antd/es/form/Form";
@@ -15,18 +15,20 @@ import {
 import dynamic from "next/dynamic";
 import { addProduct } from "@/service/product";
 import { uploadFile } from "@/service/image";
+import { useRouter } from "next/navigation";
 
 function AddProduct() {
   const TextEditor = dynamic(() => import("@/components/text-editor"), {
     ssr: false,
   });
+  const router = useRouter()
   const [isModalVisible, setIsModalVisible] = useState(false);
   const [form] = useForm();
   const [preview, setPreview] = useState(null);
   const imageRef = useRef(null);
   const [category, setCategory] = useState([]);
   const [currentImage, setCurrentImage] = useState(null);
-
+  const [step, setStep] = useState(1);
   const onChangeEditor = (event, editor) => {
     const data = editor.getData();
     form.setFieldsValue({
@@ -36,6 +38,7 @@ function AddProduct() {
 
   const handleCancelModal = () => {
     setIsModalVisible(false);
+    setStep(1)
     form.resetFields();
   };
 
@@ -48,7 +51,13 @@ function AddProduct() {
     }
     try {
       const thumbnail = await uploadFile(data);
-      await addProduct({ ...values, thumbnail: thumbnail.payload?.url });
+      await addProduct({
+        ...values,
+        is_homepage:
+          values.is_homepage === "undefined" ? false : values.is_homepage,
+        thumbnail: thumbnail.payload?.url,
+      });
+      router.refresh();
       setIsModalVisible(false);
       handleSuccessMessage("Thêm sản phẩm thành công");
     } catch (error) {
@@ -57,7 +66,7 @@ function AddProduct() {
   };
 
   const handleChangeFile = (event) => {
-    const file = event.target.files?.[0]; // Lấy file đầu tiên từ input
+    const file = event.target.files?.[0];
     setCurrentImage(file);
     if (!isValidateFile(file)) {
       handleErrorMessage("File phải là hình ảnh và nhỏ hơn 5M");
@@ -66,9 +75,9 @@ function AddProduct() {
     if (file) {
       const reader = new FileReader();
       reader.onload = () => {
-        setPreview(reader.result); // Cập nhật state với chuỗi base64
+        setPreview(reader.result);
       };
-      reader.readAsDataURL(file); // Đọc file dưới dạng chuỗi base64
+      reader.readAsDataURL(file);
     }
   };
   const deleteFile = () => {
@@ -92,77 +101,101 @@ function AddProduct() {
       getCategory();
     }
   }, [isModalVisible]);
+
+  const handleOk = () => {
+    if (step === 1) {
+      setStep(2);
+    } else {
+      form.submit();
+    }
+  };
+
   return (
     <div>
       <Button onClick={() => setIsModalVisible(true)} className="!bg-[#5643e7]">
         Thêm sản phẩm
       </Button>
-
       <Modal
         title="Thêm sản phẩm mới"
         visible={isModalVisible}
-        onOk={() => form.submit()}
+        onOk={handleOk}
         onCancel={handleCancelModal}
         wrapClassName={styles.wrapperModal}
       >
         <Form form={form} onFinish={handleSubmit}>
-          <div className={styles.fromItem}>
-            <Form.Item name="name">
-              <Input placeholder="Tên sản phẩm" />
-            </Form.Item>
-          </div>
+          <div className={`${step === 1 ? "block" : "hidden"}  `}>
+            <div className={styles.fromItem}>
+              <Form.Item name="name">
+                <Input placeholder="Tên sản phẩm" />
+              </Form.Item>
+            </div>
 
-          <div className={styles.fromItem}>
-            <Form.Item name="category_id">
-              <Select placeholder="Lựa chọn danh mục sản phẩm">
-                {category.map((item) => {
-                  return (
-                    <Select.Option key={item.id} value={item.id}>
-                      {item.name}
-                    </Select.Option>
-                  );
-                })}
-              </Select>
-            </Form.Item>
-          </div>
-          <div className={styles.fromItem}>
-            <label>Nội dung sản phẩm</label>
-            <Form.Item name="description">
-              <TextEditor onChange={onChangeEditor} />
-            </Form.Item>
+            <div className={styles.fromItem}>
+              <Form.Item name="category_id">
+                <Select placeholder="Lựa chọn danh mục sản phẩm">
+                  {category.map((item) => {
+                    return (
+                      <Select.Option key={item.id} value={item.id}>
+                        {item.name}
+                      </Select.Option>
+                    );
+                  })}
+                </Select>
+              </Form.Item>
+            </div>
+            <div className={styles.fromItem}>
+              <label>Nội dung sản phẩm</label>
+              <Form.Item name="description">
+                <TextEditor onChange={onChangeEditor} />
+              </Form.Item>
+            </div>
+            <div className={styles.fromItem}>
+              <Form.Item
+                name="is_homepage"
+                valuePropName="checked"
+                label={null}
+              >
+                <Checkbox>Hiển thị sản phẩm ra trang chủ</Checkbox>
+              </Form.Item>
+            </div>
           </div>
         </Form>
-        {preview ? (
-          <div className="w-[150px] h-[150px] relative">
-            <span
-              className="absolute top-[-12px] right-[-12px] z-10 bg-[#e3e3e3] rounded-full"
-              onClick={deleteFile}
-            >
-              <Image
-                src={closeIcon}
-                className="cursor-pointer"
-                width={24}
-                height={24}
-              />
-            </span>
-            <img src={preview} className="w-full h-full object-cover" />
-          </div>
-        ) : (
-          <div
-            className="w-[150px] h-[150px] border border-[#929292] rounded-lg flex items-center justify-center cursor-pointer border-dashed"
-            onClick={() => imageRef.current.click()}
-          >
-            <PlusOutlined className="text-[40px]" />
+        {step === 2 && (
+          <div className="mt-5">
+            <p className="mb-4" >Thêm hình ảnh sản phẩm</p>
+            {preview ? (
+              <div className="w-[300px] h-[300px] relative mx-auto">
+                <span
+                  className="absolute top-[-12px] right-[-12px] z-10 bg-[#e3e3e3] rounded-full"
+                  onClick={deleteFile}
+                >
+                  <Image
+                    src={closeIcon}
+                    className="cursor-pointer"
+                    width={24}
+                    height={24}
+                  />
+                </span>
+                <img src={preview} className="w-full h-full object-cover" />
+              </div>
+            ) : (
+              <div
+                className="w-[300px] h-[300px] mx-auto border border-[#929292] rounded-lg flex items-center justify-center cursor-pointer border-dashed"
+                onClick={() => imageRef.current.click()}
+              >
+                <PlusOutlined className="text-[40px]" />
+              </div>
+            )}
+
+            <input
+              type="file"
+              onChange={handleChangeFile}
+              accept="image/*"
+              ref={imageRef}
+              className="hidden"
+            />
           </div>
         )}
-
-        <input
-          type="file"
-          onChange={handleChangeFile}
-          accept="image/*"
-          ref={imageRef}
-          className="hidden"
-        />
       </Modal>
     </div>
   );

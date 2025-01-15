@@ -1,8 +1,10 @@
 import Image from "next/image";
+import Link from "next/link";
 
-function ProductItem({ name, image, productName, className }) {
+function ProductItem({ name, image, productName, className,id }) {
   return (
     <div className={`product-item ${className}`}>
+      <Link href={`/product/${id}/${name.replace(/ /g, "-")}`} >
       <div className="card-item relative overflow-hidden cursor-pointer max-w-full min-h-[400px] rounded-md">
         <Image
           src={image}
@@ -18,6 +20,7 @@ function ProductItem({ name, image, productName, className }) {
           </p>
         </div>
       </div>
+      </Link>
     </div>
   );
 }

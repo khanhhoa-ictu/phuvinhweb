@@ -1,14 +1,13 @@
 "use client";
 import CustomModal from "@/components/modal/CustomModal";
-// import { deletePost, editPost } from "@/service/manager";
 import { Button } from "antd";
 import React, { useEffect, useState } from "react";
-// import EditPost from "../edit-post";
 import { useRouter } from "next/navigation";
 import { handleErrorMessage } from "@/common";
 import { deleteProduct, editProduct } from "@/service/product";
 import EditProduct from "../edit-product";
 import { getListCategory } from "@/service/catygory";
+import { CheckCircleOutlined } from "@ant-design/icons";
 
 function ProductItem({ product }) {
   const router = useRouter();
@@ -34,16 +33,19 @@ function ProductItem({ product }) {
 
   const handleOkEdit = async (data) => {
     let newData = { ...data, id: product.id };
+    setLoading(true);
 
     try {
-      setLoading(true);
       await editProduct(newData);
       router.refresh();
       setIsOpenModal({ ...isOpenModal, edit: false });
     } catch (error) {
       handleErrorMessage(error);
+    } finally {
+      setLoading(false);
     }
   };
+
   const getCategory = async () => {
     try {
       const data = await getListCategory(1);
@@ -61,7 +63,13 @@ function ProductItem({ product }) {
       <td className="text-center">
         {category.find((item) => item.id === product.category_id)?.name}
       </td>
-
+      <td className="text-center">
+        {product.is_homepage ? (
+          <CheckCircleOutlined className="text-xl [&_svg]:fill-[#0f630c]" />
+        ) : (
+          ""
+        )}
+      </td>
       <td>
         <div className="text-center">
           <Button

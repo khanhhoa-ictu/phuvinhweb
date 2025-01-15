@@ -34,6 +34,7 @@ async function PostPage({ searchParams }) {
               date={item.date}
               title={item.title}
               summary={item.summary}
+              id={item.id}
             />
           );
         })}

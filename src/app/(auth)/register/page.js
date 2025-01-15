@@ -1,6 +1,6 @@
 "use client";
 import { handleErrorMessage } from "@/common";
-import { login } from "@/service/auth";
+import { register } from "@/service/auth";
 import { Button, Form, Input } from "antd";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
@@ -12,8 +12,7 @@ function Login() {
   const handleLogin = async (values) => {
     setLoading(true);
     try {
-      const data = await login(values);
-      localStorage.setItem("token", data?.payload?.token);
+      await register(values);
       router.push("/");
     } catch (error) {
       handleErrorMessage(error)
@@ -53,7 +52,7 @@ function Login() {
               htmlType="submit"
               loading={loading}
             >
-              Đăng nhập
+              Đăng ký
             </Button>
           </Form.Item>
         </Form>

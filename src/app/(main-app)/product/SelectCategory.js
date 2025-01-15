@@ -17,7 +17,6 @@ function SelectCategory() {
       setCategories(payload);
       setValue(payload[0].id);
     } catch (error) {
-      console.log(error);
       handleErrorMessage(error);
     }
   };

@@ -8,6 +8,7 @@ function TablePost({ dataSource }) {
         <tbody>
           <tr className="py-2 h-10">
             <th>Tiêu đề bài viết</th>
+            <th>Hiển thị tại trang chủ</th>
             <th>Hành động</th>
           </tr>
 

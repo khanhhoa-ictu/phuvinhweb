@@ -3,53 +3,59 @@ import bcrypt from "bcrypt";
 import jwt from "jsonwebtoken";
 
 export async function POST(req, res) {
+  0;
   const request = await req.json();
 
-  const { username, password } = request;
-  const [rows] = await pool.query("SELECT * FROM user WHERE username = ?", [
-    username,
+  const { email, password } = request;
+  const [rows] = await pool.query("SELECT * FROM user WHERE email = ?", [
+    email,
   ]);
-  if (rows.length === 0) {
+
+  if (!rows[0]) {
     return Response.json(
       { message: "không tìm thấy thông tin người dùng" },
       {
         status: 404,
-      },
+      }
     );
   }
 
-  const user = rows[0];
-  if (!user.id) {
+  if (!bcrypt.compareSync(password, rows[0].password)) {
     return Response.json(
       { message: "Tài khoản hoặc mật khẩu không chính xác" },
       {
         status: 422,
-      },
-    );
-  }
-  if (!bcrypt.compareSync(password, result[0].password)) {
-    return Response.json(
-      { message: "Tài khoản hoặc mật khẩu không chính xác" },
-      {
-        status: 422,
-      },
+      }
     );
   }
 
   let token = jwt.sign(
     {
-      username: username,
-      role: result.role,
+      email: email,
+      role: rows[0].role,
       iat: Math.floor(Date.now() / 1000) - 60 * 30,
     },
     "secret",
-    { expiresIn: "1h" },
+    { expiresIn: "30d" }
   );
+
   let refreshToken = jwt.sign(
-    { username: username, iat: Math.floor(Date.now() / 1000) - 60 * 30 },
+    { email: email, iat: Math.floor(Date.now() / 1000) - 60 * 30 },
     "re-secret",
-    { expiresIn: "10 days" },
+    { expiresIn: "100 days" }
   );
-  res.send({ token, refreshToken, user });
-  return Response.json({ token, refreshToken, user, status: 200 });
+  const user = { id: rows[0]?.id, email: rows[0]?.email, role: rows[0].role };
+  return Response.json(
+    { token, refreshToken, user },
+    {
+      status: 200,
+      statusText: "OK",
+      headers: {
+        "Set-Cookie": [
+          `token=${token}; Path=/; HttpOnly; `,
+          `refreshToken=${refreshToken}; Path=/; HttpOnly`,
+        ],
+      },
+    }
+  );
 }

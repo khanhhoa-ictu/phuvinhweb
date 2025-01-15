@@ -16,7 +16,7 @@ async function Product({ searchParams }) {
         <h1 className="text-[32px] uppercase text-center mb-10 font-semibold">
           Quản lý sản phẩm
         </h1>
-        <div className="flex justify-end">
+        <div className="flex justify-end mb-10">
           <AddProduct />
         </div>
         <TableProduct dataSource={payload} />

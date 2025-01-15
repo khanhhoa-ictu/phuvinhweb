@@ -57,7 +57,7 @@
 .post-container:hover {
   transform: translateY(-10px);
   transition: all 0.3s ease-in-out;
-  box-shadow: 0 0 10px 0 rgba(0,0,0,.05)
+  box-shadow: 0px 9px 30px rgba(255, 149, 5, 0.3);
 }
 .post-container {
   transition: all 0.3s ease-in-out;
@@ -100,4 +100,8 @@
     right: 0;
     transform: skew(50deg, 0deg);
   }
+}
+.custom-button {
+  aspect-ratio: 1 / 1;
+  background-image: conic-gradient(from 180deg at 50% 50%,#3fdcf7 0deg,#1890ff 51.43deg,#6813cb 102.86deg,#ff003d 154.29deg,#ff8a00 205.71deg,#ffd600 257.14deg,#67be23 308.57deg,#3fdcf7 1turn);
 }

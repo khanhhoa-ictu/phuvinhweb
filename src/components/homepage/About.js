@@ -9,7 +9,7 @@ function About() {
     <div className="px-6 py-10 sm:px-20 md:py-20 bg-[#edf0f2]">
       <div className="w-full flex gap-10 flex-col md:flex-row max-w-[1200px] mx-auto lg:gap-20">
         <div className="block md:hidden">
-          <h3 className="uppercase text-sm font-bold lg:text-base">
+          <h3 className="uppercase text-sm font-bold lg:text-base mb-6">
             về chúng tôi
           </h3>
           <p className="text-[28px] text-2xl lg:text-[36px] font-bold">

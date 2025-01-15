@@ -3,6 +3,7 @@ import { CKEditor } from "@ckeditor/ckeditor5-react";
 import ClassicEditor from "@ckeditor/ckeditor5-build-classic";
 import styles from "./styles.module.scss";
 import { uploadFile } from "@/service/image";
+import React, { useRef } from "react"
 
 function customUploadAdapter(loader) {
   return {
@@ -25,7 +26,8 @@ function uploadPlugin(editor) {
   };
 }
 
-function TextEditor({ onChange, data }) {
+const TextEditor = React.memo(({data,onChange}) => {
+  const editorRef = useRef(null);
   return (
     <div className={styles.textEditor}>
       <CKEditor
@@ -50,6 +52,7 @@ function TextEditor({ onChange, data }) {
             "redo",
             "|",
             "heading",
+            "alignment",
             "|",
             "bold",
             "italic",
@@ -59,14 +62,16 @@ function TextEditor({ onChange, data }) {
             "|",
             "bulletedList",
             "numberedList",
-            "todoList",
           ],
         }}
         data={data || ""}
+        onReady={(editor) => {
+          editorRef.current = editor; // Lưu trữ tham chiếu của CKEditor
+        }}
         onChange={(event, editor) => onChange(event, editor)}
       />
     </div>
   );
-}
+});
 
 export default TextEditor;

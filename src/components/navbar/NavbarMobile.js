@@ -1,6 +1,6 @@
 "use client";
 import logo from "@/assets/logo/logo.jpg";
-import { isClient } from "@/common";
+import { handleErrorMessage, isClient } from "@/common";
 import { listMenu } from "@/common/constant";
 import Link from "next/link";
 import { useEffect, useRef, useState } from "react";
@@ -9,11 +9,19 @@ import closeIcon from "../../assets/icon/close-icon.svg";
 import menuIcon from "../../assets/icon/menu-icon.svg";
 import styles from "./styles.module.scss";
 import Image from "next/image";
+import { useRouter } from "next/navigation";
+import { logoutServer } from "@/service/auth";
 
 function NavbarMobile() {
+  const router = useRouter();
   const [showNav, setShowNav] = useState(false);
   const toggleContainer = useRef(null);
+  const [isLogin, setIsLogin] = useState(false);
+
   useEffect(() => {
+    if (localStorage.getItem("token")) {
+      setIsLogin(true);
+    }
     if (!isClient) return;
     window.addEventListener("click", onClickOutsideHandler);
     return () => window.removeEventListener("click", onClickOutsideHandler);
@@ -22,6 +30,16 @@ function NavbarMobile() {
   const onClickOutsideHandler = (event) => {
     if (!toggleContainer.current.contains(event.target)) {
       setShowNav(false);
+    }
+  };
+  const logout = async () => {
+    try {
+      await logoutServer(true);
+      localStorage.removeItem("token");
+      router.push("/login");
+      setShowNav(false);
+    } catch (error) {
+      handleErrorMessage(error);
     }
   };
 
@@ -69,6 +87,22 @@ function NavbarMobile() {
                 />
               </li>
             ))}
+            {isLogin && (
+              <li className="w-full flex justify-between">
+                <div
+                  className="text-[#2C2C2C] text-[20px] font-medium py-[17px]"
+                  onClick={() => logout()}
+                >
+                  Đăng xuất
+                </div>
+                <Image
+                  src={arrowRight}
+                  width={24}
+                  height={24}
+                  alt="arrow-right"
+                />
+              </li>
+            )}
           </ul>
         </div>
         <div className="px-[22px]">

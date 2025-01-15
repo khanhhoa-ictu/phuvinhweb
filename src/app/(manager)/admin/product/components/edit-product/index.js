@@ -1,10 +1,10 @@
 "use client";
 import closeIcon from "@/assets/icon/close-icon.svg";
-import { handleErrorMessage, isValidateFile } from "@/common";
+import { handleErrorMessage, handleSuccessMessage, isValidateFile } from "@/common";
 import { getListCategory } from "@/service/catygory";
 import { getProductDetail } from "@/service/product";
 import { PlusOutlined } from "@ant-design/icons";
-import { Form, Input, Modal, Select } from "antd";
+import { Checkbox, Form, Input, Modal, Select } from "antd";
 import { useForm } from "antd/es/form/Form";
 import dynamic from "next/dynamic";
 import Image from "next/image";
@@ -20,10 +20,9 @@ function EditProduct({ isModalVisible, handleOk, handleCancel, id }) {
   const [preview, setPreview] = useState(null);
   const imageRef = useRef(null);
   const [category, setCategory] = useState([]);
-  const [description, setDescription] = useState("");
   const [currentImage, setCurrentImage] = useState(null);
   const [isChangeFile, setIsChangeFile] = useState(false);
-
+  const [productDetail, setProductDetail] = useState(null);
   const onChangeEditor = (event, editor) => {
     const data = editor.getData();
     form.setFieldsValue({
@@ -34,7 +33,7 @@ function EditProduct({ isModalVisible, handleOk, handleCancel, id }) {
   const handleSubmit = async (values) => {
     let thumbnail = "";
     if (!isChangeFile) {
-      thumbnail = data?.thumbnail;
+      thumbnail = productDetail?.thumbnail;
     } else {
       if (!currentImage) {
         handleErrorMessage("Vui lòng cung cấp hình ảnh");
@@ -47,7 +46,12 @@ function EditProduct({ isModalVisible, handleOk, handleCancel, id }) {
     }
 
     try {
-      await handleOk({ ...values, thumbnail: thumbnail });
+      await handleOk({
+        ...values,
+        is_homepage:
+          values.is_homepage === "undefined" ? false : values.is_homepage,
+        thumbnail: thumbnail,
+      });
       handleSuccessMessage("Cập nhật sản phẩm thành công");
     } catch (error) {
       handleErrorMessage(error);
@@ -83,8 +87,8 @@ function EditProduct({ isModalVisible, handleOk, handleCancel, id }) {
       const listCategory = data.payload.data?.listPost;
       setCategory(listCategory);
       form.setFieldsValue(dataProduct?.payload?.data);
-      setDescription(dataProduct?.payload?.data?.description);
       setPreview(dataProduct?.payload?.data?.thumbnail);
+      setProductDetail(dataProduct?.payload?.data);
     } catch (error) {
       handleErrorMessage(error);
     }
@@ -95,7 +99,7 @@ function EditProduct({ isModalVisible, handleOk, handleCancel, id }) {
       getProduct();
     } else {
       form.resetFields();
-      setDescription("");
+      setProductDetail(null);
       setCurrentImage(null);
       setIsChangeFile(false);
     }
@@ -132,7 +136,15 @@ function EditProduct({ isModalVisible, handleOk, handleCancel, id }) {
         <div className={styles.fromItem}>
           <label>Nội dung sản phẩm</label>
           <Form.Item name="description">
-            <TextEditor onChange={onChangeEditor} data={description} />
+            <TextEditor
+              onChange={onChangeEditor}
+              data={productDetail?.description || ""}
+            />
+          </Form.Item>
+        </div>
+        <div className={styles.fromItem}>
+          <Form.Item name="is_homepage" valuePropName="checked" label={null}>
+            <Checkbox>Hiển thị sản phẩm ra trang chủ</Checkbox>
           </Form.Item>
         </div>
       </Form>

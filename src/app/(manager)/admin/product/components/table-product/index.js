@@ -9,6 +9,8 @@ function TableProduct({ dataSource }) {
           <tr className="py-2 h-10">
             <th>Tên sản phẩm</th>
             <th>Danh mục</th>
+            <th>Danh mục</th>
+            <th>Hiển thị tại trang chủ</th>
             <th>Hành động</th>
           </tr>
 

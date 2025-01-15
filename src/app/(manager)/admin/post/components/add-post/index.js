@@ -1,5 +1,5 @@
 "use client";
-import { Button, Form, Input, Modal, Select } from "antd";
+import { Button, Checkbox, Form, Input, Modal, Select } from "antd";
 import { useForm } from "antd/lib/form/Form";
 import TextArea from "antd/lib/input/TextArea";
 import dynamic from "next/dynamic";
@@ -48,7 +48,12 @@ function AddPost() {
     }
     try {
       const thumbnail = await uploadFile(data);
-      await addPost({ ...payload, thumbnail: thumbnail.payload?.url });
+      await addPost({
+        ...payload,
+        is_homepage:
+        payload.is_homepage === "undefined" ? false : payload.is_homepage,
+        thumbnail: thumbnail.payload?.url,
+      });
       router.refresh();
       setIsModalVisible(false);
       handleSuccessMessage("Thêm bài viết thành công");
@@ -108,6 +113,11 @@ function AddPost() {
             <label>Nội dung tóm tắt</label>
             <Form.Item name="summary">
               <TextArea />
+            </Form.Item>
+          </div>
+          <div className={styles.fromItem}>
+            <Form.Item name="is_homepage" valuePropName="checked" label={null}>
+              <Checkbox>Hiển thị sản phẩm ra trang chủ</Checkbox>
             </Form.Item>
           </div>
         </Form>
