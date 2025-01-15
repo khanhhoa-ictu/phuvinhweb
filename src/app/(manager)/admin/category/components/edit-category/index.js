@@ -7,9 +7,16 @@ import { handleErrorMessage } from "@/common";
 
 function EditCategory({ isModalVisible, handleOk, handleCancel, id }) {
   const [nameCategory, setNameCategory] = useState("");
-
-  const handleSubmit = () => {
-    handleOk({ name: nameCategory });
+  const [loading, setLoading] = useState(false);
+  const handleSubmit = async () => {
+    setLoading(true);
+    try {
+      await handleOk({ name: nameCategory });
+    } catch (error) {
+      handleErrorMessage(error);
+    } finally {
+      setLoading(false);
+    }
   };
   const getCategory = async () => {
     try {
@@ -35,6 +42,7 @@ function EditCategory({ isModalVisible, handleOk, handleCancel, id }) {
       onOk={handleSubmit}
       onCancel={handleCancel}
       wrapClassName={styles.wrapperModal}
+      confirmLoading={loading}
     >
       <div className={styles.fromItem}>
         <Input

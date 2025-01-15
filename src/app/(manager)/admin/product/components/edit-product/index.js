@@ -28,6 +28,7 @@ function EditProduct({ isModalVisible, handleOk, handleCancel, id }) {
   const [isChangeFile, setIsChangeFile] = useState(false);
   const [productDetail, setProductDetail] = useState(null);
   const [step, setStep] = useState(1);
+  const [loading, setLoading] = useState(false);
 
   const onChangeEditor = (event, editor) => {
     const data = editor.getData();
@@ -50,7 +51,7 @@ function EditProduct({ isModalVisible, handleOk, handleCancel, id }) {
       const newThumbnail = await uploadFile(data);
       thumbnail = newThumbnail?.payload?.url;
     }
-
+    setLoading(true);
     try {
       await handleOk({
         ...values,
@@ -61,6 +62,8 @@ function EditProduct({ isModalVisible, handleOk, handleCancel, id }) {
       handleSuccessMessage("Cập nhật sản phẩm thành công");
     } catch (error) {
       handleErrorMessage(error);
+    } finally {
+      setLoading(false);
     }
   };
 
@@ -128,6 +131,7 @@ function EditProduct({ isModalVisible, handleOk, handleCancel, id }) {
       onOk={handleEdit}
       onCancel={handleCancel}
       wrapClassName={styles.wrapperModal}
+      confirmLoading={loading}
     >
       <Form form={form} onFinish={handleSubmit}>
         <div className={`${step === 1 ? "block" : "hidden"}  `}>

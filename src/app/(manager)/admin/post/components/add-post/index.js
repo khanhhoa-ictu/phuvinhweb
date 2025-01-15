@@ -28,6 +28,7 @@ function AddPost() {
   const [currentImage, setCurrentImage] = useState(null);
   const imageRef = useRef(null);
   const [step, setStep] = useState(1);
+  const [loading, setLoading] = useState(false);
 
   const onChangeEditor = (event, editor) => {
     const data = editor.getData();
@@ -50,6 +51,7 @@ function AddPost() {
       handleErrorMessage("Vui lòng cung cấp hình ảnh");
       return;
     }
+    setLoading(true);
     try {
       const thumbnail = await uploadFile(data);
       await addPost({
@@ -63,6 +65,8 @@ function AddPost() {
       handleSuccessMessage("Thêm bài viết thành công");
     } catch (error) {
       handleErrorMessage(error);
+    } finally {
+      setLoading(false);
     }
   };
 
@@ -109,6 +113,7 @@ function AddPost() {
         onOk={handleOk}
         onCancel={handleCancelModal}
         wrapClassName={styles.wrapperModal}
+        confirmLoading={loading}
       >
         <Form form={form} onFinish={handleSubmit}>
           <div className={`${step === 1 ? "block" : "hidden"}  `}>

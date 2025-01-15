@@ -27,6 +27,7 @@ function EditPost({ isModalVisible, handleOk, handleCancel, id }) {
   const imageRef = useRef(null);
   const [isChangeFile, setIsChangeFile] = useState(false);
   const [step, setStep] = useState(1);
+  const [loading, setLoading] = useState(false);
 
   const handleCancelModal = () => {
     setIsChangeFile(false);
@@ -47,6 +48,7 @@ function EditPost({ isModalVisible, handleOk, handleCancel, id }) {
       const newThumbnail = await uploadFile(data);
       thumbnail = newThumbnail?.payload?.url;
     }
+    setLoading(true);
     try {
       await handleOk({
         ...payload,
@@ -57,6 +59,8 @@ function EditPost({ isModalVisible, handleOk, handleCancel, id }) {
       handleSuccessMessage("Cập nhật bài viết thành công");
     } catch (error) {
       handleErrorMessage(error);
+    } finally {
+      setLoading(false);
     }
   };
 
@@ -123,6 +127,7 @@ function EditPost({ isModalVisible, handleOk, handleCancel, id }) {
       onOk={handleEdit}
       onCancel={handleCancelModal}
       wrapClassName={styles.wrapperModal}
+      confirmLoading={loading}
     >
       <Form form={form} onFinish={handleSubmit}>
         <div className={`${step === 1 ? "block" : "hidden"}  `}>
