@@ -3,7 +3,7 @@ import React from "react";
 
 function Layout({ children }) {
   return (
-    <div className="flex h-[100vh]">
+    <div className="flex h-[100vh] text-[#333]">
       <SideNav />
       {children}
     </div>

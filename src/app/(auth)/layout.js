@@ -1,7 +1,7 @@
 import React from "react";
 
 function Layout({ children }) {
-  return <div>{children}</div>;
+  return <div className="text-[#333]" >{children}</div>;
 }
 
 export default Layout;

@@ -4,7 +4,7 @@ import Navbar from "@/components/navbar";
 
 function Layout({ children }) {
   return (
-    <div className="bg-white flex flex-col justify-between min-h-[100vh] relative font-roboto">
+    <div className="bg-white flex flex-col justify-between min-h-[100vh] relative font-roboto text-[#333]">
       <div className="sticky top-0 z-[11]">
         <Navbar />
       </div>
