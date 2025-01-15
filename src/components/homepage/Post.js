@@ -19,6 +19,7 @@ async function Post() {
               date={"11/1/2002"}
               title={item.title}
               summary={item.summary}
+              id={item.id}
             />
           );
         })}

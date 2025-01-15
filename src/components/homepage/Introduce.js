@@ -8,7 +8,7 @@ function Introduce() {
         </h1>
         <p className="text-[#473dc6] text-sm lg:text-xl text-center font-semibold">
           Bằng vào sự nỗ lực không ngừng cải tiến chất lượng sản phẩm, dịch vụ,
-          PHÚ VINH phấn đấu trở thành doanhnghiệp hàng đầu sản xuất thép Việt
+          PHÚ VINH phấn đấu trở thành doanh nghiệp hàng đầu sản xuất thép Việt
           Nam.
         </p>
         <Button className="!text-xl lg:!text-2xl !px-8 !py-5 !rounded-[80px] !h-[62px] !bg-[#cbb024]">

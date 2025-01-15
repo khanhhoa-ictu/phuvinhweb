@@ -82,6 +82,7 @@ function Product() {
               name="product-image"
               productName={item.name}
               className="max-w-full"
+              id={item.id}
             />
           ))}
         </Slider>

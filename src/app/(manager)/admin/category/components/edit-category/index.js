@@ -15,7 +15,6 @@ function EditCategory({ isModalVisible, handleOk, handleCancel, id }) {
     try {
       const data = await getCategoryDetail(id);
       setNameCategory(data?.payload?.data?.name);
-      console.log(data);
     } catch (error) {
       handleErrorMessage(error);
     }

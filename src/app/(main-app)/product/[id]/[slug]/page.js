@@ -1,22 +1,23 @@
 import { getPostDetail } from "@/service/post";
 import styles from "./styles.module.scss";
+import { getProductDetail } from "@/service/product";
 
 export async function generateMetadata({ params }) {
   // read route params
   const id = params.id;
 
   // fetch data
-  const { payload } = await getPostDetail(id);
+  const { payload } = await getProductDetail(id);
 
   return {
-    title: payload?.data?.attributes?.title,
-    description: payload?.data?.attributes?.summary,
+    title: payload?.data?.attributes?.name,
+    description: payload?.data?.attributes?.name,
   };
 }
 
-async function PostDetail({ params }) {
+async function ProductDetail({ params }) {
   const { id } = params;
-  const { payload: postDetail } = await getPostDetail(id);
+  const { payload: postDetail } = await getProductDetail(id);
   return (
     <div className={styles.container}>
       <div className={styles.containerDetail}>
@@ -29,7 +30,7 @@ async function PostDetail({ params }) {
           </div>
           <div className={styles.detailContent}>
             <div
-              dangerouslySetInnerHTML={{ __html: `${postDetail?.data?.content}` }}
+              dangerouslySetInnerHTML={{ __html: `${postDetail?.data?.description}` }}
               className={styles.detailContents}
             ></div>
           </div>
@@ -39,4 +40,4 @@ async function PostDetail({ params }) {
   );
 }
 
-export default PostDetail;
+export default ProductDetail;

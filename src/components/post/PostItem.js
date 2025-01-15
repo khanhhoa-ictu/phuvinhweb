@@ -2,7 +2,7 @@ import { Button } from "antd";
 import Image from "next/image";
 import React from "react";
 
-function PostItem({ image, date, title, summary }) {
+function PostItem({ image, date, title, summary, id }) {
   return (
     <div className="relative post-container rounded-lg min-w-[250px] lg:min-w-[300px] xl:min-w-[370px]">
       <div
@@ -28,7 +28,12 @@ function PostItem({ image, date, title, summary }) {
             </p>
           </div>
 
-          <Button className="w-fit">Xem Chi Tiết</Button>
+          <Link
+            href={`/post/${id}/${title.replace(/ /g, "-")}`}
+            className="w-fit"
+          >
+            <Button>Xem chi tiết</Button>
+          </Link>
         </div>
       </div>
     </div>

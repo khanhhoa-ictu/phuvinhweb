@@ -73,7 +73,7 @@ function About() {
         <div className="flex flex-col gap-4">
           <p>
             Bằng vào sự nỗ lực không ngừng cải tiến chất lượng sản phẩm, dịch
-            vụ, PHÚ VINH phấn đấu trở thành doanhnghiệp hàng đầu sản xuất thép
+            vụ, PHÚ VINH phấn đấu trở thành doanh nghiệp hàng đầu sản xuất thép
             Việt Nam.
           </p>
           <p>

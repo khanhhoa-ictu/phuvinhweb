@@ -1,8 +1,9 @@
 import { Button } from "antd";
 import Image from "next/image";
+import Link from "next/link";
 import React from "react";
 
-function PostItem({ image, date, title, summary }) {
+function PostItem({ image, date, title, summary, id }) {
   return (
     <div className="relative post-container max-h-[400px] overflow-hidden rounded-lg">
       <div
@@ -29,8 +30,9 @@ function PostItem({ image, date, title, summary }) {
               {summary || ""}
             </p>
           </div>
-
-          <Button className="w-fit">Xem Chi Tiết</Button>
+          <Link href={`/post/${id}/${title.replace(/ /g, '-')}`} className="w-fit">
+            <Button className="w-fit">Xem Chi Tiết</Button>
+          </Link>
         </div>
       </div>
     </div>

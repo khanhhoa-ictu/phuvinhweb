@@ -30,7 +30,7 @@ async function Product({ searchParams }) {
 
       <SelectCategory />
 
-      <div className="max-w-[1200px] gap-6 lg:mx-auto flex flex-col mx-4 md:flex-row flex-wrap md:gap-4 items-center lg:justify-between mb-10">
+      <div className="max-w-[1200px] gap-x-6 lg:mx-auto flex flex-col mx-4 md:flex-row flex-wrap md:gap-x-4 items-center lg:justify-between mb-10 gap-y-10">
         {products?.map((item) => (
           <ProductItem
             key={item}
@@ -38,6 +38,7 @@ async function Product({ searchParams }) {
             name="test"
             productName="Ống sắt mạ kẽm vuông hình chữ nhật"
             className="max-w-[370px]"
+            id={item.id}
           />
         ))}
       </div>
@@ -46,6 +47,7 @@ async function Product({ searchParams }) {
           currentPage={currentPage}
           totalItems={data.payload.data?.total}
           pageSize={pageSize}
+          category={category}
         />
       </div>
     </div>

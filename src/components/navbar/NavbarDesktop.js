@@ -53,8 +53,8 @@ function NavbarDesktop() {
 
   const menu = (
     <Menu style={{ minWidth: 220 }}>
-      <Menu.Item key="1" onClick={() => router.push("/admin")}>
-        quản lý
+      <Menu.Item key="1">
+        <Link href="/admin">quản lý</Link>
       </Menu.Item>
       <Menu.Item key="2" onClick={logout}>
         đăng xuất
