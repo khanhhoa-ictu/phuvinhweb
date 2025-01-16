@@ -8,16 +8,16 @@
     "start": "next start",
     "lint": "next lint",
     "format": "prettier --write .",
-   "lint:fix": "eslint \"**/*.{js,jsx}\" --fix"
+    "lint:fix": "eslint \"**/*.{js,jsx}\" --fix"
   },
   "dependencies": {
     "@ant-design/nextjs-registry": "^1.0.2",
-    "@ckeditor/ckeditor5-build-classic": "^43.1.0",
-    "@ckeditor/ckeditor5-react": "^9.1.0",
+    "@ckeditor/ckeditor5-react": "^9.4.0",
     "@next/font": "^14.2.15",
     "@tailwindcss/line-clamp": "^0.4.4",
     "antd": "^5.22.7",
     "bcrypt": "^5.1.1",
+    "ckeditor5": "^44.1.0",
     "cloudinary": "^2.5.1",
     "dayjs": "^1.11.13",
     "jsonwebtoken": "^9.0.2",

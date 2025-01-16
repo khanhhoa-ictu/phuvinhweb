@@ -15,7 +15,7 @@
       overflow-y: auto;
       max-height: 450px;
       min-height: 250px;
-
+      padding: 0px 26px !important;
       @media only screen and (max-width: 650px) {
         max-height: 200px;
         min-height: 150px;
