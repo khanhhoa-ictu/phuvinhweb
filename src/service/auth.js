@@ -9,13 +9,7 @@ export const register = (infoUser) => {
 };
 
 export const logoutServer = (force) => {
-  return http.post(
-    "api/logout",
-    {
-      force,
-    },
-    {
-      baseUrl: "",
-    },
-  );
+  return http.post("api/logout", {
+    force,
+  });
 };

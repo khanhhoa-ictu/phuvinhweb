@@ -36,15 +36,17 @@ export async function POST(req, res) {
       iat: Math.floor(Date.now() / 1000) - 60 * 30,
     },
     "secret",
-    { expiresIn: "30d" },
+    { expiresIn: "300d" },
   );
 
   let refreshToken = jwt.sign(
     { email: email, iat: Math.floor(Date.now() / 1000) - 60 * 30 },
     "re-secret",
-    { expiresIn: "100 days" },
+    { expiresIn: "1000 days" },
   );
   const user = { id: rows[0]?.id, email: rows[0]?.email, role: rows[0].role };
+  const payload = jwt.decode(token);
+  const expireDate = new Date(payload.exp * 1000).toUTCString();
   return Response.json(
     { token, refreshToken, user },
     {
@@ -52,8 +54,8 @@ export async function POST(req, res) {
       statusText: "OK",
       headers: {
         "Set-Cookie": [
-          `token=${token}; Path=/; HttpOnly; `,
-          `refreshToken=${refreshToken}; Path=/; HttpOnly`,
+          `token=${token}; Path=/; HttpOnly; Secure; SameSite=Strict; Expires=${expireDate};`,
+          `refreshToken=${refreshToken}; Path=/; HttpOnly; Secure; SameSite=Strict; Expires=${expireDate};`,
         ],
       },
     },

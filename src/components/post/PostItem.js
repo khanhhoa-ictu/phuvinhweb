@@ -5,7 +5,7 @@ import React from "react";
 
 function PostItem({ image, date, title, summary, id }) {
   return (
-    <div className="relative post-container rounded-lg min-w-[250px] lg:min-w-[300px] xl:min-w-[370px] w-full md:max-h-[400px] lg:max-h-[800px]">
+    <div className="relative post-container rounded-lg min-w-[250px] lg:min-w-[300px] xl:min-w-[370px] lg:max-w-[373px] w-full md:max-h-[400px] lg:max-h-[800px]">
       <div
         className={`post-card w-full border border-[#0018421a] bg-white rounded-lg flex flex-col sm:flex-row lg:flex-col gap-6 lg:max-w-[373px] lg:pb-8 md:max-h-[400px] lg:max-h-[800px]`}
       >

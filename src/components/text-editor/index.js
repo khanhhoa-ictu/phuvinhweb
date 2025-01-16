@@ -34,19 +34,6 @@ const TextEditor = ({ data, onChange }) => {
         editor={ClassicEditor}
         config={{
           extraPlugins: [uploadPlugin],
-          image: {
-            toolbar: [
-              "imageTextAlternative", // Thêm mô tả thay thế cho hình ảnh
-              "imageStyle:full",
-              "imageStyle:side",
-              "|",
-              "resizeImage:25", // Tùy chọn resize 25%
-              "resizeImage:50", // Tùy chọn resize 50%
-              "resizeImage:75", // Tùy chọn resize 75%
-              "resizeImage:original", // Tùy chọn resize về kích thước gốc
-            ],
-            resizeUnit: "px", // Đơn vị resize (px hoặc %)
-          },
           toolbar: [
             "undo",
             "redo",
@@ -63,6 +50,9 @@ const TextEditor = ({ data, onChange }) => {
             "bulletedList",
             "numberedList",
           ],
+          alignment: {
+            options: ["left", "center", "right", "justify"], // Các tùy chọn căn chỉnh
+          },
         }}
         data={data || ""}
         onReady={(editor) => {
