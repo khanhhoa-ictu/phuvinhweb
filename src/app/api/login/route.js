@@ -54,8 +54,8 @@ export async function POST(req, res) {
       statusText: "OK",
       headers: {
         "Set-Cookie": [
-          `token=${token}; Path=/; HttpOnly; Secure; SameSite=Strict; Expires=${expireDate};`,
-          `refreshToken=${refreshToken}; Path=/; HttpOnly; Secure; SameSite=Strict; Expires=${expireDate};`,
+          `token=${token}; Path=/; HttpOnly;  Expires=${expireDate};`,
+          `refreshToken=${refreshToken}; Path=/; HttpOnly; Expires=${expireDate};`,
         ],
       },
     },
