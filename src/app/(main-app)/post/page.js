@@ -37,7 +37,7 @@ async function PostPage({ searchParams }) {
             <PostItem
               key={item.id}
               image={item.thumbnail}
-              date={item.date}
+              date={item.created_at}
               title={item.title}
               summary={item.summary}
               id={item.id}

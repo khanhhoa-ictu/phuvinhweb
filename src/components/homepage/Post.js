@@ -16,7 +16,7 @@ async function Post() {
             <PostItem
               key={item.id}
               image={item.thumbnail}
-              date={"11/1/2002"}
+              date={item.created_at}
               title={item.title}
               summary={item.summary}
               id={item.id}
