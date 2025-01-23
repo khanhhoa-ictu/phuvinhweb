@@ -82,6 +82,20 @@
 }
 .card-item:hover .product-name {
   color: white;
+  bottom: 60px;
+  transition: all 0.7s;
+}
+.card-item:hover .product-button {
+  opacity: 1;
+  transition: all 0.7s;
+}
+.product-button {
+  opacity: 0;
+  transition: all 0.7s;
+}
+
+.product-name{
+  transition: all 0.7s;
 }
 .line {
   &:before {

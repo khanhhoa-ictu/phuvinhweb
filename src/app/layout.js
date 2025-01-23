@@ -36,9 +36,7 @@ export default function RootLayout({ children }) {
       <body className={`${roboto.variable} ${montserrat.variable} antialiased`}>
         <ConfigProvider theme={{ components: configStyleComponent }}>
           <AntdRegistry>
-            <NextTopLoader
-              showSpinner={false}
-            />
+            <NextTopLoader showSpinner={false} />
             {children}
           </AntdRegistry>
         </ConfigProvider>

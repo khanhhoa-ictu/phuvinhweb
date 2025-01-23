@@ -61,7 +61,6 @@ function NavbarDesktop() {
       </Menu.Item>
     </Menu>
   );
-
   return (
     <div
       className={`flex justify-between px-[30px] items-center xl:px-[70] py-4 ${
