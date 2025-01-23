@@ -5,6 +5,7 @@ import { ConfigProvider } from "antd";
 import { AntdRegistry } from "@ant-design/nextjs-registry";
 import { Montserrat, Roboto } from "@next/font/google";
 import { configStyleComponent } from "@/common/constant";
+import NextTopLoader from "nextjs-toploader";
 import "@/styles/custom.scss";
 
 const montserrat = Montserrat({
@@ -34,7 +35,12 @@ export default function RootLayout({ children }) {
     <html lang="en">
       <body className={`${roboto.variable} ${montserrat.variable} antialiased`}>
         <ConfigProvider theme={{ components: configStyleComponent }}>
-          <AntdRegistry>{children}</AntdRegistry>
+          <AntdRegistry>
+            <NextTopLoader
+              showSpinner={false}
+            />
+            {children}
+          </AntdRegistry>
         </ConfigProvider>
       </body>
     </html>

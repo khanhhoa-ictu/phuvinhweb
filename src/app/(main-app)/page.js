@@ -16,7 +16,6 @@ export default function Home() {
     <div className="flex-1 h-full relative z-10 text-[#333]">
       <SlideHeader />
 
-      <Introduce />
       <About />
       <Product />
       <Application />

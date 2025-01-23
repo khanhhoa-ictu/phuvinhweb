@@ -10,7 +10,7 @@ async function Post() {
     <div className="mx-5 py-10 lg:mx-10">
       <h3 className="text-[32px] font-bold text-center uppercase">tin tức</h3>
       <div className="w-[306px] h-[6px] mx-auto mb-[60px] line relative"></div>
-      <div className="items-center flex flex-col lg:flex-row lg:mx-auto lg:items-stretch gap-10 lg:gap-4 xl:max-w-[1200px] relative z-10 lg:justify-between">
+      <div className="items-center flex flex-col lg:flex-row lg:mx-auto lg:items-stretch gap-10 lg:gap-4 xl:max-w-[1200px] relative z-10 lg:justify-between flex-wrap">
         {listPost.map((item) => {
           return (
             <PostItem
