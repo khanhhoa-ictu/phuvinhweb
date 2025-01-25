@@ -15,11 +15,11 @@ function SlideHeader() {
           <div className="absolute top-0 bottom-0 left-0 right-0 xl:flex xl:justify-center">
             {/* <Image src={testImage} width={434} height={330} className="h-full w-[600px] opacity-60 md:w-full max-w-[1000px]" /> */}
           </div>
-          <div className="flex flex-col items-center justify-between gap-5 lg:gap-[60px] w-[800px] lg:w-[1000px] mx-auto relative px-5">
+          <div className="flex flex-col items-center justify-between gap-5 lg:gap-[60px] w-full md:w-[800px] lg:w-[1000px] mx-auto relative px-5">
             <h1 className="text-white lg:text-[40px] text-[18px] font-bold uppercase">
               Phú Vinh Steel
             </h1>
-            <p className="text-white text-[22px] md:text-[38px] lg:text-[60px] text-center font-semibold uppercase italic">
+            <p className="text-white text-[22px] md:text-[38px] lg:text-[60px] text-center font-semibold uppercase italic md:w-full">
               <ReactTyped
                 strings={[
                   "Ống thép Phú Vinh - Lựa chọn thông minh - Khởi sinh hưng thịnh",

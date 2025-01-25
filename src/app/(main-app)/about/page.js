@@ -2,6 +2,7 @@ import React from "react";
 import background from "@/assets/image/post/background.png";
 import Image from "next/image";
 import AboutItem from "./AboutItem";
+import tamnhin from "@/assets/image/about/tamnhin-sumenh.jpg";
 
 export const metadata = {
   title: "Giới thiệu - Công ty Thép Phú Vinh",
@@ -72,8 +73,7 @@ function About() {
     },
     {
       id: 5,
-      image:
-        "https://minhngocsteel.vn/upload/file/original/2-linh-vuc-hoat-dong-san-pham-1626942558.jpg",
+      image: tamnhin,
       title: "Tầm Nhìn & Sứ Mệnh",
       content: (
         <div className="flex flex-col gap-4">
